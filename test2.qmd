@@ -1,0 +1,75 @@
+---
+title: "不動産投資のリスク"
+subtitle: "恒等式を使った理解"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    footer: <http://seiroito.github.io/Miscellaneous/QuartoFiles/test2.html>
+    theme: sky
+width: 1500
+resources:
+  - test2.pdf
+# quarto render test2.qmd
+---
+
+::: {.incremental}
+$$
+\begin{align}
+\mbox{売却差益}&\equiv\mbox{売却価格}-\mbox{購入価格}\\
+\mbox{債務残高}&\equiv\mbox{(1+r)融資額}-\mbox{返済額}\\
+\mbox{返済額}&\equiv\mbox{家賃収入}-\mbox{経費}-\mbox{利潤}\\
+\end{align}
+$$
+:::
+::: {.incremental}
+$$
+\begin{align}
+\mbox{売却価格}&\equiv\mbox{購入価格}+\mbox{売却差益}\\
+\mbox{債務残高}&\equiv\mbox{(1+r)融資額}-\mbox{家賃収入}+\mbox{経費}+\mbox{利潤}
+\end{align}
+$$
+:::
+::: {.incremental}
+$$
+\begin{align}
+\mbox{債務残高}+\mbox{売却価格}&\equiv\mbox{(1+r)融資額}-\mbox{家賃収入}+\mbox{経費}+\mbox{利潤}\\
+&\hspace{1em}+\mbox{購入価格}+\mbox{売却差益}\\
+\mbox{利潤}+\mbox{売却差益}&\equiv
+\mbox{売却価格}+\mbox{債務残高}+\mbox{家賃収入}-\mbox{経費}\\
+&\hspace{1em}-\{\mbox{(1+r)融資額}+\mbox{購入価格}\}
+\end{align}
+$$
+:::
+
+----
+
+$$
+\begin{align}
+\mbox{利潤}+\mbox{売却差益}&\equiv
+\underbrace{\mbox{売却価格}+\mbox{債務残高}}_{timing}+\underbrace{\mbox{家賃収入}-\mbox{経費}}_{efforts}\\
+&\hspace{1em}\underbrace{-\{\mbox{(1+r)融資額}+\mbox{購入価格}\}}_{fixed}
+\end{align}
+$$
+
+::: {.incremental}
+* timingは時間とともに減少傾向 &rarr; 売却差益  
+* effortsは時間とともに増加傾向 &rarr; 利潤  
+* 債務残高と売却価格は和(cash stock)で考える、差は考える必要なし  
+* 融資額=.5購入価格、債務残高=.5融資額で売却、売却価格=.75購入価格だと、右辺=家賃収入-経費+\{(.75+.25)-(1.5+.5r)\}購入額=家賃収入-経費-(1+r).5購入額  
+:::
+
+----
+
+::: {.incremental}
+* 売却価格が下がるならば、利潤を高める必要がある  
+* しかし、売却価格が下がりすぎるならば、利潤で相殺するのは難しい  
+* 売却価格が下がりすぎない物件を探すのが重要  
+* 不動産投資では、複数物件の売却差損リスクが強く正相関しているので、リスク分散ができない   
+* リスク分散: 不動産とは価値が負相関の資産(国債? 他国資産?)を保有  
+:::
+
+

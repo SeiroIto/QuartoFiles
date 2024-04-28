@@ -1,0 +1,154 @@
+---
+title: "Quarto Presentations"
+subtitle: "Create beautiful interactive slide decks with Reveal.js"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    footer: <http://seiroito.github.io>
+    theme: sky
+width: 1500
+resources:
+  - test.pdf
+# quarto render test.qmd
+---
+
+## Hello, There
+
+This presentation will show you examples of what you can do with Quarto and [Reveal.js](https://revealjs.com), including:
+
+-   Presenting code and LaTeX equations
+-   Including computations in slide output
+-   Image, video, and iframe backgrounds
+-   Fancy transitions and animations
+-   Printing to PDF
+
+...and much more
+
+## Pretty Code {auto-animate="true"}
+
+-   Over 20 syntax highlighting themes available
+-   Default theme optimized for accessibility
+
+
+::: footer
+Learn more: [Syntax Highlighting](https://quarto.org/docs/output-formats/html-code.html#highlighting)
+:::
+
+
+## Line Highlighting
+
+-   Highlight specific lines for emphasis
+-   Incrementally highlight additional lines
+
+
+## Executable Code
+
+
+::: footer
+Learn more: [Executable Code](https://quarto.org/docs/presentations/revealjs/#executable-code)
+:::
+
+## LaTeX Equations
+
+[MathJax](https://www.mathjax.org/) rendering of equations to HTML
+
+::: columns
+::: {.column width="40%"}
+``` tex
+\begin{gather*}
+a_1=b_1+c_1\\
+a_2=b_2+c_2-d_2+e_2
+\end{gather*}
+
+\begin{align}
+a_{11}& =b_{11}&
+  a_{12}& =b_{12}\\
+a_{21}& =b_{21}&
+  a_{22}& =b_{22}+c_{22}
+\end{align}
+```
+:::
+
+::: {.column width="60%"}
+```{=tex}
+\begin{align}
+\mbox{売却差損}&\equiv\mbox{購入価格}-\mbox{売却価格}\\
+\mbox{債務残高}&\equiv\mbox{(1+r)融資額}-\mbox{返済額}\\
+\end{align}
+```
+```{=tex}
+\begin{align}
+\mbox{売却価格}&\equiv\mbox{購入価格}-\mbox{売却差損}\\
+\mbox{債務残高}-\mbox{売却価格}&\equiv\mbox{(1+r)融資額}-\mbox{返済額}-\mbox{購入価格}+\mbox{売却差損}\\
+\end{align}
+```
+:::
+:::
+
+::: footer
+Learn more: [LaTeX Equations](https://quarto.org/docs/authoring/markdown-basics.html#equations)
+:::
+
+----
+
+::: {.incremental}
+$$
+\begin{align}
+\mbox{売却差益}&\equiv\mbox{売却価格}-\mbox{購入価格}\\
+\mbox{債務残高}&\equiv\mbox{(1+r)融資額}-\mbox{返済額}\\
+\mbox{返済額}&\equiv\mbox{家賃収入}-\mbox{経費}-\mbox{利潤}\\
+\end{align}
+$$
+:::
+::: {.incremental}
+$$
+\begin{align}
+\mbox{売却価格}&\equiv\mbox{購入価格}+\mbox{売却差益}\\
+\mbox{債務残高}&\equiv\mbox{(1+r)融資額}-\mbox{家賃収入}+\mbox{経費}+\mbox{利潤}
+\end{align}
+$$
+:::
+::: {.incremental}
+$$
+\begin{align}
+\mbox{債務残高}+\mbox{売却価格}&\equiv\mbox{(1+r)融資額}-\mbox{家賃収入}+\mbox{経費}+\mbox{利潤}\\
+&\hspace{1em}+\mbox{購入価格}+\mbox{売却差益}\\
+\mbox{利潤}+\mbox{売却差益}&\equiv
+\mbox{売却価格}+\mbox{債務残高}+\mbox{家賃収入}-\mbox{経費}\\
+&\hspace{1em}-\{\mbox{(1+r)融資額}+\mbox{購入価格}\}
+\end{align}
+$$
+:::
+
+----
+
+$$
+\begin{align}
+\mbox{利潤}+\mbox{売却差益}&\equiv
+\underbrace{\mbox{売却価格}+\mbox{債務残高}}_{timing}+\underbrace{\mbox{家賃収入}-\mbox{経費}}_{efforts}\\
+&\hspace{1em}\underbrace{-\{\mbox{(1+r)融資額}+\mbox{購入価格}\}}_{fixed}
+\end{align}
+$$
+
+::: {.incremental}
+* timingは時間とともに減少傾向 &rarr; 売却差益  
+* effortsは時間とともに増加傾向 &rarr; 利潤  
+* 債務残高と売却価格は和(cash stock)で考える、差は考える必要なし  
+* 融資額=.5購入価格、債務残高=.5融資額で売却、売却価格=.75購入価格だと、右辺=家賃収入-経費+\{(.75+.25)-(1.5+.5r)\}購入額=家賃収入-経費-(1+r).5購入額  
+:::
+
+----
+
+::: {.incremental}
+* 売却価格が下がるならば、利潤を高める必要がある  
+* しかし、売却価格が下がりすぎるならば、利潤で相殺するのは難しい  
+* 売却価格が下がりすぎない物件を探すのが重要  
+* 不動産投資では、複数物件の売却差損リスクが強く正相関しているので、リスク分散ができない   
+* リスク分散: 不動産とは価値が負相関の資産(国債? 他国資産?)を保有  
+:::
+
+

@@ -6,13 +6,12 @@ format:
     include-in-header: 
       text: |
         <style>
-        .center-xy {
+        .center-y {
           margin: 0;
           position: absolute;
           top: 50%;
-          left: 50%;
-          -ms-transform: translateY(-50%), translateX(-50%);
-          transform: translateY(-50%), translateX(-50%);
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
         }
         </style>
     slide-number: true
@@ -27,7 +26,7 @@ resources:
   - test2.pdf
 # quarto render test2.qmd
 ---
-::: {.center-xy}
+::: {.center-y}
 
 ## 売却価格が下がりすぎない物件を探すのが最も重要  
 

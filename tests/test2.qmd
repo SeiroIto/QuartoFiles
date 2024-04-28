@@ -3,6 +3,18 @@ title: "不動産投資のリスク"
 subtitle: "恒等式を使った理解"
 format:
   revealjs: 
+    include-in-header: 
+      text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translateY(-50%), translateX(-50%);
+          transform: translateY(-50%), translateX(-50%);
+        }
+        </style>
     slide-number: true
     chalkboard: 
       buttons: false
@@ -15,8 +27,11 @@ resources:
   - test2.pdf
 # quarto render test2.qmd
 ---
+::: {.center-xy}
 
-## 売却価格が下がりすぎない物件を探すのが最も重要
+## 売却価格が下がりすぎない物件を探すのが最も重要  
+
+:::
 
 ----
 

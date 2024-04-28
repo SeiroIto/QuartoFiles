@@ -16,6 +16,8 @@ resources:
 # quarto render test2.qmd
 ---
 
+# 売却価格が下がりすぎない物件を探すのが重要
+
 ::: {.incremental}
 $$
 \begin{align}

@@ -40,29 +40,32 @@ resources:
 * [Git for windows](https://gitforwindows.org/)/Git  をインストールしてあります  
 
 ----
+
 Gitとは  
 
 ::: {.incremental}
 * ファイルのversion controlプログラム  
-   * ファイル: A &rarr; A+B &rarr; A+B-C &rarr; A+...+Z、A+Bに戻りたい! A+B-Cて何だったっけ?  
-   * Version control: 全改変記録を保持していつでも閲覧、回帰(とある版に戻ること)が可能  
+   * ファイル: A &rarr; A+B &rarr; A+B-C &rarr; A+...+Z、A+Bに戻りたい! A+B-Cて何だっけ?  
+   * Version control: 全改変記録を保持、いつでも閲覧、回帰(とある版に戻ること)が可能  
 :::
+
 ----
+
 Gitとは  
 
 ::: {.incremental}
 * ファイルのdistributed version controlプログラム  
    * 同じプロジェクトにAさんとBさんが作業: A1 &rarr; A2、A1 &rarr; B2, A2にB2を反映させたい!  
    * Branch (作業の流れ): Aさんの作業の流れ(branch A)から分岐(fork)してBさんの作業の流れ(branch B)がある  
-   * Bさん: B2を共有レポジトリにpushする
-   * Aさん: B2を共有レポジトリから自分のPCにpullする=B2をベースにして作業する  
-   * 差分=A2-A1部分、B2-A1部分: ファイルの違う箇所・機能を作業分担するのが原則  
+   * Bさん: B2を自分のPCから共有レポジトリにpush
+   * Aさん: B2を共有レポジトリから自分のPCにpull=B2をベースにして作業  
+   * 差分=A2-A1、B2-A1: ファイルの違う箇所・機能を作業分担するのが原則  
       * そうしないと手作業で重複を解決しなくてはならず、相当面倒  
-   * 複数人の作業内容を自動で合成できる  
+   * 複数人の作業内容を自動で合成・再構成できる  
 :::
 
 ----
-----
+
 Gitとは  
 
 ::: {.incremental}
@@ -71,22 +74,51 @@ Gitとは
    * 最新ファイルはサーバではなく、[各自のPCに保存]{style="color:red;"}  
       * Repositoryのあるサーバ管理会社はファイルを所有しない  
       * 所有者は参加者全員  
-         * ブロックチェイン(分散型台帳システムdistributed ledger system)に似てます  
+         * ブロックチェイン(分散型台帳システムdistributed ledger system)に類似  
       * [リモートで作業]{style="color:red;"}ができる  
       * [独立して試行]{style="color:red;"}できる  
+:::
+
+
+----
+
+Gitとは  
+
+::: {.incremental}
 * [Gitの歴史](https://www.welcometothejungle.com/en/articles/btc-history-git)  
+   * Linus Torvald氏はGit開発から一銭も得ていない  
+   * Linus Torvald氏はlinuxt開発から一銭も得ていない  
+   
 :::
 
 ----
+
 GitHubとは  
 
 ::: {.incremental}
 * Gitを扱うwebサービス  
-* レポジトリをwebに作成、分散版管理しながら共同作業ができる  
+* レポジトリをwebに作成、DVC(分散版管理)しながら共同作業ができる  
 * Webページも公開できる  
 * 個人アカウント作成、個人単位のファイル容量(上限100MB/ファイル、5GB/repo)なら無料  
 
 :::
+
+----
+
+Git for windows/は自分のPCでGitを使うプログラム  
+
+* 自分のPCの版管理  
+* GitHubとのpush/pullのやりとり  
+* GitHub上でのbranch merge  
+
+
+----
+
+だれがGit/GitHubを使うべきか  
+
+* 自分のPCでプロジェクトを実施する人  
+* 頻繁に版更新する人  
+* 他者とプロジェクトを実施する人  
 
 
 ----

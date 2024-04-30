@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="UsingGitAndGithub_files/libs/clipboard/clipboard.min.js"></script>
-<script src="UsingGitAndGithub_files/libs/quarto-html/tabby.min.js"></script>
-<script src="UsingGitAndGithub_files/libs/quarto-html/popper.min.js"></script>
-<script src="UsingGitAndGithub_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="UsingGitAndGithub_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="UsingGitAndGithub_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="UsingGitAndGithub_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="UsingGitAndGithub_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="usinggitandgithub_files/libs/clipboard/clipboard.min.js"></script>
+<script src="usinggitandgithub_files/libs/quarto-html/tabby.min.js"></script>
+<script src="usinggitandgithub_files/libs/quarto-html/popper.min.js"></script>
+<script src="usinggitandgithub_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="usinggitandgithub_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="usinggitandgithub_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="usinggitandgithub_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="usinggitandgithub_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.553">
 
   <title>GitとGitHubを使う</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="UsingGitAndGithub_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="UsingGitAndGithub_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="usinggitandgithub_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="usinggitandgithub_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,13 +29,13 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="UsingGitAndGithub_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="UsingGitAndGithub_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="usinggitandgithub_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="usinggitandgithub_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -354,45 +354,127 @@
 </li>
 <li><a href="https://gitforwindows.org/">Git for windows</a>/Git をインストールしてあります</li>
 </ul>
-<table style="width:7%;">
-<colgroup>
-<col style="width: 6%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Gitとは</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Gitとは</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">::: {.incremental} * ファイルのdistributed version controlプログラム * 同じプロジェクトにAさんとBさんが作業: A1 → A2、A1 → B2, A2にB2を反映させたい! * Branch (作業の流れ): Aさんの作業の流れ(branch A)から分岐(fork)してBさんの作業の流れ(branch B)がある * Bさん: B2を共有レポジトリにpushする * Aさん: B2を共有レポジトリから自分のPCにpullする=B2をベースにして作業する * 差分=A2-A1部分、B2-A1部分: ファイルの違う箇所・機能を作業分担するのが原則 * そうしないと手作業で重複を解決しなくてはならず、相当面倒 * 複数人の作業内容を自動で合成できる :::</td>
-</tr>
-</tbody>
-</table>
-<table style="width:7%;">
-<colgroup>
-<col style="width: 6%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Gitとは</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">GitHubとは</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">::: {.incremental} * Gitを扱うwebサービス * レポジトリをwebに作成、分散版管理しながら共同作業ができる * Webページも公開できる * 個人アカウント作成、個人単位のファイル容量(上限100MB/ファイル、5GB/repo)なら無料</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">:::</td>
-</tr>
-</tbody>
-</table>
+</section>
+<section class="slide level2">
+
+<p>Gitとは</p>
+<div>
+<ul>
+<li class="fragment">ファイルのversion controlプログラム
+<ul>
+<li class="fragment">ファイル: A → A+B → A+B-C → A+…+Z、A+Bに戻りたい! A+B-Cて何だっけ?<br>
+</li>
+<li class="fragment">Version control: 全改変記録を保持、いつでも閲覧、回帰(とある版に戻ること)が可能<br>
+</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Gitとは</p>
+<div>
+<ul>
+<li class="fragment">ファイルのdistributed version controlプログラム
+<ul>
+<li class="fragment">同じプロジェクトにAさんとBさんが作業: A1 → A2、A1 → B2, A2にB2を反映させたい!<br>
+</li>
+<li class="fragment">Branch (作業の流れ): Aさんの作業の流れ(branch A)から分岐(fork)してBさんの作業の流れ(branch B)がある<br>
+</li>
+<li class="fragment">Bさん: B2を自分のPCから共有レポジトリにpush</li>
+<li class="fragment">Aさん: B2を共有レポジトリから自分のPCにpull=B2をベースにして作業<br>
+</li>
+<li class="fragment">差分=A2-A1、B2-A1: ファイルの違う箇所・機能を作業分担するのが原則
+<ul>
+<li class="fragment">そうしないと手作業で重複を解決しなくてはならず、相当面倒<br>
+</li>
+</ul></li>
+<li class="fragment">複数人の作業内容を自動で合成・再構成できる<br>
+</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Gitとは</p>
+<div>
+<ul>
+<li class="fragment">ファイルのdistributed version controlプログラム
+<ul>
+<li class="fragment">単一のcentral file(s)を使わず、各自が部分的に貢献したものを共有ファイルとして再構成する<br>
+</li>
+<li class="fragment">最新ファイルはサーバではなく、<span style="color:red;">各自のPCに保存</span>
+<ul>
+<li class="fragment">Repositoryのあるサーバ管理会社はファイルを所有しない<br>
+</li>
+<li class="fragment">所有者は参加者全員
+<ul>
+<li class="fragment">ブロックチェイン(分散型台帳システムdistributed ledger system)に類似<br>
+</li>
+</ul></li>
+<li class="fragment"><span style="color:red;">リモートで作業</span>ができる<br>
+</li>
+<li class="fragment"><span style="color:red;">独立して試行</span>できる<br>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Gitとは</p>
+<div>
+<ul>
+<li class="fragment"><a href="https://www.welcometothejungle.com/en/articles/btc-history-git">Gitの歴史</a>
+<ul>
+<li class="fragment">Linus Torvald氏はGit開発から一銭も得ていない<br>
+</li>
+<li class="fragment">Linus Torvald氏はlinuxt開発から一銭も得ていない</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>GitHubとは</p>
+<div>
+<ul>
+<li class="fragment">Gitを扱うwebサービス<br>
+</li>
+<li class="fragment">レポジトリをwebに作成、DVC(分散版管理)しながら共同作業ができる<br>
+</li>
+<li class="fragment">Webページも公開できる<br>
+</li>
+<li class="fragment">個人アカウント作成、個人単位のファイル容量(上限100MB/ファイル、5GB/repo)なら無料</li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Git for windows/は自分のPCでGitを使うプログラム</p>
+<ul>
+<li>自分のPCの版管理<br>
+</li>
+<li>GitHubとのpush/pullのやりとり<br>
+</li>
+<li>GitHub上でのbranch merge</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>だれがGit/GitHubを使うべきか</p>
+<ul>
+<li>自分のPCでプロジェクトを実施する人<br>
+</li>
+<li>頻繁に版更新する人<br>
+</li>
+<li>他者とプロジェクトを実施する人</li>
+</ul>
+</section>
+<section class="slide level2">
+
 <p><span style="color:red;">差は考える必要なし</span><br>
 * 融資額=.5購入価格、債務残高=.5融資額で売却、売却価格=.75購入価格だと、右辺=家賃収入-経費+{(.75+.25)-(1.5+.5r)}購入額=家賃収入-経費-(1+r).5購入額<br>
 :::</p>
@@ -433,20 +515,20 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="UsingGitAndGithub_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="usinggitandgithub_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

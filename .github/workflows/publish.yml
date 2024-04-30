@@ -36,20 +36,17 @@ jobs:
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v2
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload quarto render output directory
           #path: '_site'
-          #path: 'tests'
-          paths:
-            - 'tests/**'
-            - 'UsingGitAndGithub/**'
-          
+          path: 'posts'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

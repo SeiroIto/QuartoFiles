@@ -46,6 +46,7 @@ jobs:
           # Upload quarto render output directory
           #path: '_site'
           path: 'tests'
+          path: 'UsingGitAndGithub'
           
       - name: Deploy to GitHub Pages
         id: deployment

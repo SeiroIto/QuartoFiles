@@ -25,6 +25,7 @@ width: 1500
 resources:
   - UsingGitAndGithub.pdf
 # quarto render UsingGitAndGithub.qmd
+# quarto publish gh-pages UsingGitAndGithub.qmd
 ---
 ::: {.center-y}
 

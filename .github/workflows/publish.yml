@@ -45,6 +45,7 @@ jobs:
         with:
           # Upload quarto render output directory
           #path: '_site'
+          target: gh-pages
           path: 'posts'
 
       - name: Deploy to GitHub Pages

@@ -28,7 +28,7 @@ resources:
 ---
 ::: {.center-y}
 
-## Gitはmain(自分のPC)、GitHubはorigin(みんなの共有ファイル)
+### Gitはmain(自分のPC)、GitHubはorigin(みんなの共有ファイル)
 
 :::
 
@@ -120,7 +120,7 @@ Git for windows/は自分のPCでGitを使うプログラム
 * 頻繁に版更新する人  
 * 他者とプロジェクトを実施する人  
 
-め
+
 
 ----
 

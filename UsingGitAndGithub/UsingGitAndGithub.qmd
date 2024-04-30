@@ -1,0 +1,112 @@
+---
+title: "GitとGitHubを使う"
+subtitle: "version controlとweb based group file-work"
+format:
+  revealjs: 
+    include-in-header: 
+      text: |
+        <style>
+        .center-y {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+        </style>
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    footer: <http://seiroito.github.io/Miscellaneous/QuartoFiles/UsingGitAndGithub.html>
+    theme: sky
+width: 1500
+resources:
+  - UsingGitAndGithub.pdf
+# quarto render UsingGitAndGithub.qmd
+---
+::: {.center-y}
+
+## Gitはmain(自分のPC)、GitHubはorigin(みんなの共有ファイル)
+
+:::
+
+----
+
+### このファイルの前提
+
+* GitHubにアカウントを作ってあります  
+* [Git for windows](https://gitforwindows.org/)/Git  をインストールしてあります  
+
+----
+Gitとは  
+
+::: {.incremental}
+* ファイルのversion controlプログラム  
+   * ファイル: A &rarr; A+B &rarr; A+B-C &rarr; A+...+Z、A+Bに戻りたい! A+B-Cて何だったっけ?  
+   * Version control: 全改変記録を保持していつでも閲覧、回帰(とある版に戻ること)が可能  
+:::
+----
+Gitとは  
+
+::: {.incremental}
+* ファイルのdistributed version controlプログラム  
+   * 同じプロジェクトにAさんとBさんが作業: A1 &rarr; A2、A1 &rarr; B2, A2にB2を反映させたい!  
+   * Branch (作業の流れ): Aさんの作業の流れ(branch A)から分岐(fork)してBさんの作業の流れ(branch B)がある  
+   * Bさん: B2を共有レポジトリにpushする
+   * Aさん: B2を共有レポジトリから自分のPCにpullする=B2をベースにして作業する  
+   * 差分=A2-A1部分、B2-A1部分: ファイルの違う箇所・機能を作業分担するのが原則  
+      * そうしないと手作業で重複を解決しなくてはならず、相当面倒  
+   * 複数人の作業内容を自動で合成できる  
+:::
+
+----
+----
+Gitとは  
+
+::: {.incremental}
+* ファイルのdistributed version controlプログラム  
+   * 単一のcentral file(s)を使わず、各自が部分的に貢献したものを共有ファイルとして再構成する  
+   * 最新ファイルはサーバではなく、[各自のPCに保存]{style="color:red;"}  
+      * Repositoryのあるサーバ管理会社はファイルを所有しない  
+      * 所有者は参加者全員  
+         * ブロックチェイン(分散型台帳システムdistributed ledger system)に似てます  
+      * [リモートで作業]{style="color:red;"}ができる  
+      * [独立して試行]{style="color:red;"}できる  
+* [Gitの歴史](https://www.welcometothejungle.com/en/articles/btc-history-git)  
+:::
+
+----
+GitHubとは  
+
+::: {.incremental}
+* Gitを扱うwebサービス  
+* レポジトリをwebに作成、分散版管理しながら共同作業ができる  
+* Webページも公開できる  
+* 個人アカウント作成、個人単位のファイル容量(上限100MB/ファイル、5GB/repo)なら無料  
+
+:::
+
+
+----
+
+[差は考える必要なし]{style="color:red;"}  
+* 融資額=.5購入価格、債務残高=.5融資額で売却、売却価格=.75購入価格だと、右辺=家賃収入-経費+\{(.75+.25)-(1.5+.5r)\}購入額=家賃収入-経費-(1+r).5購入額  
+:::
+
+----
+左辺を大きくしたい  
+
+::: {.incremental}
+* 売却価格が下がるならば、利潤を高める必要がある  
+* 売却価格が下がりすぎない物件を探すのが重要  
+   * 一般に、資産価格は利子率に応じて「率」変化する(「額」変化ではない)  
+     * 築浅、高額の物件ほど、上げ下げの幅は大きい  
+   * 平時には、実需見通しが上方修正されれば、減少する程度が小さくなる  
+   * パニック時には、売り手は速やかに現金を得ようとするため、実需にかかわらず価格が下がる  
+* 不動産投資では、複数物件の売却差損リスクが強く正相関しているので、リスク分散ができない   
+* リスク分散: 不動産とは価値が負相関の資産(国債? 他国資産?)を保有  
+:::
+
+

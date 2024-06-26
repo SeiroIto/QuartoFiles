@@ -1,8 +1,7 @@
-----
+---
 title: "Comments on referee reports and responses"
 subtitle: "by Watabe, Yang and Kanasheuski of June, 2024"
 author: "Seiro Ito"
-date: "`r format(Sys.time(), '%m %d, %Y% %R')`"
 format:
   revealjs: 
     include-in-header: 
@@ -21,49 +20,54 @@ format:
       buttons: false
     preview-links: auto
     logo: images/quarto.png
-    footer: <http://seiroito.github.io/Miscellaneous/QuartoFiles/post/Watabe/CommentsOnRefereeResponse_WatabeYangKanasheuski.html>
+    footer: <http://seiroito.github.io/Miscellaneous/QuartoFiles/posts/Watabe/CommentsOnRefereeResponse_WatabeYangKanasheuski.html>
     theme: sky
 width: 1500
 resources:
   - CommentsOnRefereeResponse_WatabeYangKanasheuski.pdf
 # quarto render CommentsOnRefereeResponse_WatabeYangKanasheuski.qmd
-----
-```{r, load_refs, eval = F, include=FALSE, cache=FALSE}
-library(RefManageR)
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "alphabetic",
-           style = "markdown",
-           hyperlink = FALSE,
-           dashed = FALSE)
-myBib <- ReadBib("./seiro.bib", check = FALSE)
-```
-
-# Editor
+---
+## Editor
 
 ::: {.incremental}
 
-I found the editor is helpful and constructive.  
-
-I only found comment 8 to be a little problematic.
+* I found the editor is helpful and constructive.  
+* I only found comment 8 to be a little problematic.  
 
 :::
 
 ----
-### 8. For R2, comment 2: you might interact the two countries real GDP per capita analogous to Hallak (2006).  
+
+#### For R2, comment 2: you might interact the two countries real GDP per capita analogous to Hallak (2006).  
 
 You added $\ln GDPPC_{i}*\ln GDPPC_{j}$. 
 
 ::: {.incremental}
+
 * To me, fn 11 suffices. Table 9 is redundant.  
-* As you write in fn 11, 
-   * $GDPPC_{i}*GDPPC_{j}$ is collinear with FEs, so income levels are already controlled for, hence results are homothetic over incomes, in the earlier results.  
-   * Estimation exploits nonlinearity of logs.  
-      * This is why only OLS estimates are affected.  
-      * Logged interaction term picks up mostly lower level income variations. Not sure if this is what we want.
-   * If the editor really wants to add interaction term, which sounds like one, I would drop country FEs and add $GDPPC_{i}$, $*GDPPC_{j}$, $GDPPC_{i}*GDPPC_{j}$ as covariates.  
+* As you write in fn 11,  
+  * $GDPPC_{i}-GDPPC_{j}$ is collinear with FEs, so income levels are already controlled for, hence results are homothetic over incomes, in the earlier results.  
+
 :::
+
 ----
+
+#### For R2, comment 2: you might interact the two countries real GDP per capita analogous to Hallak (2006).  
+
+You added $\ln GDPPC_{i}*\ln GDPPC_{j}$. 
+
+::: {.incremental}
+
+* As you write in fn 11,  
+  * Estimation exploits nonlinearity of logs.  
+     * This is why only OLS estimates are affected.  
+     * Logged interaction term picks up mostly lower level income variations. Not sure if this is what we want.
+  * If the editor really wants to add interaction term, which sounds like one, I would drop country FEs and add $GDPPC_{i}$, $GDPPC_{j}$, $GDPPC_{i}*GDPPC_{j}$ as covariates.  
+
+:::
+
+----
+
 # Ref 1
 
 I only found a potential issue on Comment 1.  
@@ -71,36 +75,55 @@ I only found a potential issue on Comment 1.
 For all other comments, your response is straightforward.  
 
 ----
-### 1.  Given that the access to gaming consoles and PCs is far from exogenous, it would be nice to know whether the results may be affected by using this selected sample. 
 
-::: {.incremental}
+#### Given that the access to gaming consoles and PCs is far from exogenous, it would be nice to know whether the results may be affected by using this selected sample.  
+
 Your response in short: It is exogenous or ignorably endogenous.  
 
-* You are being polite by saying "rightly pointed out" only to deny it later.  
-   * This can confuse the ref.  
-* You indicate (with reddit): Game seller's choice on platforms is not correlated with geography.  
-   * Implies: Platform choice/sample selection is exogenous to/uncorrelated with $X_{in}$ (sales in destination $n$ of origin $i$).  
-* Ref 1 does not explicitly state exogenous to "what".  
-* On Stern sample, availability is correlated with distance only very weakly. It is actually a different question you are answering but is indicative and shows efforts of doing whatever possible.  
+::: {.incremental}
+
+- You are being polite by saying "rightly pointed out" only to deny it later.  
+   - This can confuse the ref.  
+- You indicate (with reddit): Game seller's choice on platforms is not correlated with geography.  
+   - Implies: Platform choice/sample selection is exogenous to/uncorrelated with $X_{in}$ (sales in destination $n$ of origin $i$).  
+- Ref 1 does not explicitly state exogenous to "what".  
+
+:::
+
+----
+
+#### Given that the access to gaming consoles and PCs is far from exogenous, it would be nice to know whether the results may be affected by using this selected sample.  
+
+
+::: {.incremental}
+
+Your response in short: It is exogenous or ignorably endogenous.  
+
+- On Stern sample, availability is correlated with distance only very weakly. It is actually a different question you are answering but is indicative and shows efforts of doing whatever possible.  
 
 The best is to get data of game console sales and show exogenous sample selection. But this is not available.  
 
 So you are responding well. 
+
 :::
 
 ----
-### 1.  Given that the access to gaming consoles and PCs is far from exogenous, it would be nice to know whether the results may be affected by using this selected sample. 
+
+#### Given that the access to gaming consoles and PCs is far from exogenous, it would be nice to know whether the results may be affected by using this selected sample. 
 
 Just in case you want to be extra sure:  
 
 ::: {.incremental}
- * Sales in 75 countries (almost all mid-high income countries).  
- * My guess: Game console sales (my guess: more expensive per "enjoyment") may positively correlate with income levels?  
- * If so, studio HQ location (my guess: mostly in higher income countries) and game console sales in destination may have some geographical correlations, because higher income countries tend to sit next to each other. In lower income countries, more availability of Steam than console games? 
-   * You can partly test this by plotting sales $X_{n}=\sum_{i}X_{in}$ and income levels.  
+
+- Sales in 75 countries (almost all mid-high income countries).  
+- My guess: Game console sales (my guess: more expensive per "enjoyment") may positively correlate with income levels?  
+- If so, studio HQ location (my guess: mostly in higher income countries) and game console sales in destination may have some geographical correlations, because higher income countries tend to sit next to each other. In lower income countries, more availability of Steam than console games? 
+ - You can partly test this by plotting sales $X_{n}=\sum_{i}X_{in}$ and income levels.  
+
 :::
 
-----
+---
+
 # Ref 2
 
 Nothing to add for Ref 2.

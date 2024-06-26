@@ -4,17 +4,6 @@ subtitle: "by Watabe, Yang and Kanasheuski of June, 2024"
 author: "Seiro Ito"
 format:
   revealjs: 
-    include-in-header: 
-      text: |
-        <style>
-        .center-y {
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-        }
-        </style>
     slide-number: true
     chalkboard: 
       buttons: false
@@ -72,7 +61,7 @@ You added $\ln GDPPC_{i}*\ln GDPPC_{j}$.
 
 I only found a potential issue on Comment 1.  
 
-For all other comments, your response is straightforward.  
+For all other comments, your response is straightforward and clean.  
 
 ----
 
@@ -127,4 +116,25 @@ Just in case you want to be extra sure:
 # Ref 2
 
 Nothing to add for Ref 2.
+
+---
+
+## Typos
+
+![](IMG20240626163539.jpg)
+
+
+---
+
+## Typos
+
+![](IMG20240626163619.jpg)
+
+
+---
+
+## Typos
+
+![](IMG20240626163552.jpg){height="600"}
+
 

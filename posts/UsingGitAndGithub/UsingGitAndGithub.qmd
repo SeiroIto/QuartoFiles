@@ -28,11 +28,10 @@ resources:
 # quarto publish gh-pages UsingGitAndGithub.qmd # this keeps on deploying and does not stop...
 ---
 ::: {.center-y}
-
-### Gitはmain(自分のPC)、GitHubはorigin(みんなの共有ファイル)  {.center}
-
+::: {#title-slide .center .center-x}
+### Gitはmain(自分のPC)、GitHubはorigin(みんなの共有ファイル) 
 :::
-
+:::
 ----
 
 ### このファイルの前提

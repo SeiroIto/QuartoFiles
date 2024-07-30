@@ -20,7 +20,7 @@ include-in-header:
       }
       </style>
 #width: 1000
-bibliography: ~../posts/seiro.bib
+bibliography: seiro.bib
 resources:
   - BarrEgglestonSmith2022.pdf
 # quarto render BarrEgglestonSmith2022.qmd

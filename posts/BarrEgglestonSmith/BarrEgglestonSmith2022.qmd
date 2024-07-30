@@ -9,7 +9,7 @@ format:
       buttons: false
     preview-links: auto
     logo: images/quarto.png
-    footer: <http://seiroito.github.io/Miscellaneous/QuartoFiles/posts/BarrEgglestonSmith/BarrEgglestonSmith2022.html>
+    footer: <http://seiroito.github.io/QuartoFiles/BarrEgglestonSmith/BarrEgglestonSmith2022.html>
     theme: sky
 include-in-header:
   - text: |

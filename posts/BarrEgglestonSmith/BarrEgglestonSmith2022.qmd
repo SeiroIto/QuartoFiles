@@ -52,6 +52,17 @@ br {
 
 ----
 
+## Research question
+
+Does providing cash at infancy (< 1 year) have a long run impact on welfare?  
+
+Use cutoff for EITC: Born on Dec 31 receives +1 day, or born on Jan 1 receives +1 year  
+
+Examine with tax records + social security numident file (birth day)  
+
+
+----
+
 ## Data
 
 **IRS1040 data at U.S. Census**  

@@ -26,10 +26,10 @@ resources:
 # quarto render BarrEgglestonSmith2022.qmd
 ---
 <style>
-    :root{--r-main-font-size: 36px;}
-    .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
-                  text-transform: none;
-          }
+:root{--r-main-font-size: 36px;}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+              text-transform: none;
+      }
 .spacer {
     margin-top: 20px;
 }

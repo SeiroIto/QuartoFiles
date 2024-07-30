@@ -20,7 +20,7 @@ include-in-header:
       }
       </style>
 #width: 1000
-bibliography: c:/seiro/settings/TeX/seiro.bib
+bibliography: ~../posts/seiro.bib
 resources:
   - BarrEgglestonSmith2022.pdf
 # quarto render BarrEgglestonSmith2022.qmd
@@ -45,9 +45,9 @@ br {
 
 ::: {.incremental}
 * Much affirmative evidence of health and education (in-kind) interventions.  
+* Cash intervention impacts are little known.  
    * Food stamps are different from cash [@Hoynes2016; @Baileyetal2023].  
    * Lottery cash distributions are given at older children, results are mixed [@Akeeetal2010; @Cesarinietal2016].  
-* Cash intervention impacts are little known.  
 :::
 
 ----
@@ -127,6 +127,10 @@ br {
 
 * Dec 31: Eligible in +1 day  
 * Jan 1: Eligible in +1 year  
+
+<br>
+ITT effects: Some eligible (mostly Hispanics, African Americans) do not apply  
+
 
 ----
 
@@ -228,9 +232,9 @@ kableExtra::kbl(desc, align = c("r", "l"), label = NA, caption = NA,
 ## Results
 
 * Later cohorts have larger impacts (Tab IV)  
-* Much smaller impacts for nonfirstborn given transfer is $306 vs. $1,291 (Tab A.VI)  
+* Much smaller impacts for nonfirstborn &larr; transfer is $306 vs. $1,291 (Tab A.VI)  
 * Smaller income impacts for women, because they are more likely to file jointly with spouse, and their income shares are lower (Fig IV)  
-* Larger impacts in later years (Fig V)  
+* Larger impacts in later years (Fig V) &larr; more generous transfers  
 
 ----
 
@@ -302,7 +306,7 @@ kableExtra::kbl(desc, align = c("r", "l"), label = NA, caption = NA,
 
 2. Stress&darr; (no direct evidence shown in this paper)  
    * Confirmed when additional incomes are provided to single mothers [@SchmidtShoreSheppardWatson2023]  
-   * Reduced stress changes in interactions with children [@MilliganStabile2011; @EvansGarthwaite2014]  
+   * Reduced stress changes the interactions with children [@MilliganStabile2011; @EvansGarthwaite2014]  
    * Marital status stability  
 
 ----

@@ -91,7 +91,7 @@ br {
    * Income thresholds are similar between EITC and FRL  
       * \$25,600 (FRL) vs. \$27,400 (EITC) in 2000  
       * EITC eligible rate $\simeq$ 75% of all FRL eligible  
-* Born within $\pm$0928 day windows of Jan 1 (excluding closest 8 days on both sides): 44,992 students  
+* Born within $\pm$ 0928 day windows of Jan 1 (excluding closest 8 days on both sides): 44,992 students  
 :::
 
 

@@ -368,7 +368,7 @@ See also Tab VIII, Tab A13
 ## Mechanism: Child human capital
 
 ::: {.incremental}
-* $\sigma$&uarr; = $2500&uarr; at age 28 per year [@ChettyFriedmanRockoff2014b]  
+* Exam score $\sigma$&uarr; \Rarr; $2500&uarr; at age 28 per year [@ChettyFriedmanRockoff2014b]  
 * .037$\sigma$ (per \$1000)$\times$ $2500=$92 per year per $1000 spent  
    * 9.2% is pretty high...   
 * "(C)ould entirely account for our observed wage effects ... $353 per $1000" (?)  

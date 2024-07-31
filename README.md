@@ -6,4 +6,4 @@ See [slides on using git and github](http://seiroito.github.io/QuartoFiles/Using
 
 See [slides on Watabe comments](http://seiroito.github.io/QuartoFiles/Watabe/CommentsOnRefereeResponse_WatabeYangKanasheuski.html).
 
-See [slides on Barr, Eggleston, and Smith QJE2022](http://seiroito.github.io/QuartoFiles/BarrEgglestonSmith/BarrEgglestonSmith2022.html).
+See [slides on Barr, Eggleston, and Smith QJE2022](http://seiroito.github.io/QuartoFiles/BarrEgglestonSmith/BarrEgglestonSmith2022.html), its [html page version](http://seiroito.github.io/QuartoFiles/WebPageExample/WebPageExample.html).

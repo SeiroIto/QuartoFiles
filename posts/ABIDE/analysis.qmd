@@ -1,0 +1,142 @@
+---
+title: "A/Bテストの分析"
+author: "Seiro Ito"
+execute: 
+  echo: false
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+    embed-resources: true
+    smooth-scroll: true
+    anchor-sections: true
+bibliography: ../seiro.bib
+resources:
+  - analysis.pdf
+# setwd("C:/seiro/docs/personal/Miscelleneous/QuartoFiles/posts/ABIDE/"); quarto::quarto_render("analysis.qmd")
+# quarto render analysis.qmd
+---
+<style>
+br {
+  /* change <br> space length*/
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 10px; /* change this to whatever height you want it */
+}
+</style>
+
+# データ
+
+```{r list files}
+fn <- list.files(path="data/", full.names = T)
+```
+分析対象の日付
+```{r list dates}
+library(data.table)
+dts <- unique(gsub(".tsv", "", gsub("data..", "", fn)))
+dt1 <- as.IDate(
+  as.POSIXct(paste0("2024", substring(dts, 1, 4)), format = "%Y%m%d")
+  )
+dt2 <- as.IDate(
+  as.POSIXct(paste0("2024", substring(dts, 5, 8)), format = "%Y%m%d")
+  )
+paste(dt1, weekdays(dt1), "~", dt2, weekdays(dt2))
+```
+```{r read data}
+#| echo: false
+#| results: hide
+dInList <- lapply(fn, fread, skip = 6)
+nmInList <- lapply(dInList, function(x) as.character(x[1, ]))
+nmInList <- lapply(nmInList, function(x) c("EventPath", "DateHour", x[-c(1:2, length(x))], "total"))
+dInList <- lapply(fn, fread, skip = 9)
+lapply(1:length(dInList), function(i) setnames(dInList[[i]], nmInList[[i]]))
+```{r aggregate data by date}
+dt <- rbindlist(dInList, use.names = T, fill = T)
+dt[, Date := as.POSIXct(paste0(DateHour, ":00"), format = "%Y%m%d%H:%M")]
+dt[, date := as.IDate(Date)]
+#### read randomisation file
+rnd <- fread("abLong.tsv")
+dtr <- merge(dt, rnd, by = "date", all.x = T)
+dtr[, AB := "A"]
+dtr[grepl("B", EventPath), AB := "B"]
+dtr[, AB := factor(AB)]
+dtr[, Denominator := round(value, 1)]
+dtr[grepl("B", EventPath), Denominator := round(1-value, 1)]
+DtForG <- dtr[, .(UEngage = sum(user_engagement), Denominator = Denominator[1]), by = .(date, AB)][, 
+  .(date, AB, UEngage, Denominator, UERate = UEngage/Denominator)]
+```
+発生したデータ
+
+* user_engagement: 一定時間以上滞在閲覧数  
+* click: クリック数  
+* value: Aを表示する確率  
+
+```{r }
+dtr[, .(AB, Date, page_view, user_engagement, scroll, click, total, Denominator)]
+```
+
+日ごとに平均したデータ
+```{r }
+DtForG
+```
+日ごと平均の記述統計
+
+```{r }
+summary(DtForG)
+```
+
+UERate=一定時間以上滞在閲覧数/表示比率=1日表示させたときの一定時間以上滞在閲覧数
+```{r plot sequence for first 2 weeks}
+#| warning: false
+#| echo: false
+library(ggplot2)
+g <- ggplot(DtForG, aes(x = date, y = UERate, colour = AB, fill = AB, group = AB)) +
+  geom_point() + geom_line(aes(colour = AB))
+g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
+  theme(
+    legend.position = "bottom"
+  )
+####   +  geom_hline(data = DtForG, yintercept = 
+####    DtForG[, .(mean = mean(UERate)), by = AB]
+####  , color = c(""))
+g
+```
+`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのUERateの平均値: `{r} round(DtForG[, .(mean = mean(UERate)), by = AB][, mean], 2)`
+
+# ここまでの結論
+
+* ドングリの背比べ、という感じでしょうか...  
+* 異常値を落として分析するか?  
+
+一般的な傾向として  
+
+* 金曜-日曜は低調  
+* エンゲージメントが異常に増える日がある(なぜ?): 8月1日(木)、8月5日(月)  
+
+分析上の課題  
+
+* データの発生メカニズムを正確に理解して、結果を正しく解釈する(宿題)  
+* 急変動を引き起こす社会の要因を見出す方法がない  
+   * XのTrendingなどのデータを参照すべき? 
+
+# 今後
+
+* clickを分析したいが、18日間で1カウントのみなので分析不能  
+* scrollは18日間AB合わせて56カウントなので、分析単位を週(もしくは平日、週末)にすれば何かできるかも  
+* 8月末に実験続行の是非を決めるが、データ発生が少ないときは、分析単位を日ごとではなく週ごとにするために延長すべきか  
+
+
+```{r plot density for first 100 weeks, warning = F}
+#| echo: false
+#| eval: false
+rn0 <- fread("ab.tsv")
+library(lubridate)
+abdates <- seq(ymd('2024-08-01'), length.out = 1400, by = '1 day')
+rn0[, V1 := NULL]
+ab <- data.table(date=abdates, dow = weekdays(abdates), 
+  value=formatC(c(t(as.matrix(rn0))), digits = 2, format = "f"))
+write.table(ab, "abLong.tsv", quote = F, sep = "\t")
+```
+

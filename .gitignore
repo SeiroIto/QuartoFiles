@@ -1,4 +1,4 @@
 #### This is gitignore for miscellaneous
 /**/libs
-
+/**/.png
 /.quarto/

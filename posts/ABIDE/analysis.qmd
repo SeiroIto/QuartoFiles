@@ -3,6 +3,7 @@ title: "A/Bテストの分析"
 author: "Seiro Ito"
 execute: 
   echo: false
+  freeze: auto
 format:
   html:
     toc: true

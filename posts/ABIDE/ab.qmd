@@ -104,7 +104,7 @@ while (dh > 2.0) {
   eye <- eye + 1
   rn <- runif(10000)
   rn <- rn[rn >= .24 & rn <= .76]
-  h <- hist(rn[1:50], breaks=seq(min(rn), max(rn), length.out=20))
+  h <- hist(rn[1:50], breaks=seq(min(rn), max(rn), length.out=20), plot = F)
   imax <- which.max(h$density)
   imin <- which.min(h$density)
   dh <- h$density[imax] - h$density[imin]

@@ -28,6 +28,23 @@ br {
 }
 </style>
 
+# What's new `{r} Sys.Date()`
+
+* user engagement rateの振幅幅: $A>B$ の傾向あり、AはUERate=0が2日あり  
+   * 異常値(UERate$\geqslant 50$)抜きだと、平均は両者ほぼ同じ、標準偏差はAが3割ほど高い  
+
+
+# A/B
+
+::: {layout-ncol=2}
+
+![A](A_08-29-2024.jpg){#fig-A}
+
+![B](B_08-29-2024.jpg){#fig-B}
+
+IDEスクエアのトップページ: A/B 
+:::
+
 # データ
 
 ```{r list files}
@@ -104,7 +121,22 @@ g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
 ####  , color = c(""))
 g
 ```
-`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのUERateの平均値: `{r} round(DtForG[, .(mean = mean(UERate)), by = AB][, mean], 2)`
+```{r mean and std}
+#| echo: false
+ms <- DtForG[, .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms
+ms1 <- DtForG[date > as.IDate("2024-08-01", format = "%Y-%m-%d"), 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms2 <- DtForG[UERate < 50, 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+```
+
+`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのUERateの平均値: `{r} round(ms[, mean], 2)`
+
+* 一見してAは振幅幅が大きい(ゼロが2回)と思ったが、標準偏差は小さく、30越えが`{r} nrow(DtForG[UERate>30 & grepl("A", AB), ])`回、Bは`{r} nrow(DtForG[UERate>30 & grepl("B", AB), ])`回なので上振れもあまりない  
+* 変動係数=標準偏差/平均: A=`{r} round(ms[grepl("A", AB), std], 2)`/`{r} round(ms[grepl("A", AB), mean], 2)`=`{r} round(ms[grepl("A", AB), std]/ms[grepl("A", AB), mean], 2)`、B=`{r} round(ms[grepl("B", AB), std], 2)`/`{r} round(ms[grepl("B", AB), mean], 2)`=`{r} round(ms[grepl("B", AB), std]/ms[grepl("B", AB), mean], 2)`  
+* 実は初日の影響: 初日抜きの変動係数: A=`{r} round(ms1[grepl("A", AB), std], 2)`/`{r} round(ms1[grepl("A", AB), mean], 2)`=`{r} formatC(ms1[grepl("A", AB), std]/ms1[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms1[grepl("B", AB), std], 2)`/`{r} round(ms1[grepl("B", AB), mean], 2)`=`{r} round(ms1[grepl("B", AB), std]/ms1[grepl("B", AB), mean], 2)`  
+* 異常値除外後(UERate$<50$): 変動係数: A=`{r} round(ms2[grepl("A", AB), std], 2)`/`{r} round(ms2[grepl("A", AB), mean], 2)`=`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms2[grepl("B", AB), std], 2)`/`{r} round(ms2[grepl("B", AB), mean], 2)`=`{r} round(ms2[grepl("B", AB), std]/ms2[grepl("B", AB), mean], 2)`、標準偏差はAがBの`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("B", AB), std], digits=2, format = "f")`倍  
 
 # ここまでの結論
 

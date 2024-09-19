@@ -24,8 +24,16 @@ git ls-tree -r main --name-only ## list all tracked files
 #### git push -f origin main  ## push files to remote
 
 
+# Install quarto
+
 
 # Automate quarto publication
+
+## Add folders and files
+
+/.github/workflows/publish.yml
+
+/.quarto/
 
 ## create and switch to a branch "gh-pages"
 git checkout --orphan gh-pages 

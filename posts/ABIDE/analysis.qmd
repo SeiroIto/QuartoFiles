@@ -30,8 +30,11 @@ br {
 
 # What's new `{r} Sys.Date()`
 
-* user engagement rateの振幅幅: $A>B$ の傾向あり、AはUERate=0が2日あり  
-   * 異常値(UERate$\geqslant 50$)抜きだと、平均は両者ほぼ同じ、標準偏差はAが3割ほど高い  
+* user engagement rateの振幅幅: $A>B$ の傾向が続いている  
+   * 平均値はほぼ同じ  
+* scrollではA/Bの差はあまりない  
+* 前回指摘した「週後半に閲覧数が落ちる傾向」がより鮮明になってきた  
+   * なんとかすべきかも  
 
 
 # A/B
@@ -48,7 +51,7 @@ IDEスクエアのトップページ: A/B
 # データ
 
 ```{r list files}
-fn <- list.files(path="data/", full.names = T)
+fn <- list.files(path="data/", pattern = "^[ab]", full.names = T)
 ```
 分析対象の日付
 ```{r list dates}
@@ -82,17 +85,21 @@ dtr[grepl("B", EventPath), AB := "B"]
 dtr[, AB := factor(AB)]
 dtr[, Denominator := round(value, 1)]
 dtr[grepl("B", EventPath), Denominator := round(1-value, 1)]
-DtForG <- dtr[, .(UEngage = sum(user_engagement), Denominator = Denominator[1]), by = .(date, AB)][, 
-  .(date, AB, UEngage, Denominator, UERate = UEngage/Denominator)]
+DtForG <- dtr[, .(
+  UEngage = sum(user_engagement), 
+  Scroll = sum(scroll), Denominator = Denominator[1]), by = .(date, AB)][, 
+  .(date, AB, UEngage, Scroll, Denominator, 
+  UERate = UEngage/Denominator, ScrollRate = Scroll/Denominator)]
 ```
 発生したデータ
 
-* user_engagement: 一定時間以上滞在閲覧数  
-* click: クリック数  
-* value: Aを表示する確率  
+* user_engagement: 一定時間以上滞在閲覧数 (incl. scrollers)  
+* scroll: 最下部まで90%以上スクロールした閲覧数  
+* click: ドメイン外部へのクリック数  
 
 ```{r }
 dtr[, .(AB, Date, page_view, user_engagement, scroll, click, total, Denominator)]
+summary(dtr[, .(AB, Date, page_view, user_engagement, scroll, click, total, Denominator)])
 ```
 
 日ごとに平均したデータ
@@ -105,8 +112,48 @@ DtForG
 summary(DtForG)
 ```
 
+```{r mean and std}
+#| echo: false
+#| warning: false
+library(kableExtra)
+grepout <- function(str, x)
+  # returns element of match (not numbers)
+  x[grep(str, x, perl = T)]
+oldcolnames <- colnames(DtForG)
+setnames(DtForG, c("UEngage", "Scroll"), paste0("val.", c("UEngage", "Scroll")))
+DtForGL <- reshape(DtForG, direction = "long", idvar = c("date", "AB", "Denominator"),
+  varying = grepout("val", colnames(DtForG)))
+DtForGL[, rate := val/Denominator]
+setnames(DtForGL, "time", "variable")
+DtForGL[, c("UERate", "ScrollRate") := NULL]
+DtForGL
+msL <- DtForGL[, .(mean = mean(rate), std = var(rate)^(.5), cofvar = var(rate)^(.5)/mean(rate)), by = .(variable, AB)]
+numcols <- c("mean", "std", "cofvar")
+msL[, (numcols) := lapply(.SD, round, 3), .SDcols = numcols]
+#msL
+kt <- kbl(msL, align = "rcccc",
+  caption = "UERate、ScrollRateの平均、標準偏差、変動係数")
+#kt <- column_spec(kt, 1, width = "2cm; min-width:2cm;")
+#kt <- column_spec(kt, 2, width = ".5cm; min-width:.5cm;")
+#kt <- column_spec(kt, 3:5, width = "1.0cm; min-width:1.0cm;")
+setnames(DtForG, oldcolnames)
+ms <- DtForG[, .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms1 <- DtForG[date > as.IDate("2024-08-01", format = "%Y-%m-%d"), 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms2 <- DtForG[UERate < 50, 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+```
+
+```{r, results = "asis"}
+kable_styling(kt,
+        bootstrap_options = "striped", 
+        full_width = F, 
+        position = "left"
+        )
+```
+
 UERate=一定時間以上滞在閲覧数/表示比率=1日表示させたときの一定時間以上滞在閲覧数
-```{r plot sequence for first 2 weeks}
+```{r plot UERate sequence for first weeks}
 #| warning: false
 #| echo: false
 library(ggplot2)
@@ -121,22 +168,33 @@ g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
 ####  , color = c(""))
 g
 ```
-```{r mean and std}
-#| echo: false
-ms <- DtForG[, .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
-ms
-ms1 <- DtForG[date > as.IDate("2024-08-01", format = "%Y-%m-%d"), 
-  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
-ms2 <- DtForG[UERate < 50, 
-  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
-```
 
 `{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのUERateの平均値: `{r} round(ms[, mean], 2)`
 
-* 一見してAは振幅幅が大きい(ゼロが2回)と思ったが、標準偏差は小さく、30越えが`{r} nrow(DtForG[UERate>30 & grepl("A", AB), ])`回、Bは`{r} nrow(DtForG[UERate>30 & grepl("B", AB), ])`回なので上振れもあまりない  
-* 変動係数=標準偏差/平均: A=`{r} round(ms[grepl("A", AB), std], 2)`/`{r} round(ms[grepl("A", AB), mean], 2)`=`{r} round(ms[grepl("A", AB), std]/ms[grepl("A", AB), mean], 2)`、B=`{r} round(ms[grepl("B", AB), std], 2)`/`{r} round(ms[grepl("B", AB), mean], 2)`=`{r} round(ms[grepl("B", AB), std]/ms[grepl("B", AB), mean], 2)`  
-* 実は初日の影響: 初日抜きの変動係数: A=`{r} round(ms1[grepl("A", AB), std], 2)`/`{r} round(ms1[grepl("A", AB), mean], 2)`=`{r} formatC(ms1[grepl("A", AB), std]/ms1[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms1[grepl("B", AB), std], 2)`/`{r} round(ms1[grepl("B", AB), mean], 2)`=`{r} round(ms1[grepl("B", AB), std]/ms1[grepl("B", AB), mean], 2)`  
-* 異常値除外後(UERate$<50$): 変動係数: A=`{r} round(ms2[grepl("A", AB), std], 2)`/`{r} round(ms2[grepl("A", AB), mean], 2)`=`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms2[grepl("B", AB), std], 2)`/`{r} round(ms2[grepl("B", AB), mean], 2)`=`{r} round(ms2[grepl("B", AB), std]/ms2[grepl("B", AB), mean], 2)`、標準偏差はAがBの`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("B", AB), std], digits=2, format = "f")`倍  
+* 一見してAは振幅幅が大きい(ゼロが2回)ように見えるが、実際にこの印象は正しい  
+   * 30越えも`{r} nrow(DtForG[UERate>30 & grepl("A", AB), ])`回ある(Bは`{r} nrow(DtForG[UERate>30 & grepl("B", AB), ])`回で上振れも少ない)が、計算すると標準偏差は小さいので、この印象は誤っているように見える  
+   * 変動係数=標準偏差/平均: A=`{r} round(ms[grepl("A", AB), std], 2)`/`{r} round(ms[grepl("A", AB), mean], 2)`=`{r} round(ms[grepl("A", AB), std]/ms[grepl("A", AB), mean], 2)`、B=`{r} round(ms[grepl("B", AB), std], 2)`/`{r} round(ms[grepl("B", AB), mean], 2)`=`{r} round(ms[grepl("B", AB), std]/ms[grepl("B", AB), mean], 2)`  
+   * 実は初日の影響: 初日抜きの変動係数: A=`{r} round(ms1[grepl("A", AB), std], 2)`/`{r} round(ms1[grepl("A", AB), mean], 2)`=`{r} formatC(ms1[grepl("A", AB), std]/ms1[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms1[grepl("B", AB), std], 2)`/`{r} round(ms1[grepl("B", AB), mean], 2)`=`{r} round(ms1[grepl("B", AB), std]/ms1[grepl("B", AB), mean], 2)`  
+   * 異常値除外後(UERate$<50$): 変動係数: A=`{r} round(ms2[grepl("A", AB), std], 2)`/`{r} round(ms2[grepl("A", AB), mean], 2)`=`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms2[grepl("B", AB), std], 2)`/`{r} round(ms2[grepl("B", AB), mean], 2)`=`{r} round(ms2[grepl("B", AB), std]/ms2[grepl("B", AB), mean], 2)`、変動係数はAがBの`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("B", AB), std], digits=2, format = "f")`倍  
+
+ScrollRate=scrollした閲覧数/表示比率=1日表示させたときのscroll閲覧数
+```{r plot ScrollRate sequence for first weeks}
+#| warning: false
+#| echo: false
+library(ggplot2)
+g <- ggplot(DtForG, aes(x = date, y = ScrollRate, colour = AB, fill = AB, group = AB)) +
+  geom_point() + geom_line(aes(colour = AB))
+g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
+  theme(
+    legend.position = "bottom"
+  )
+####  , color = c(""))
+g
+```
+`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのScrollRateの平均値: `{r} round(msL[grepl("S", variable), mean], 2)`  
+
+* スクロールは、平均でも標準偏差でも、A/Bの差があまりない  
+
 
 # ここまでの結論
 
@@ -146,7 +204,6 @@ ms2 <- DtForG[UERate < 50,
 一般的な傾向として  
 
 * 金曜-日曜は低調  
-* エンゲージメントが異常に増える日がある(なぜ?): 8月1日(木)、8月5日(月)  
 
 分析上の課題  
 
@@ -156,9 +213,17 @@ ms2 <- DtForG[UERate < 50,
 
 # 今後
 
-* clickを分析したいが、18日間で1カウントのみなので分析不能  
 * scrollは18日間AB合わせて56カウントなので、分析単位を週(もしくは平日、週末)にすれば何かできるかも  
-* 8月末に実験続行の是非を決めるが、データ発生が少ないときは、分析単位を日ごとではなく週ごとにするために延長すべきか  
+* 週ごとの特徴の違いを組み入れた分析  
+* 9月末まで実験継続、特筆すべき新たな傾向がなければ終了  
+
+
+# Past news
+
+### What's new 2024-08-29
+
+* user engagement rateの振幅幅: $A>B$ の傾向あり、AはUERate=0が2日あり  
+   * 異常値(UERate$\geqslant 50$)抜きだと、平均は両者ほぼ同じ、標準偏差はAが3割ほど高い  
 
 
 ```{r plot density for first 100 weeks, warning = F}

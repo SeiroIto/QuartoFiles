@@ -252,7 +252,7 @@ _[https://studylib.net/...](https://studylib.net/doc/5786293/snp-presentation)_
 
 <!-- tree.nathanfriend.io -->
 
-```{md}
+```
 .
 └── Chromosome
     └── DNA

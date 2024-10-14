@@ -1,8 +1,10 @@
 ---
-title: "Genetic endowments and wealth inequality"
+title: |
+  | Genetic endowments
+  | and wealth inequality
 subtitle: |
   Daniel Barth, Nicholas W. Papageorge, Kevin Thom\
-  Journal of Political Economy, 2020, vol. 128, No.4
+  *Journal of Political Economy*, 2020, vol. 128, No.4
 author: "伊藤成朗"
 engine: knitr
 execute:
@@ -28,25 +30,16 @@ format:
     toc-depth: 1
     template-partials: 
       - ../toc-slide.html
-    include-in-header: ../sky_add_FilePointer.html
-    include-after-body: ../toc-add.html
+    includes:
+      in_header: ../sky_add_FilePointer.html
+      after-body: ../toc-add.html
     toc-bg-image: "../../GrootbergGiraffe3.jpg"
 lightbox: auto
 filters:
   - parse-latex
-  - imagify
-imagify:
-  header-includes: |
-    \usetikzlibrary{calc}
-    \usetikzlibrary{positioning}
-    \usetikzlibrary{math}
-    \usetikzlibrary{decorations.pathmorphing}
-    \usetikzlibrary{shapes}
-    \usetikzlibrary{arrows}
-    \usetikzlibrary{backgrounds}
-    \usetikzlibrary{fit}
-    \usepackage{pgfplots}
-  pdf-engine: lualatex
+include-before-body:
+#### latex math shorthand
+  file: ../MathShorthand.html 
 include-in-header:
   - text: |
       <style>
@@ -201,17 +194,21 @@ Blue {
 }
 ```
 
+@BarthPapageorgeThom2020
+
 ----
 
-Genome
+## SNP, polygenic score
 
 ::::: {layout="[10,-2,20]" layout-valign="bottom"}
 
 ::::{.fragment}
+Genome
+
 ![Chromosone...DNA](DNAMacrostructure.jpg)
 
 ::: {style="font-size: 70%;"}
-<https://courses.lumenlearning.com/suny-ulster-ap1/chapter/the-nucleus-and-dna-replication/>
+[https://courses.lumenlearning.com/...](https://courses.lumenlearning.com/suny-ulster-ap1/chapter/the-nucleus-and-dna-replication)
 :::
 ::::
 
@@ -219,7 +216,7 @@ Genome
 ![DNA structure](DNAStructure.jpg)
 
 ::: {style="font-size: 70%;"}
-<https://www.haibunda.com/bundapedia/20230214003129-210-297249/deoxyribonucleic-acid--dna->
+_[https://www.haibunda.com/...](https://www.haibunda.com/bundapedia/20230214003129-210-297249/deoxyribonucleic-acid--dna-)_
 :::
 ::::
 
@@ -227,12 +224,134 @@ Genome
 
 ----
 
+::::: {layout="[10,-2,20]" layout-valign="bottom"}
 
-<https://mammothmemory.net/biology/dna-genetics-and-inheritance/dna-base-pairing/dna-double-helix.html>
+::::{.fragment}
+![Double helix and rung](DoubleHelixRung.jpg)
 
-<https://studylib.net/doc/5786293/snp-presentation>
+::: {style="font-size: 70%;"}
+[https://mammothmemory.net/...](https://mammothmemory.net/biology/dna-genetics-and-inheritance/dna-base-pairing/dna-double-helix.html)
+:::
+::::
 
+::::{.fragment}
+![SNP](SNP.png)
+
+::: {style="font-size: 70%;"}
+_[https://studylib.net/...](https://studylib.net/doc/5786293/snp-presentation)_
+:::
+::::
+
+:::::
+
+----
+
+<!-- tree.nathanfriend.io -->
+
+```{md}
+.
+└── Chromosome
+    └── DNA
+        └── Gene
+            └── Genome
+```
+
+
+:::::{.columns}
+
+::::{.column width="55%"}
+![](genome.jpg)
+
+::: {style="font-size: 70%;"}
+[_Source: L. C. Douglas_](https://historiesofthingstocome.blogspot.com/2010/08/age-of-genome-4.html){height=5cm}
+:::
+::::
+
+::::{.column width="45%"}
+* Chromosomes: 1/2 each from both parents 
+* DNA: Rolled up and shapes like an X
+* Gene: DNA segments
+* Genome: 3 billion nucletiodes (letters)
+   * Letter sequence = genome sequence
+   * 1.5 billion base pairs
+::::
+
+:::::
+
+* Base pairs differ between people in less than 1% (15 million) locations  
+* Single-nucleotide polymorphism (SNP) = such location
+   * 2 chromosomes per person: AT-AT, GC-GC, AT-GC or 0, 2, 1 (reference = GC)
+
+----
+
+Twin studies
+
+* Estimate how much genetic factors *collectively* matter for **explaining variations** of a trait  
+   * Collectively: Unit = group level aggregation
+   * Explaining variations: Variance decomposition 
+* Do not reveal which SNP is correlated
+
+. . .
+
+Genome wide association studies (GWASs)
+
+* Collect $J$ observable (?) SNPs of individual $i$.
+
+. . .
+
+Regress outcome $Y_{i}$ on each SNP using $J$ estimating equations:
+
+$$
+Y_{i}=\bfmu'\bfx_{i}+\beta_{j}SNP_{ij}+\epsilon_{ij}, \quad j=1,\dots,J.
+$$ 
+
+----
+
+Polygenic score of $i$ for the outcome $Y$ = *"Educational attainment (EA) score"* 
+
+$$
+PGS_{i}=\sum_{j=1}^{J}\tilde{\beta} SNP_{ij}
+$$
+
+* Use Bayesian LDpred procedure to correct for correlations in $\tilde{\beta}_{j}$
+
+* Use all SNPs: Better out-of-sample results than using only SNPs with genome-wide significance $p$ value $< 5*10^{-8} =$ .0000005%
+
+* PGS is considered to be a predictor of individual fixed effects
+   * HRS sample: covariance with EA score / total schooling years variance = 10.6%
+   * Edu attainment SNPs $\propto$ biological process of brain development, cognition [@Okbay2016; @Lee2018]
+   * Edu attainment SNPs $\propto$ cognition SNPs [@Okbay2016]
 
 
 ----
 
+## Interpretation
+
+* Correlation, not causality: Outcomes &lArr; gene + environment (endogenous)
+* Attenuation due to measurement errors in $\hat{\beta}_{j}$
+* Linearity assumption &rarr; underestimation of gene contributions (relative to twin studies)
+* Population stratification: Ethnic-group fixed effects &lArr; gene, environment  
+   * Including principal components of SNP data as covariates is shown to controll geographic variations
+* External validity is up to HRS ancestral composition
+
+
+----
+
+## Data
+
+Health and retirement survey: Age > 50 + partners, genetic samples 2006, 2008 
+
+* All households with at least one individual with genetic European 
+* "Retired households" in 1996, 1998, 2002, 2004, 2006, 2008, 2010
+* Households with 1-2 members, drop same sex HHs
+* Household-year observations of both members 65-75 years old
+
+. . .
+
+2590 HHs, 5701 HH-year observations (Table 1)
+
+----
+
+
+
+----

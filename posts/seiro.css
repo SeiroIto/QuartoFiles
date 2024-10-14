@@ -1,0 +1,18 @@
+Red {
+  color: red;
+}
+Orange {
+  color: #e94e2c;
+}
+Blue {
+  color: blue;
+}
+.reveal .slides pre code {
+    max-height: 800px;
+}
+#TOC {
+  font-color: #e94e2c;
+}
+.big-code{
+  font-size: 110%  
+}

@@ -63,8 +63,8 @@ include-in-header:
         transform: translateY(-50%), translateX(-50%);
       }
       </style>
-bibliography: c:/seiro/docs/seiro.bib
-#### ../../../seiro.bib
+bibliography: ../seiro.bib
+#### ../../../../../seiro.bib
 resources:
   - BPT.pdf
 # quarto render BPT.qmd

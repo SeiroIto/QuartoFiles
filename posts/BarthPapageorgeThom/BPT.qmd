@@ -19,7 +19,7 @@ format:
     preview-links: auto
     logo: GrootbergGiraffeHead.jpg
     footer: <http://seiroito.github.io/QuartoFiles/posts/BarthPapageorgeThom/BPT.html>
-    theme: [sky, sky-add.scss]
+    theme: [sky]
     linkcolor: red
     code-line-numbers: true
     code-copy: true

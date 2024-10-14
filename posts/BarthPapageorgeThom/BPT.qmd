@@ -88,6 +88,10 @@ Blue {
 .big-code{
   font-size: 110%  
 }
+.divCenterCol
+{
+  text-align:center;
+}
 #### Below is suggested by Claude
 #### .small-font-list {
 ####   font-size: 70%;
@@ -259,7 +263,7 @@ _[https://studylib.net/...](https://studylib.net/doc/5786293/snp-presentation)_
 
 :::::{.columns}
 
-::::{.column width="55%"}
+::::{.column width="45%"}
 ![](genome.jpg)
 
 ::: {style="font-size: 70%;"}
@@ -329,9 +333,9 @@ $$
 
 * Correlation, not causality: Outcomes &lArr; gene + environment (endogenous)
 * Attenuation due to measurement errors in $\hat{\beta}_{j}$
-* Linearity assumption &rarr; underestimation of gene contributions (relative to twin studies)
+* Linearity assumption &rarr; likely underestimation of gene contributions (relative to twin studies)
 * Population stratification: Ethnic-group fixed effects &lArr; gene, environment  
-   * Including principal components of SNP data as covariates is shown to controll geographic variations
+   * Including first (10) principal components of SNP data as covariates is shown to control geographic variations
 * External validity is up to HRS ancestral composition
 
 
@@ -339,12 +343,14 @@ $$
 
 ## Data
 
-Health and retirement survey: Age > 50 + partners, genetic samples 2006, 2008 
-
-* All households with at least one individual with genetic European 
-* "Retired households" in 1996, 1998, 2002, 2004, 2006, 2008, 2010
-* Households with 1-2 members, drop same sex HHs
-* Household-year observations of both members 65-75 years old
+1. Health and retirement survey: Age > 50 + partners, genetic samples 2006, 2008 
+   * All households with at least one individual with genetic European 
+   * "Retired households" in 1996, 1998, 2002, 2004, 2006, 2008, 2010
+   * Households with 1-2 members, drop same sex HHs
+   * Household-year observations of both members 65-75 years old
+   * Self-reported earnings  
+1. Social security administration data  
+   * Income data, top coded
 
 . . .
 
@@ -352,6 +358,193 @@ Health and retirement survey: Age > 50 + partners, genetic samples 2006, 2008
 
 ----
 
+> our sample comprises households for whom wealth data are most likely to be both accurate and
+comprehensive.
+
+* All pension, annuity, social security income, defined-contribution retirement plans 
+* Net value of housing, private businesses, vehicles, financial assets (cash, checking account, saving account, CD, stocks, mutual funds, trusts, other)
+* Winsorize at 1st and 99th percentiles of log real total wealth
+
+----
+
+## Selection biases
+
+1. Into genotyping: Older, more educated, more females, wealthier [(Table S1)](BarthPapgergeThome_SNPWealth_JPE2020Appendix.pdf#page=5) 
+   * Education $\propto$ genotyping &rArr; individuals with low EA scores have higher than average education  &rArr; attenuates EA score $\propto$ education gradient 
+1. Of using retired households: More precise wealth but smaller sample size/more selection [(Table 3)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=17) 
+   * Selection results in more males, older in high EA scores &lArr; (Male) higher EA scorers live longer, but modest in size (Panel A)
+   * Age band of retired HHs &uarr; than main sample &rArr; q4-q1 differences (more selection) &uarr; &rArr; EA score $\propto$ education gradient &uarr; (Panel A vs. B)
+   * $+$non-retired HHs &rArr; q4-q1 differences &darr; (less selection) &rArr; EA score $\propto$ education gradient &darr; (Panel A vs. C)
+   * Smaller degree of selection leads to smaller q4-q1 differences
+   * But larger measurement errors in wealth ($\because$ pensions, etc. are not measured)
+
+----
+
+> However, the magnitudes of these differences are similar and relatively modest across alternate samples. Restricting our sample to retired households balances concerns about sample selection and measurement error. 
+[(p.19)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=19)
+
+. . .
+
+Meaning: 
+
+* We could have used a wider age band retired HH sample 
+   * More precision (larger sample size, smaller measurement errors) 
+   * Larger EA-edu gradient
+* But we did not
+   * Feel free to accept our results! 
 
 
 ----
+
+## Results
+
+::::: {.columns}
+
+::: {.column width="5%"}
+:::{style="font-size: 45%;line-height: 1.1;"}
+Fig 2A
+:::
+:::
+::: {.column width="25%"}
+![](Fig2A.jpg){width="70%"}
+:::
+::: {.column width="70%"}
+EA score $\propto$ wealth  
+
+*  EA score -1 to 1: $+$ $20,000
+
+:::{.fragment}
+Table 2 also shows EA score $\propto$ wealth ($475K, q4-q1), lifetime labor income ($380K, q4-q1)  
+:::
+:::
+
+::: {.column width="5%"}
+:::{.fragment}
+:::{style="font-size: 45%;line-height: 1.1;"}
+Fig 2B
+:::
+:::
+:::
+::: {.column width="25%"}
+:::{.fragment}
+![](Fig2B.jpg){width="70%"}
+:::
+:::
+
+::: {.column width="70%"}
+:::{.fragment}
+EA score $\propto$ wealth similar between high schoolers vs college grads, up to q3
+:::
+:::
+
+::: {.column width="5%"}
+:::{.fragment}
+:::{style="font-size: 45%;line-height: 1.1;"}
+Tab 4
+:::
+:::
+:::
+::: {.column width="25%"}
+:::{.fragment}
+![](Tab4.jpg){width="50%"}
+:::
+:::
+
+::: {.column width="70%"}
+:::{.fragment}
+EA score $\propto$ wealth gradient: .246 (raw)&rarr;.070 (+edu)&rarr;.047 (+labor income)
+:::
+
+:::{.fragment}
+Gradient: "ability" + school quality &larr; income measure error
+:::
+:::
+
+:::::
+
+----
+
+Robust to:
+
+::::: {.columns}
+
+::: {.column width="50%"}
+* $+$Non financial respondent EA scores
+   * NFR EA scores is not partial-correlated
+* $+$SSA income (more objective)
+* $+$Non-retired HHs  
+* $+$Self-reported income of HRS
+:::
+
+::: {.column width="40%"}
+<div class="divCenterCol">
+![](Tab5.jpg){width="50%"}
+</div>
+:::
+:::::
+
+* Changes in sample and definitions: HRS sampling weights, only 1 HH-year per sample, only coupled HHs, different age, complicated function of incomes, excluding retirement and housing wealth, different version of EA score 
+* Adding: cognitive ability, number of children, death of HH member, years since retirement
+
+----
+
+## Gene-environment correlations
+
+::::: {.columns}
+
+::: {.column width="50%"}
+Proxy of environment 
+
+* Direct: Bequests
+* Indirect: Parental education
+
+::: {.fragment}
+Does not change the gene-wealth gradient
+:::
+
+* Parental investments are captured by respondent's schooling and labor incomes
+:::
+
+::: {.column width="40%"}
+<div class="divCenterCol">
+![](Tab6.jpg){width="50%"}
+</div>
+:::
+:::::
+
+----
+
+## Additional mechanisms
+
+EA score &uarr;  
+
+::::: {.columns}
+
+::: {.column width="50%"}
+* One-year mortality &darr; for females 
+* Expected longeviity &uarr; for females 
+:::
+
+::: {.column width="40%"}
+<div class="divCenterCol">
+![](Tab7.jpg){width="50%"}
+</div>
+:::
+
+::: {.column width="50%"}
+* Risk aversion &darr; for females 
+* Expected longeviity &uarr; for females 
+:::
+
+::: {.column width="40%"}
+<div class="divCenterCol">
+![](Tab7.jpg){width="50%"}
+</div>
+:::
+
+:::::
+
+
+
+----
+

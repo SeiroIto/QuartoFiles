@@ -644,8 +644,8 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
 
 ## Conclusions
 
-* Previous studies: EA scores $\SIM$ education
-* This study: EA scores $\SIM$ wealth|education, parents
+* Previous studies: $\corr$[EA scores, education]$>0$
+* This study: $\corr$[EA scores, wealth|education, parents]$>0$
 * EA scores $\SIM$ probabilistic thinking &rArr; human capital accumulation heterogeneity  
    * Teaching probability may make human capital more homogenous?
    * Not necessarily, gene-wealth gradient is a biased estimate &larr; environment
@@ -657,7 +657,7 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
    > For example, it may be that children with lower polygenic scores begin to face challenges at particular ages or struggle to meet specific educational milestones. In that case,we could better target educational policies to help alleviate these road-blocks. 
 :::
 
-こうした学習の遅れが格差の源泉と認識できるようになった
+こうした学習の遅れが格差の源泉の可能性、と認識できるようになった
 
 ----
 
@@ -674,11 +674,12 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
 
 * 「貧しさは遺伝する」?...PGSを使って資産との相関を計測した研究
 * 強い根拠はないにせよ、介入ポイントを議論したのは素晴らしい
-* Gene-wealth gradient = corr[PGS, wealth|(endogenous) variables]  
+* Gene-wealth gradient = $\corr$[PGS, wealth|(endogenous) variables]  
 * 偏相関が小さくなるポイント: 株式所有 &lArr; longer time horizon, optimism
 * 偏相関が大きくなるポイント: 確定給付年金
     * 株式所有と確定給付年金を加えたら偏相関は?
 * 金融教育? 
 * 確定給付年金をもっと広く手厚く(できるのか?)
+* 計量: 個人固定効果の中身をPGSとそれ以外に分解
 
 ----

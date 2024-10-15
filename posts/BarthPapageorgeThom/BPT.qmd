@@ -669,8 +669,9 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
 
 * 「貧しさは遺伝する」?...PGSを使って資産との相関を計測した研究
 * 強い根拠はないにせよ、介入ポイントを議論したのは素晴らしい
-* Gene-wealth gradient = corr[PGS, wealth|endogenous variables]  
+* Gene-wealth gradient = corr[PGS, wealth|(endogenous) variables]  
 * 偏相関が小さくなるポイント: 株式所有 &lArr; longer time horizon, optimism
+* 偏相関が大きくなるポイント: 確定給付年金
     * 株式所有と確定給付年金を加えたら偏相関は?
 * 金融教育? 
 * 確定給付年金をもっと広く手厚く(できるのか?)

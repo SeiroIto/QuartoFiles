@@ -65,9 +65,10 @@ include-in-header:
       </style>
 bibliography: ../seiro.bib
 #### ../../../../../seiro.bib
+#### copy c:/seiro/docs/seiro.bib ../seiro.bib
 resources:
   - BPT.pdf
-# quarto render BPT.qmd
+#### quarto render BPT.qmd
 ---
 ```{css, echo = F, results = "hide"}
 Red {
@@ -198,7 +199,14 @@ Blue {
 }
 ```
 
-@BarthPapageorgeThom2020
+@BarthPapageorgeThom2020 take aways  
+
+* Gene-wealth gradient exists: EA score predicts wealth at retirement
+* Gene-wealth gradient&lArr; education, income, bequests, parents’ education, but does not explain fully
+* Gene-wealth gradient&rarr;0 when stock ownership is added
+   * EA score $\propto$ risk torelance, longevity, stock ownership, precision in macroeconomic risk perception
+* HHs without DB pension: gene-wealth gradient&uarr;
+
 
 ----
 
@@ -365,6 +373,14 @@ comprehensive.
 * Net value of housing, private businesses, vehicles, financial assets (cash, checking account, saving account, CD, stocks, mutual funds, trusts, other)
 * Winsorize at 1st and 99th percentiles of log real total wealth
 
+<br>
+
+Standard controls
+: age, sex of FR, calendar time, family member age-sex dummies and interactions
+
+Full education controls
+: education-age-sex dummies and interactions
+
 ----
 
 ## Selection biases
@@ -516,35 +532,143 @@ Does not change the gene-wealth gradient
 
 ## Additional mechanisms
 
-EA score &uarr;  
+EA score&uarr;  
 
 ::::: {.columns}
 
-::: {.column width="50%"}
-* One-year mortality &darr; for females 
-* Expected longeviity &uarr; for females 
+::: {.column width="60%"}
+* One-year mortality&darr; for females 
+* Expected longeviity&uarr; for females 
 :::
 
-::: {.column width="40%"}
+::: {.column width="30%"}
 <div class="divCenterCol">
 ![](Tab7.jpg){width="50%"}
 </div>
 :::
 
-::: {.column width="50%"}
-* Risk aversion &darr; for females 
-* Expected longeviity &uarr; for females 
+::: {.column width="60%"}
+* Elicited risk aversion&darr; in gambles on incomes, business, but not on inheritance 
 :::
 
-::: {.column width="40%"}
+::: {.column width="30%"}
 <div class="divCenterCol">
-![](Tab7.jpg){width="50%"}
+![](Tab8.jpg){width="50%"}
+</div>
+:::
+
+::: {.column width="60%"}
+* Stock ownership&uarr; but not of other assets 
+* EA score $\propto$ wealth gradient &rarr;0 if we add stock ownership  
+:::
+
+::: {.column width="30%"}
+<div class="divCenterCol">
+![](Tab9.jpg){width="50%"}
+</div>
+:::
+
+:::::
+
+----
+
+EA score&uarr;  
+
+::::: {.columns}
+
+::: {.column width="60%"}
+* Deviation from objective probability&darr; 
+* Indication of complete certainty&darr;  
+* Financial planning time horizon&uarr; (viz. a few months) (except longer than 10 years)
+   * Better able to think about complex and abstract decisions
+   * @GabaixLaibson2022: Precise signals &rArr; behaves as if more patient
+:::
+
+::: {.column width="30%"}
+<div class="divCenterCol">
+![](Tab10.jpg){width="90%"}
+</div>
+:::
+
+::: {.column width="60%"}
+* Elicited stock returns&uarr; &rArr; stock ownership&uarr;, wealth&uarr; 
+:::
+
+::: {.column width="30%"}
+<div class="divCenterCol">
+![](TabS9.jpg){width="50%"}
+</div>
+:::
+
+::: {.column width="60%"}
+* Robust to adding cognitive test scores 
+:::
+
+::: {.column width="30%"}
+<div class="divCenterCol">
+![](TabS15.jpg){width="40%"}
 </div>
 :::
 
 :::::
 
 
+----
+
+
+::::: {.columns}
+
+::: {.column width="60%"}
+* EA score $\propto$ wealth, conditional on DB pension participation
+* EA score $\propto$ wealth&uarr; if not participating in DB pension
+:::
+
+::: {.column width="30%"}
+<div class="divCenterCol">
+![](Tab11.jpg){width="90%"}
+</div>
+:::
+
+:::::
+
+:::{.fragment}
+Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financial decisions</Red>
+:::
 
 ----
 
+## Conclusions
+
+* Previous studies: EA scores $\propto$ education
+* This study: EA scores $\propto$ wealth
+* EA scores $\propto$ probabilistic thinking &rArr; human capital accumulation heterogeneity  
+   * Teaching probability may make human capital more homogenous?
+   * Not necessarily, gene-wealth gradient is a biased estimate &larr; environment
+   * But it hints something can be done there  
+
+. . .
+
+::: {style="font-size: 80%;"}
+   > For example, it may be that children with lower polygenic scores begin to face challenges at particular ages or struggle to meet specific educational milestones. In that case,we could better target educational policies to help alleviate these road-blocks. 
+:::
+
+こうした学習の遅れが格差の源泉と認識できるようになった
+
+----
+
+## Conclusions
+
+* "Ignoring heterogeneity in EA scores may place too much weight on education and inheritance"
+   * Using HH (parent-multiple children) fixed effect estimator should prevent this? 
+* Intervention changes the nature contribution (gradient size): DB pensions
+
+----
+
+## 感想
+
+* Gene-wealth gradient = corr[PGS, wealth|endogenous variables]  
+* 偏相関が小さくなるポイント: 株式所有 &lArr; longer time horizon, optimism
+* 金融教育?
+* 株式所有と確定給付年金を加えたら偏相関は?
+
+----

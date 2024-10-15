@@ -385,14 +385,14 @@ Full education controls
 
 ## Selection biases
 
-1. Into genotyping: Older, more educated, more females, wealthier [(Table S1)](BarthPapgergeThome_SNPWealth_JPE2020Appendix.pdf#page=5) 
+1. Into genotyping: Older, more educated, more females, wealthier [(Table S1)](BarthPapageorgeThom_SNPWealth_JPE2020Appendix.pdf#page=5) 
    * Education $\SIM$ genotyping &rArr; individuals with low EA scores have higher than average education  &rArr; attenuates EA score $\SIM$ education gradient 
 
 ----
 
 ## Selection biases
 
-2. Of using retired households: More precise wealth but smaller sample size/more selection [(Table 3)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=17) 
+2. Of using retired households: More precise wealth but smaller sample size/more selection [(Table 3)](BarthPapageorgeThom_SNPWealth_JPE2020.pdf#page=17) 
    * Selection results in more males, older in high EA scores &lArr; (Male) higher EA scorers live longer, but modest in size (Panel A)
    * Age band of retired HHs &uarr; than main sample &rArr; q4-q1 differences (more selection) &uarr; &rArr; EA score $\SIM$ education gradient &uarr; (Panel A vs. B)
    * $+$non-retired HHs &rArr; q4-q1 differences &darr; (less selection) &rArr; EA score $\SIM$ education gradient &darr; (Panel A vs. C)
@@ -402,7 +402,7 @@ Full education controls
 ----
 
 > However, the magnitudes of these differences are similar and relatively modest across alternate samples. Restricting our sample to retired households balances concerns about sample selection and measurement error. 
-[(p.19)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=19)
+[(p.19)](BarthPapageorgeThom_SNPWealth_JPE2020.pdf#page=19)
 
 . . .
 

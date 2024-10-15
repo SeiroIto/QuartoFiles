@@ -477,7 +477,7 @@ EA score $\SIM$ wealth gradient: .246 (raw)&rarr;.070 (+edu)&rarr;.047 (+labor i
 :::
 
 :::{.fragment}
-Gradient: "ability" + school quality &larr; income measure error
+Gradient: "savvy" + school quality &larr; income meas errors
 :::
 :::
 
@@ -645,7 +645,7 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
 ## Conclusions
 
 * Previous studies: EA scores $\SIM$ education
-* This study: EA scores $\SIM$ wealth
+* This study: EA scores $\SIM$ wealth|education, parents
 * EA scores $\SIM$ probabilistic thinking &rArr; human capital accumulation heterogeneity  
    * Teaching probability may make human capital more homogenous?
    * Not necessarily, gene-wealth gradient is a biased estimate &larr; environment

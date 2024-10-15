@@ -204,7 +204,7 @@ Blue {
 * Gene-wealth gradient exists: EA score predicts wealth at retirement
 * Gene-wealth gradient&lArr; education, income, bequests, parents’ education, but does not explain fully
 * Gene-wealth gradient&rarr;0 when stock ownership is added
-   * EA score $\propto$ risk torelance, longevity, stock ownership, precision in macroeconomic risk perception
+   * EA score $\SIM$ risk torelance, longevity, stock ownership, precision in macroeconomic risk perception
 * HHs without DB pension: gene-wealth gradient&uarr;
 
 
@@ -217,7 +217,7 @@ Blue {
 ::::{.fragment}
 Genome
 
-![Chromosone...DNA](DNAMacrostructure.jpg)
+![](DNAMacrostructure.jpg){height="100%"}
 
 ::: {style="font-size: 70%;"}
 [https://courses.lumenlearning.com/...](https://courses.lumenlearning.com/suny-ulster-ap1/chapter/the-nucleus-and-dna-replication)
@@ -225,7 +225,7 @@ Genome
 ::::
 
 ::::{.fragment}
-![DNA structure](DNAStructure.jpg)
+![](DNAStructure.jpg){height="80%"}
 
 ::: {style="font-size: 70%;"}
 _[https://www.haibunda.com/...](https://www.haibunda.com/bundapedia/20230214003129-210-297249/deoxyribonucleic-acid--dna-)_
@@ -331,8 +331,8 @@ $$
 
 * PGS is considered to be a predictor of individual fixed effects
    * HRS sample: covariance with EA score / total schooling years variance = 10.6%
-   * Edu attainment SNPs $\propto$ biological process of brain development, cognition [@Okbay2016; @Lee2018]
-   * Edu attainment SNPs $\propto$ cognition SNPs [@Okbay2016]
+   * Edu attainment SNPs $\SIM$ biological process of brain development, cognition [@Okbay2016; @Lee2018]
+   * Edu attainment SNPs $\SIM$ cognition SNPs [@Okbay2016]
 
 
 ----
@@ -386,11 +386,16 @@ Full education controls
 ## Selection biases
 
 1. Into genotyping: Older, more educated, more females, wealthier [(Table S1)](BarthPapgergeThome_SNPWealth_JPE2020Appendix.pdf#page=5) 
-   * Education $\propto$ genotyping &rArr; individuals with low EA scores have higher than average education  &rArr; attenuates EA score $\propto$ education gradient 
-1. Of using retired households: More precise wealth but smaller sample size/more selection [(Table 3)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=17) 
+   * Education $\SIM$ genotyping &rArr; individuals with low EA scores have higher than average education  &rArr; attenuates EA score $\SIM$ education gradient 
+
+----
+
+## Selection biases
+
+2. Of using retired households: More precise wealth but smaller sample size/more selection [(Table 3)](BarthPapgergeThome_SNPWealth_JPE2020.pdf#page=17) 
    * Selection results in more males, older in high EA scores &lArr; (Male) higher EA scorers live longer, but modest in size (Panel A)
-   * Age band of retired HHs &uarr; than main sample &rArr; q4-q1 differences (more selection) &uarr; &rArr; EA score $\propto$ education gradient &uarr; (Panel A vs. B)
-   * $+$non-retired HHs &rArr; q4-q1 differences &darr; (less selection) &rArr; EA score $\propto$ education gradient &darr; (Panel A vs. C)
+   * Age band of retired HHs &uarr; than main sample &rArr; q4-q1 differences (more selection) &uarr; &rArr; EA score $\SIM$ education gradient &uarr; (Panel A vs. B)
+   * $+$non-retired HHs &rArr; q4-q1 differences &darr; (less selection) &rArr; EA score $\SIM$ education gradient &darr; (Panel A vs. C)
    * Smaller degree of selection leads to smaller q4-q1 differences
    * But larger measurement errors in wealth ($\because$ pensions, etc. are not measured)
 
@@ -425,12 +430,12 @@ Fig 2A
 ![](Fig2A.jpg){width="70%"}
 :::
 ::: {.column width="70%"}
-EA score $\propto$ wealth  
+EA score $\SIM$ wealth  
 
 *  EA score -1 to 1: $+$ $20,000
 
 :::{.fragment}
-Table 2 also shows EA score $\propto$ wealth ($475K, q4-q1), lifetime labor income ($380K, q4-q1)  
+Table 2 also shows EA score $\SIM$ wealth ($475K, q4-q1), lifetime labor income ($380K, q4-q1)  
 :::
 :::
 
@@ -449,7 +454,7 @@ Fig 2B
 
 ::: {.column width="70%"}
 :::{.fragment}
-EA score $\propto$ wealth similar between high schoolers vs college grads, up to q3
+EA score $\SIM$ wealth similar between high schoolers vs college grads, up to q3
 :::
 :::
 
@@ -468,7 +473,7 @@ Tab 4
 
 ::: {.column width="70%"}
 :::{.fragment}
-EA score $\propto$ wealth gradient: .246 (raw)&rarr;.070 (+edu)&rarr;.047 (+labor income)
+EA score $\SIM$ wealth gradient: .246 (raw)&rarr;.070 (+edu)&rarr;.047 (+labor income)
 :::
 
 :::{.fragment}
@@ -559,7 +564,7 @@ EA score&uarr;
 
 ::: {.column width="60%"}
 * Stock ownership&uarr; but not of other assets 
-* EA score $\propto$ wealth gradient &rarr;0 if we add stock ownership  
+* EA score $\SIM$ wealth gradient &rarr;0 if we add stock ownership  
 :::
 
 ::: {.column width="30%"}
@@ -619,8 +624,8 @@ EA score&uarr;
 ::::: {.columns}
 
 ::: {.column width="60%"}
-* EA score $\propto$ wealth, conditional on DB pension participation
-* EA score $\propto$ wealth&uarr; if not participating in DB pension
+* EA score $\SIM$ wealth, conditional on DB pension participation
+* EA score $\SIM$ wealth&uarr; if not participating in DB pension
 :::
 
 ::: {.column width="30%"}
@@ -639,9 +644,9 @@ Gene-wealth gradient &lArr; a household's <Red>difficulty in making wise financi
 
 ## Conclusions
 
-* Previous studies: EA scores $\propto$ education
-* This study: EA scores $\propto$ wealth
-* EA scores $\propto$ probabilistic thinking &rArr; human capital accumulation heterogeneity  
+* Previous studies: EA scores $\SIM$ education
+* This study: EA scores $\SIM$ wealth
+* EA scores $\SIM$ probabilistic thinking &rArr; human capital accumulation heterogeneity  
    * Teaching probability may make human capital more homogenous?
    * Not necessarily, gene-wealth gradient is a biased estimate &larr; environment
    * But it hints something can be done there  

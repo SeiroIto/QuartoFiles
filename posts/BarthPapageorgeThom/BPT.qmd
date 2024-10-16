@@ -21,6 +21,7 @@ format:
     preview-links: auto
     logo: GrootbergGiraffeHead.jpg
     footer: <http://seiroito.github.io/QuartoFiles/posts/BarthPapageorgeThom/BPT.html>
+    css: ../seiro.css
     theme: [sky]
     linkcolor: red
     code-line-numbers: true
@@ -314,8 +315,12 @@ Genome wide association studies (GWASs)
 Regress outcome $Y_{i}$ on each SNP using $J$ estimating equations:
 
 $$
-Y_{i}=\bfmu'\bfx_{i}+\beta_{j}SNP_{ij}+\epsilon_{ij}, \quad j=1,\dots,J.
+Y_{i}
+=
+\beta_{j}SNP_{ij}+\bfmu'_{j}\bfx_{i}+\epsilon_{ij}, \quad j=1,\dots,J.
 $$ 
+
+$\cov[SNP_{ij}, \epsilon_{ij}]> 0$: Parents see traits which may be correlated with $SNP_{ij}$ and decide on investments. Environment is endogenous to the trait in SNP regressions. 
 
 ----
 
@@ -334,6 +339,56 @@ $$
    * Edu attainment SNPs $\SIM$ biological process of brain development, cognition [@Okbay2016; @Lee2018]
    * Edu attainment SNPs $\SIM$ cognition SNPs [@Okbay2016]
 
+----
+
+Gene-wealth gradient $\gamma$ with education control
+
+$$
+\begin{aligned}
+W_{i}
+&=
+\bftheta'\bfx_{i}+\gamma PGS_{i}+\eta Y_{i}+e_{i},\\
+&=
+\bftheta'\bfx_{i}+\gamma PGS_{i}+\frac{\eta}{J}\left\{PGS_{i}+\sum_{j=1}^{J}\left(\bfmu'_{j}\bfx_{i}+\tilde{\epsilon}_{ij}\right)\right\}+e_{i},\\
+&=
+\bftheta'\bfx_{i}+\left(\gamma+\frac{\eta}{J}\right)PGS_{i}+\frac{\eta}{J}\sum_{j=1}^{J}\left(\bfmu'_{j}\bfx_{i}+\tilde{\epsilon}_{ij}\right)+e_{i},\\
+&\simeq
+\left(\bftheta'+\eta\bar{\bfmu}'\right)\bfx_{i}+\gamma PGS_{i}+\eta\bar{\tilde{\epsilon}}_{i}+e_{i}.
+\end{aligned}
+$$
+where
+$$
+JY_{i}
+=
+PGS_{i}+\sum_{j=1}^{J}\left(\bfmu'_{j}\bfx_{i}+\tilde{\epsilon}_{ij}\right).
+$$ 
+
+----
+
+Because $\cov[SNP_{ij}, \epsilon_{ij}]> 0$, in general, we have $\cov[PGS_{i}, \bar{\tilde{\epsilon}}_{i}]> 0$. 
+
+. . .
+
+So, in general, $\plim \hat{\gamma}-\gamma>0$. 
+
+. . .
+
+This is problematic: the paper tries to show persistence of positive $\hat{\gamma}$
+
+. . .
+
+Authors may have acknowledged it: Kept on cautioning that 
+
+* Estimated relationship is not causal
+* Diverse mechanisms give rise to estimated relationship
+
+. . .
+
+A partial remedy: Use $\tilde{Y}_{i}=\tilde{\beta}_{j}SNP_{ij}+\bfmu'_{j}\bfx_{i}$ in place of $Y_{i}$ on RHS. 
+
+This *partly* takes away the correlation between $GPS_{i}$ and the error term
+
+Because $\cov[SNP_{ij}, \epsilon_{ij}]> 0$, $\tilde{\beta}_{j}$ is overestimated, so deviation of $\hat{\tilde{Y}}_{i}$ from real $\tilde{Y}_{i}$ is larger for individual with large $SNP_{ij}$. Although partly removed, there still remain a positive correlation between PGS and the error term. 
 
 ----
 

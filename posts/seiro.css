@@ -19,7 +19,7 @@ Blue {
 /* latex description-like list */
 /* Main container for the description list */
 .description-list {
-  font-size: 50% !important;  /* Reduces font size to 80% of the parent element */
+  font-size: 80% !important;  /* Reduces font size to 80% of the parent element */
   line-height: 1.2 !important;  /* Sets line height to 1.2 times the font size */
 }
 /* Styles for the description list element */

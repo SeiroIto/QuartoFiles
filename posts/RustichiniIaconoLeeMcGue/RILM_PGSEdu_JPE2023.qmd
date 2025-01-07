@@ -202,10 +202,11 @@ gray {
 ## Summary of [this paper](https://doi.org/10.1086/724860)
 
 * US Minnesota Twin Study Sample
-* Build a genetic model (with better genetics foundation than **ad hoc** econ standard model)
-* Intergenerational elaciticity of income is predicted and estimated to be larger in genetic models
-* Empirical pathway: Through parental education and incomes, parental PGS has no direct effect
-* Parental PGS &nrArr; educational attainment, after controling for parental education and incomes
+* Build a genetic model of human capital investments with genotype transmission (with better genetics foundation than *ad hoc* standard econ models)
+* Intergenerational elaciticity of income is predicted to be larger in genetic models
+* Empirical pathway: Through parental education and incomes, parental PGS has no direct effect on child human capital
+* Child PGS is relevant
+* Genetic nurture (introverted genotype produces an environment to grow introverted child, independently of income and education) is not found
 
 ----
 
@@ -386,15 +387,201 @@ flowchart LR
 ----
 
 :::{style="text-align: center;"}
-# Estimation results 
+# Model 
 :::
 
 ----
+
+::: {style="font-size: 80%;"}
+Family $i$ parents' problem with twins $j=1, 2$ of observable skills $\theta^{i}_{j}$
+$$
+\begin{aligned}
+\max_{\{E^{i}, I^{i}_{1}, I^{i}_{2}\}} \;\;\;&\E\left[(1-\delta)\ln E^{i}+\delta\left(y^{i}_{1}+y^{i}_{2}\right)\left|\theta^{i}_{1}, \theta^{i}_{2}\right.\right]\\
+\st \;\;\; & E^{i}+I^{i}_{1}+I^{i}_{2}=e^{y^{i}}
+\end{aligned}
+\tag{6}
+$$
+$$
+\begin{align}
+\scriptsize{\mbox{Human capital production function}} && 
+h^{i}_{j}&=\alpha_{I}\ln I^{i}_{j}+\alpha_{\theta}\theta^{i}_{j}+\epsilon^{\mathrm{h}i}_{j} && \phantom{mmmmmmmmmmmm} \tag{8}\label{eq8}\\
+\scriptsize{\mbox{Child income}} && 
+y^{i}_{j}&=\alpha_{\mathrm{h}}h^{i}_{j}+\epsilon^{\mathrm{y}i}_{j} &&\tag{9}\label{eq9}
+\end{align}
+$$
+Solution
+$$
+I^{i}=\frac{\delta\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}}{1-\delta+2\delta\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}}e^{y^{i}}
+\tag{11}
+$$
+Optimised child income
+$$
+y^{i}_{j}=\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}\ln 
+\frac{\delta\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}}{1-\delta+2\delta\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}}
++\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}y^{i}+\alpha_{\theta}\alpha_{\mathrm{h}}\theta^{i}_{j}+\alpha_{\mathrm{h}}\epsilon^{\mathrm{h}i}_{j}+\epsilon^{\mathrm{y}i}_{j}
+\tag{12}\label{eq12}
+$$ 
+:::
+
+----
+
+Matching of parents
+
+* Assume independence of genotype conditional on observable characteristics [incomes, skills $w(g)$]
+   * Matches are made on observables, not on genotype
+   * Matches are random within obserbable strata *"worth" classes*=$w_{\mathrm{y}}y+w(g)$]
+      * Genotype matching is random within a stratum
+   * Matches are nonrandom at the population due to population stratification based on observables
+
+. . .
+
+Genetic transmission: $\Delta$(father genotype) × $\Delta$(mother genotype) $\to$ $\Delta$(child genotype)
+
+The appendix D of paper shows an invariant mapping exists with properties shown in Theorem 3.1
+
+----
+
+Skills production function (genotype enters here, hence the parental genotypes)
+$$
+\theta^{i}_{j}=w\left(g^{i}_{j}\right)+\pi y^{i}+\bfPi\bfx^{i}_{j}+F^{i}+\epsilon^{\theta i}_{j}
+\tag{4}\label{eq4}
+$$
+Estimating equations: Substitute \eqref{4} into  \eqref{12} gives child income decomposition, and \eqref{11} into  \eqref{8} gives human capital decomposition
+$$
+\begin{align}
+y^{i}_{j}
+&=
+\alpha_{\theta}\alpha_{\mathrm{h}}w\left(g^{i}_{j}\right)
++\left(\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}+\alpha_{\theta}\alpha_{\mathrm{h}}\pi\right)y^{i}
++\alpha_{\theta}\alpha_{\mathrm{h}}F^{i}\\
+&\hspace{1em}
++\alpha_{\theta}\alpha_{\mathrm{h}}\bfPi\bfx^{i}_{j}
++\alpha_{\theta}\alpha_{\mathrm{h}}\epsilon^{\theta i}_{j}
++\alpha_{\mathrm{h}}\epsilon^{\mathrm{h} i}_{j}
++\epsilon^{\mathrm{y}i}_{j}\tag{21}\label{eq21}\\
+h^{i}_{j}
+&=
+\alpha_{\theta}w\left(g^{i}_{j}\right)
++\left(\alpha_{\mathrm{I}}+\alpha_{\theta}\pi\right)y^{i}
++\alpha_{\theta}F^{i}\\
+&\hspace{1em}
++\alpha_{\theta}\bfPi\bfx^{i}_{j}
++\alpha_{\theta}\epsilon^{\theta i}_{j}
++\epsilon^{\mathrm{y}i}_{j}\tag{23}\label{eq23}
+\end{align}
+$$
+
+----
+
+Can show IGE is smaller in "standard model" than genetic model
+
+::: {style="font-size: 80%;"}
+@BeckerTomes1979
+$$
+\begin{align}
+\theta_{t+1}
+&=
+\eta \theta_{t}+\epsilon^{\theta}_{t+1}\tag{26}\label{eq26}\\
+y^{i}_{t+1}
+&=
+\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}y^{i}_{t}+\alpha_{\theta}\alpha_{\mathrm{h}}\theta_{t+1}+\epsilon^{\mathrm{y}i}_{t+1}\tag{25}\label{eq25}
+\end{align}
+$$
+Genetic model of this paper assumes
+$$
+\begin{align}
+\theta
+&=
+w^{\theta}_{\mathrm{f}}\theta_{\mathrm{f}}+w^{\theta}_{\mathrm{m}}\theta_{\mathrm{m}}\tag{A4}\label{eqA4}\\
+y^{i}
+&=
+w^{\mathrm{y}}_{\mathrm{f}}y^{i}_{\mathrm{f}}+w^{\mathrm{y}}_{\mathrm{m}}y^{i}_{\mathrm{m}}\tag{A3}\label{eqA3}
+\end{align}
+$$
+Plugging these give
+$$
+\begin{align}
+\theta_{t+1}
+&=
+\eta \sum_{s=m,f}w^{\theta}_{s}\theta_{st}+\epsilon^{\theta}_{t+1}\tag{33}\label{eq33}\\
+y^{i}_{t+1}
+&=
+\alpha_{\mathrm{I}}\alpha_{\mathrm{h}}\sum_{s=m,f}w^{\mathrm{y}}_{s}y^{i}_{st}+\alpha_{\theta}\alpha_{\mathrm{h}}\theta_{t+1}+\epsilon^{\mathrm{y}i}_{t+1}\tag{32}\label{eq32}
+\end{align}
+$$
+:::
+
+----
+
+:::{style="text-align: center;"}
+# Estimation strategy 
+:::
+
+----
+
+Structural equation model (SEM)
+
+* Structural equations
+* Measurement (error) equations
+
+. . .
+
+Identification conditions of structural parameters remain the same as in simultaneous equation models
+
+In this paper:
+
+* identification for only recursive model is discussed (Tab 2)
+* use of IVs is not discussed (Tab 3)
+
+. . .
 
 Controls used in estimation
 
 * 10 principal components of PGS
 * Parent-child age difference
+
+
+----
+
+Identification ideas
+
+1. Dizygotic twins [Table 1, 2]
+   * Share birth days, environment
+   * Differ in genotypes
+   * Ideal to see impacts of genotypes on outcomes
+
+----
+
+Identification ideas
+
+2. SEM
+   * Recursive system (37)-(42) are identified as usual [Table 2]
+   * Structural parameters of endogenous variables are recovered from \eqref{eq43}-\eqref{eq45} (how?) [Table 3]
+      * Given PGS of child, PGS of parents should be redundant, so long as they do not affect environment (gene-environment correlation, or "passive rGE")
+
+. . .
+
+::: {style="font-size: 80%;"}
+$$
+\begin{align}
+e^{i}_{\mathrm{h}}
+&=
+\alpha_{e_{\mathrm{h}}}+
+\gamma^{\mathrm{pGS}_{m}}_{e_{\mathrm{h}}}\mathrm{pGS}^{i}_{m}+\gamma^{\mathrm{pGS}_{f}}_{e_{\mathrm{h}}}\mathrm{pGS}^{i}_{f}+\xi_{e_{\mathrm{h}}}\tag{43}\label{eq43}\\
+y^{i}_{\mathrm{h}}
+&=
+\alpha_{y_{\mathrm{h}}}+\gamma^{\mathrm{pGS}_{m}}_{y_{\mathrm{h}}}\mathrm{pGS}^{i}_{m}+\gamma^{\mathrm{pGS}_{f}}_{y_{\mathrm{h}}}\mathrm{pGS}^{i}_{f}+\xi_{y_{\mathrm{h}}}\tag{44}\label{eq44}\\
+e^{i}_{j}
+&=
+\alpha_{e}+\gamma^{e_{\mathrm{h}}}_{\mathrm{e}}e_{\mathrm{h}}^{i}
++\gamma^{y_{\mathrm{h}}}_{\mathrm{e}}y_{\mathrm{h}}^{i}
++\gamma^{\mathrm{pGS}}_{\mathrm{e}}\mathrm{pGS}^{i}_{j}
++\gamma^{\mathrm{pGS}_{m}}_{\mathrm{e}}\mathrm{pGS}^{i}_{m}
++\gamma^{\mathrm{pGS}_{f}}_{\mathrm{e}}\mathrm{pGS}^{i}_{f}
++\xi_{\mathrm{e}}\tag{45}\label{eq45}
+\end{align}
+$$
+:::
 
 ----
 
@@ -416,6 +603,12 @@ Controls used in estimation
 * Family background
    * Hollingsworth scale on occupational status
    * Four year college degrees of parents
+:::
+
+----
+
+:::{style="text-align: center;"}
+# Estimation results 
 :::
 
 ----
@@ -472,11 +665,11 @@ Noncognitive ability&uarr; with
 :::::::::::{.columns}
 
 ::::{.column width="45%"}
-![recursive SEM](Tab3.jpg)
+![full SEM](Tab3.jpg)
 ::::
 
 ::::{.column width="55%"}
-Dizygotic twins (fraternal twins)
+Dizygotic (fraternal) + monozygotic (identical) twins
 
 Education years&uarr; with 
 
@@ -518,7 +711,7 @@ Family income&uarr; with
 * PGS of parents are not related to outcomes once IQ, soft skills index, parental education and family income are added
 * Most parental impacts on education are through incomes and parental education
 * No other indirect pathway remain from parental PGS, after parental education and incomes are addressed
-   *  No genetic nurture
+   *  No passive rGE other than parental education and incomes (genetic nurture) is found
 ::::
 
 ::::::::::
@@ -527,6 +720,11 @@ Family income&uarr; with
 
 感想
 
+* 咀嚼できていません
+* 人的資本投資を内生化したsteady state genetic transmission mappingの存在を証明
+* それと実証部分の結びつきが弱い(理解できていない)
+* 親の教育と所得を考慮すると、遺伝情報は子の教育に影響しないことを実証的に示したのは斬新
+* SEMはidentification assumptionが不明(recursiveモデル以外)、IVを使っていない?
 * Multiple testing気にせず
 
 ----

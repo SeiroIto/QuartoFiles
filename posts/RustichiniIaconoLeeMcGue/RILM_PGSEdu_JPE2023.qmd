@@ -1,0 +1,538 @@
+---
+title: "Educational attainment and intergenerational mobility: A polygenic score analysis"
+subtitle: Aldo Rustichini, William G. Iacono, James J. Lee, and Matt McGue|
+  Journal of Political Economy 2023 131:10, 2724-2779
+author: "伊藤成朗"
+engine: knitr
+execute:
+  echo: false
+  freeze: auto
+format:
+  revealjs:
+    standalone: true
+    embed-resources: true
+    slide-number: true
+    incremental: true
+    width: 1600
+    height: 900
+    preview-links: auto
+    logo: GrootbergGiraffeHead.jpg
+    footer: <http://seiroito.github.io/RILM_PGSEdu_JPE2023.html>
+    css: ../../../../seiro.css
+    #linkcolor: red#marked off because sky-add sets it to DarkGreen
+    theme: [sky, sky-add]
+    code-line-numbers: true
+    code-copy: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    toc-depth: 1
+    template-partials: 
+      - ../../../../toc-slide.html
+    include-after-body: ../../../../toc-add.html
+    toc-bg-image: "../../GrootbergGiraffe3.jpg"
+lightbox: 
+  match: auto
+  desc-position: bottom
+filters:
+  - parse-latex
+include-in-header:
+  - text: |
+      <style>
+       .title {
+        font-size: 2.0em;
+      }
+      </style>
+#### From https://github.com/quarto-dev/quarto-cli/discussions/2951
+#### I am happy with the left-indenting of the section line
+#### Horizontal centering can be challenging (!) in quarto: stupid
+#### https://github.com/quarto-dev/quarto-cli/issues/1231
+#### It turns out an easy solution is :::{style="text-align: center;"}
+  - text: |
+      <style>
+      .center-xy {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        -ms-transform: translateY(-50%), translateX(-50%);
+        transform: translateY(-50%), translateX(-50%);
+      }
+      </style>
+include-before-body:
+#### latex math shorthand
+  file: ../../../../MathShorthand.html 
+bibliography: c:/seiro/docs/seiro.bib
+#### ../../../../seiro.bib
+resources:
+  - RILM_PGSEdu_JPE2023.pdf
+# quarto render RILM_PGSEdu_JPE2023.qmd
+---
+```{css, echo = F, results = "hide"}
+TallerOutput {
+  height: 800px;
+}
+.small-font-list {
+  font-size: 70%;
+  line-height: 1.2;
+}
+.small-font-list ol {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+  counter-reset: item;
+}
+.small-font-list ol li {
+  counter-increment: item;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5em;
+}
+.small-font-list ol li::before {
+  content: counter(item) ". ";
+  flex: 0 0 2.5em;  /* Adjust this value to change the width of the number area */
+  text-align: right;
+  margin-right: 0.5em;
+}
+#### description list by Claude
+/* Main container for the description list */
+.description-list {
+  font-size: 50% !important;  /* Reduces font size to 70% of the parent element */
+  line-height: 1.2 !important;  /* Sets line height to 1.2 times the font size */
+}
+/* Styles for the description list element */
+.description-list dl {
+  margin-left: 0;  /* Removes default left margin */
+  padding-left: 0;  /* Removes default left padding */
+}
+/* Styles for the term (header) in the description list */
+.description-list dt {
+  font-weight: bold;  /* Makes the term text bold */
+  display: inline;  /* Displays the term inline. Uncomment for a line break after item header. */
+  margin-right: 0.5em;  /* Adds some space after the term */
+}
+/* Styles for the description in the description list */
+.description-list dd {
+  display: inline;  /* Displays the description inline. Uncomment for a line break after item header. */
+  margin-left: 0;  /* Removes default left margin */
+}
+/* Styles for paragraphs within the description */
+.description-list dd p {
+  display: inline;  /* Keeps paragraph content inline. Uncomment for a line break after item header. */
+  margin: 0;  /* Removes default paragraph margins */
+}
+/* Creates a new line and adds space between list items */
+.description-list dd::after {
+  content: "";  /* Necessary for the pseudo-element to render */
+  display: block;  /* Creates a line break */
+  margin-bottom: 0.5em;  /* Adds space between items. Adjust as needed */
+}
+
+#### description with a font size control (not effective)
+/* Main container for the description list */
+.des-list-boxed {
+    font-size: 60% !important;  /* Default font size */
+    line-height: 1.2 !important;  /* Sets line height to 1.2 times the font size */
+}
+/* Specific font size override */
+.des-list-boxed[data-font-size] {
+    font-size: attr(data-font-size string, 60%) !important;
+}
+.des-list-boxed dl {
+    margin-left: 0;  /* Removes default left margin */
+    padding-left: 0;  /* Removes default left padding */
+    width: 100%;  /* Ensures the container takes full width */
+}
+.des-list-boxed dt {
+    font-weight: bold;  /* Makes the term text bold */
+    text-align: right;  /* Right aligns the term text */
+    padding-right: 1em;  /* Adds spacing after the term */
+    float: left;  /* Allows description to wrap around header */
+    white-space: nowrap;  /* Prevents item header from wrapping */
+}
+.des-list-boxed dd {
+    margin-left: 0;  /* Removes default left margin */
+    overflow: hidden;  /* Clears float */
+}
+.des-list-boxed dd p {
+    margin: 0;  /* Removes default paragraph margins */
+    word-wrap: break-word;  /* Allows description to wrap */
+    overflow-wrap: break-word;  /* Modern alternative to word-wrap */
+}
+.des-list-boxed dd p:first-child {
+    /* First line of description */
+    /* No special styling needed, will naturally wrap around header */
+}
+.des-list-boxed dd p:not(:first-child) {
+    /* Lines after the first line */
+    display: block;  /* Ensures full width */
+    margin-left: 1em;  /* Indentation for subsequent lines */
+}
+.des-list-boxed dd::after {
+    content: "";  /* Necessary for the pseudo-element to render */
+    display: block;  /* Creates a line break */
+    margin-bottom: 0.5em;  /* Adds space between items */
+    clear: both;  /* Clears the float */
+}
+
+#### description with a line break between item header and texts
+.description-lb {
+  font-size: 70%;
+  line-height: 1.2;
+}
+.description-lb dl {
+  margin-left: 0;
+  padding-left: 0;
+}
+.description-lb dt {
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+.description-lb dd {
+  margin-left: 0;
+  margin-bottom: 1em;  /* Adjust this value to control spacing between items */
+}
+.description-lb dd p {
+  margin: 0;
+}
+gray {
+  color: #aeb6bf;
+}
+```
+
+## Summary of [this paper](https://doi.org/10.1086/724860)
+
+* US Minnesota Twin Study Sample
+* Build a genetic model (with better genetics foundation than **ad hoc** econ standard model)
+* Intergenerational elaciticity of income is predicted and estimated to be larger in genetic models
+* Empirical pathway: Through parental education and incomes, parental PGS has no direct effect
+* Parental PGS &nrArr; educational attainment, after controling for parental education and incomes
+
+----
+
+:::{style="text-align: center;"}
+# Background
+:::
+
+----
+
+----
+
+## SNP, polygenic score
+
+::::: {layout="[10,-2,20]" layout-valign="bottom"}
+
+::::{.fragment}
+Genome
+
+![](DNAMacrostructure.jpg){height="100%"}
+
+::: {style="font-size: 70%;"}
+[https://courses.lumenlearning.com/...](https://courses.lumenlearning.com/suny-ulster-ap1/chapter/the-nucleus-and-dna-replication)
+:::
+::::
+
+::::{.fragment}
+![](DNAStructure.jpg){height="80%"}
+
+::: {style="font-size: 70%;"}
+_[https://www.haibunda.com/...](https://www.haibunda.com/bundapedia/20230214003129-210-297249/deoxyribonucleic-acid--dna-)_
+:::
+::::
+
+:::::
+
+----
+
+::::: {layout="[10,-2,20]" layout-valign="bottom"}
+
+::::{.fragment}
+![Double helix and rung](DoubleHelixRung.jpg)
+
+::: {style="font-size: 70%;"}
+[https://mammothmemory.net/...](https://mammothmemory.net/biology/dna-genetics-and-inheritance/dna-base-pairing/dna-double-helix.html)
+:::
+::::
+
+::::{.fragment}
+![SNP](SNP.png)
+
+::: {style="font-size: 70%;"}
+_[https://studylib.net/...](https://studylib.net/doc/5786293/snp-presentation)_
+:::
+::::
+
+:::::
+
+----
+
+<!-- tree.nathanfriend.io -->
+
+```
+.
+└── Chromosome
+    └── DNA
+        └── Gene
+            └── Genome
+```
+
+
+:::::{.columns}
+
+::::{.column width="40%"}
+![](genome.jpg)
+
+::: {style="font-size: 70%;"}
+[_Source: L. C. Douglas_](https://historiesofthingstocome.blogspot.com/2010/08/age-of-genome-4.html){height=5cm}
+:::
+::::
+
+::::{.column width="60%"}
+* Chromosomes: 1/2 each from both parents 
+* DNA: Rolled up and shapes like an X
+* Gene: DNA segments
+* Genome: 3 billion nucletiodes (letters)
+   * Letter sequence = genome sequence
+   * 1.5 billion base pairs (alelles, 対立遺伝子)
+::::
+
+:::::
+
+* Base pairs differ between people in less than 1% (15 million) locations  
+* Single-nucleotide polymorphism (SNP) = such location
+   * 2 chromosomes per person &rarr; AT-AT, GC-GC, AT-GC or 0, 2, 1 (reference = GC)
+
+----
+
+Twin studies
+
+* Estimate how much genetic factors *collectively* matter for **explaining variations** of a trait  
+   * Collectively: Unit = group level aggregation
+   * Explaining variations: Variance decomposition 
+* Do not reveal which SNP is correlated
+
+----
+
+Genome wide association studies (GWASs)
+
+* Collect $M$ observable (?) SNPs of (family $i$) individual $j$.
+
+. . .
+
+Regress outcome $y^{i}_{j}$ on $m$-th SNP for all $m=1, \dots, M$:
+
+$$
+y^{i}_{j}
+=
+\beta_{m}SNP^{i}_{jm}+\epsilon^{i}_{jm}, \quad m=1,\dots,M.
+$$ 
+
+Remember:
+
+* Environment is endogenous to the trait in SNP regressions
+   * $\cov[SNP^{i}_{jm}, \epsilon^{i}_{jm}]> 0$: Parents see traits which may be correlated with $SNP^{i}_{jm}$ and decide on investments 
+   * Estimated $\beta_{m}$ should be upwardly biased
+* No attempts to correct for this
+
+----
+
+Polygenic score = Predicted outcomes based on all relevant SNPs 
+
+$$
+PGS^{i}_{j}=\sum_{m=1}^{M}\tilde{\beta}_{m} SNP^{i}_{jm}
+$$
+
+* Use Bayesian LDpred procedure to correct for correlations in $\tilde{\beta}_{m}$
+  * @BarthPapageorgeThom2020 follow the convention and use all SNPs: Better out-of-sample results than using only SNPs with genome-wide significance $p$ value $< 5*10^{-8} =$ .0000005%
+
+* PGS is considered to be a predictor of individual fixed effects
+   * Edu attainment SNPs $\SIM$ biological process of brain development, cognition [@Okbay2016; @Lee2018]
+   * Edu attainment SNPs $\SIM$ cognition SNPs [@Okbay2016]
+   * HRS sample: cov[EA score, schooling years] / variance[schooling years] = 10.6%
+
+
+----
+
+## Intergenerational skill formation
+
+* @BeckerTomes1979: AR(1)
+* @Goldberger1989: Weighted average of all ancestors
+* Both are incorrect, this paper shows there exists an invariant (stable) mapping father genotype distribution × mother genotype distribution $\to$ child genotype distribution, so skill formation depends on parental genotype distributions
+
+----
+
+```{mermaid}
+%%| label: fig-mermaid
+%%| fig-width: 6
+%%| fig-cap: |
+%%|   How parents affect child education outcomes
+flowchart LR
+  A1[father] --> A3(couple)
+  A2[mother] --> A3(couple)
+  A3[couple] --> B("child
+   genotype")
+  A3[couple] --"genetic nurture"--> C("child
+   environment")
+  B("child
+   genotype") --> D("child
+    education")
+  C("child
+   environment") <--"gene×environ"--> B("child
+    genotype")
+  C("child
+   environment") --> D("child
+    education")
+```
+
+----
+
+:::{style="text-align: center;"}
+# Estimation results 
+:::
+
+----
+
+Controls used in estimation
+
+* 10 principal components of PGS
+* Parent-child age difference
+
+----
+
+::: {style="font-size: 70%;"}
+**Data:** Minnesota Twin Study
+
+* Cognitive measures to estimate IQ
+   * Wechsler Intelligence Scale for Children-Revised (WISC-R)
+   * Wechsler Adult Intelligence Scale-Revised (WAIS-R)
+* Noncognitive measures 
+   * MPQ (Mulitdimensional Personality Questionnaire)
+      * PA (positive emotionality of affectivity; well-being, social potency, achievement, social closeness)
+      * NA (negative emotionality of affectivity; stress reaction, alienation, aggression)
+      * constraint (control, harm avoidance, traditionalism)
+   * DSM-IV (Diagnostic and Statisitcal Manual of Mental Disorders, fourth edition)
+      * Externalizing: defiant disorder, conduct disorder, adult antisocial behavior
+      * Academic effort: 8 items answered by twin mothers
+      * Academic problems: 3 items answered by twin mothers
+* Family background
+   * Hollingsworth scale on occupational status
+   * Four year college degrees of parents
+:::
+
+----
+
+:::::::::::{.columns}
+
+::::{.column width="45%"}
+![IGE](Tab1.jpg)
+::::
+
+::::{.column width="55%"}
+* IGE = .13 is small relative to previous studies (.2 ~ .3)
+   * Attenuation (measurement errors in family incomes)
+   * European population has lower IGEs, Sweden = .125
+   * Reduced by `r round((1-(.78/.134))*100, 0)`% when PGS and mediators are added
+* Effects of PGS
+   * = .078 in (2)
+   * = 0 in (3) when mediators of PGS are added
+::::
+
+::::::::::
+
+----
+
+:::::::::::{.columns}
+
+::::{.column width="45%"}
+![recursive SEM](Tab2.jpg)
+::::
+
+::::{.column width="55%"}
+Education years&uarr; with 
+
+* Cognitive ability, noncognitive ability
+   * PGS of child, parents are not related when parental education, family income are added
+* Parental income, education
+   * Impacts are twice as large for parental education
+
+Cognitive ability&uarr; with 
+
+* PGS
+
+Noncognitive ability&uarr; with
+
+* PGS, smaller magnitude
+::::
+
+::::::::::
+
+----
+
+----
+
+:::::::::::{.columns}
+
+::::{.column width="45%"}
+![recursive SEM](Tab3.jpg)
+::::
+
+::::{.column width="55%"}
+Dizygotic twins (fraternal twins)
+
+Education years&uarr; with 
+
+* PGS of child and mother
+   * PGS of father is unrelated
+* Parental income, education
+   * Magnitude is larger for parental education
+
+Parental education years&uarr; with 
+
+* PGS of parents
+   * Magnitude is larger for father PGS
+
+Family income&uarr; with
+
+* PGS of parents
+   * Magnitude is larger for father PGS
+::::
+
+::::::::::
+
+----
+
+----
+
+:::::::::::{.columns}
+
+::::{.column width="25%"}
+![](TabS6.jpg){width="50%"}
+
+![](TabS7.jpg){width="50%"}
+
+![](TabS8.jpg){width="50%"}
+
+![](TabS9.jpg){width="50%"}
+::::
+
+::::{.column width="75%"}
+* PGS of parents are not related to outcomes once IQ, soft skills index, parental education and family income are added
+* Most parental impacts on education are through incomes and parental education
+* No other indirect pathway remain from parental PGS, after parental education and incomes are addressed
+   *  No genetic nurture
+::::
+
+::::::::::
+
+----
+
+感想
+
+* Multiple testing気にせず
+
+----
+
+#### References
+
+::: {#refs}
+:::
+

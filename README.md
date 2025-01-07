@@ -10,4 +10,6 @@ See [slides on Barr, Eggleston, and Smith QJE2022](http://seiroito.github.io/Qua
 
 See [slides on Barth, Papageorge and Thom JPE2020](http://seiroito.github.io/QuartoFiles/BarthPapageorgeThom/BPT.html)
 
+See [slides on Rustichini, Iacono, Lee, and McGue JPE2023](http://seiroito.github.io/QuartoFiles/RustichiniIaconoLeeMcGue/RILM_PGSEdu_SPE2023.html)
+
 See [A/B testing at IDE](http://seiroito.github.io/QuartoFiles/ABIDE/analysis.html).

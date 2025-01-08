@@ -17,18 +17,20 @@ format:
     height: 900
     preview-links: auto
     logo: GrootbergGiraffeHead.jpg
-    footer: <http://seiroito.github.io/RILM_PGSEdu_JPE2023.html>
-    css: ../../../../seiro.css
+    footer: <http://seiroito.github.io/QuartoFiles/posts/BarthPapageorgeThom/RILM_PGSEdu_JPE2023.html>
+    css: ../seiro.css
     #linkcolor: red#marked off because sky-add sets it to DarkGreen
-    theme: [sky, sky-add]
+    theme: [sky]
     code-line-numbers: true
     code-copy: true
     code-block-border-left: "#31BAE9"
     toc: true
     toc-depth: 1
     template-partials: 
-      - ../../../../toc-slide.html
-    include-after-body: ../../../../toc-add.html
+      - ../toc-slide.html
+    includes:
+      in_header: ../sky_add_FilePointer.html
+      after-body: ../toc-add.html
     toc-bg-image: "../../GrootbergGiraffe3.jpg"
 lightbox: 
   match: auto
@@ -60,9 +62,11 @@ include-in-header:
       </style>
 include-before-body:
 #### latex math shorthand
-  file: ../../../../MathShorthand.html 
-bibliography: c:/seiro/docs/seiro.bib
-#### ../../../../seiro.bib
+  file: ../MathShorthand.html 
+#### copy c:/seiro/docs/MathShorthand.html ../MathShorthand.html
+bibliography: ../seiro.bib
+#### ../../../../../seiro.bib
+#### copy c:/seiro/docs/seiro.bib ../seiro.bib
 resources:
   - RILM_PGSEdu_JPE2023.pdf
 # quarto render RILM_PGSEdu_JPE2023.qmd

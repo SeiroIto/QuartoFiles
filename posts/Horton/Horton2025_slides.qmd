@@ -1,0 +1,616 @@
+---
+title: |
+  | John J. Horton
+  | Price floors and employer preferences: 
+  | Evidence from a minimum wage experiment
+subtitle: |
+  | *American Economic Review*, 2025, vol. 115, No. 1
+author: "Seiro Ito"
+engine: knitr
+format:
+  revealjs: 
+    standalone: true
+    embed-resources: true
+    slide-number: true
+    width: 1600
+    height: 900
+    preview-links: auto
+    logo: images/quarto.png
+    footer: <http://seiroito.github.io/QuartoFiles/Horton/Horton2025_slides.html>
+    theme: sky
+lightbox: auto
+include-in-header:
+  - text: |
+      <style>
+      #title-slide
+       .title {
+        font-size: 2.0em;
+      }
+      </style>
+bibliography: ../../../../../seiro.bib
+#### If it is 2 levels up, ../../seiro.bib
+resources:
+  - Horton2025_slides.pdf
+#### quarto render Horton2025_slides.qmd
+---
+<style>
+:root{--r-main-font-size: 36px;}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+              text-transform: none;
+      }
+.spacer {
+    margin-top: 20px;
+}
+br {
+  /* change <br> space length*/
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 10px; /* change this to whatever height you want it */
+}
+</style>
+
+```{css, echo=F, results = "hide"}
+DBlue {
+  color: dodgerblue;
+}
+Red {
+  color: red;
+}
+```
+
+## TL; DR
+
+:::{.incremental}
+* Im many studies: MW&uarr; &rArr; $\Delta$ employment $\simeq 0$
+* One reason: Oligopsony
+* This paper: Labor-labor substitution
+   * Unskilled employment&darr;
+   * Skilled employment&uarr;
+   * Net effect $\simeq 0$
+   * Hours&darr; &larr; Skilled requires fewer hours
+* MW experiment on an online labor market: $2, $3, $4 per hour
+   * Skill/productivity proxy = past wage rates, past hours
+:::
+
+----
+
+## Why are disemployment impacts of minimum wage modest?
+
+<br>
+
+. . .
+
+Firms can adjust in other dimensions (even under non-oligopsony)
+
+<br>
+
+. . .
+
+MW&uarr; 
+
+* Employee head counts&darr;  
+* Employment hours&darr;
+* Nonmonetary compensation&darr;
+* Profits&darr;
+* Output prices&uarr;
+* Labour productivity &uarr; (labour-labour substitution)
+
+. . .
+
+A problem: Not all adjustments are observable in firm surveys...
+
+----
+
+## Previous literature
+
+Insufficient data 
+
+:::{.incremental}
+* Do not collect (prices, profits) &rArr; Markup? Prices?
+* Not granular (rate, hour, nonmonetary benefits) &rArr; Small employment/hiring impacts 
+[@Card1992a; @CardKrueger1995; @KatzKrueger1992; @AllegrettoDubeReich2011; @DubeLesterReich2010; @NSW2014a; @ClemensWither2019; @Powell2022; @MeerWest2015]
+   * Workers are considered heterogenous in "types" [@KatzMurphy1992], not in productivity (this paper)
+* Unobservable &rArr; Labor-labor substitution is examined only along demographic characteristics [@Giuliano2013; @FairissBujanda2008]
+:::
+
+. . .
+
+Even within the "low wage" category/type, more productive workers get jobs while less productive workers lose out
+
+* Net impact $\simeq 0$: Averaging gives muted disemployment impacts
+* Previous studies did not show this &larr; Lack of productivity proxy
+
+
+----
+
+## Experiment design
+
+::: {.incremental}
+* Online job platform: Post and bid
+* Random assignment of hourly MW: $2, $3, $4
+* Applicants: Not aware of MW, but a bid < MW not accepted
+* Employers: Not aware of MW, see applicant profiles
+
+1. Firms post hourly job opening &larr; immediate treatment arm assignment
+   * Arms: $2 (8%), $3 (8%), $4 (8%), control (75%) assigned to firms, not jobs
+   * Job description, skills required, expected duration, bid closing time
+1. Workers bid the hourly wage&larr; bid < MW not accepted
+1. Workers with the lowest bid receive a contract
+:::
+
+. . .
+
+No reference to the name of the platform
+
+----
+
+## Data
+
+* N=156,656 (employers)
+* No info on dates, experiment duration, DID uses Jan 2014 - Jan 2015
+* No info on employers except job category
+* Reshaped data: Category monthly panel, individual ($\pm$ 2 week window) panel 
+   * DID: Announcement/imposition impacts on wage, employment, etc.
+
+. . .
+
+I wonder if nondisclosure agreement has to do with...
+
+. . .
+
+No descriptive statistics shown, difficult to understand: all posted jobs $\subset$ all jobs
+
+. . .
+
+What are the differences:
+
+:::{.incremental}
+* Sample vs. population of all jobs
+* Outsourced jobs vs. internalized jobs
+:::
+
+. . .
+
+In DID, are the trends of higher paid jobs appropriate as the control group?
+
+----
+
+## Headline results
+
+::: {.incremental}
+   * Headcounts&darr; small
+   * Employment probability&darr; by 12% for workers < MW4
+   * Hours&darr; by 27% (for low wage jobs, MW4)
+   * Employment substitution towards more productive workers
+:::
+
+----
+
+## Threats to internal validity ... unlikely
+
+::: {.incremental}
+1. Failed randomization
+1. Applicant attrition before wage bidding
+1. Applicant sorting across arms (MW levels)
+   * \# of applicants balance between arms
+   * Practically difficult to know the employer's treatment assignment
+1. Employer sorting through time (reposts the job later)
+   * \# of filled posts: before < after &larr; data show oppositte 
+1. Employer sorting to other platform
+   * \# of posts: before > after&larr; not supported by data 
+:::
+
+. . .
+
+I would worry more about the common trend violation for DID/ES estimates
+
+----
+
+## Where to look for the impacts
+
+What are the "low paying jobs"?
+
+1. Administrative support jobs: Lowest mean wage in all job categories
+1. Predictive model (LASSO) of wages using pre-experiment data: Pay less than $5
+
+----
+
+## Mechanism behind the post-bid
+
+
+:::: {.columns}
+::: {.column width="55%"}
+![](Fig3.jpg){height="550"}
+:::
+
+::: {.column width="45%"}
+
+:::{.fragment}
+An example case:
+
+A $\succ$ B $\succ$ C $\succ$ No hire
+:::
+
+:::{.fragment}
+wage$_{A}$ < wage$_{r}$ < wage$_{B}$ < MW < wage$_{C}$ 
+:::
+
+:::{.fragment}
+* wage$_{A}$ is not considered
+:::
+:::{.fragment}
+* B'(MW, $y_{B})$ $\prec$ C(wage_{C}, $y_{C})$
+:::
+
+:::{.fragment}
+Why do applicants bid different $\frac{w}{y}$?
+
+* Different reservation wages
+* Not take own characteristics in bids
+:::
+:::
+::::
+
+
+----
+
+## Estimation
+
+**Experiment** on employer $j$
+
+$$
+y_{j}=\beta_{0}+\beta_{2}MW2_{j}+\beta_{3}MW3_{j}+\beta_{4}MW4_{j}+\epsilon_{j}
+\tag{1}
+$$
+
+:::{.incremental}
+* MWs+control are MECE: <Red>@GoldsmithPinkhamHullKolesar2024 bias applies</Red>
+* Hereafter, I will assume all the estimates are legit...
+:::
+
+. . .
+
+**Confirmatory event study** (platform-wide MW) of treated category, category $i$
+
+$$
+y_{it}=\sum_{t=s}^{S}\beta_{t} A\small{DMIN}+\alpha_{i}+\delta_{t}+\gamma_{i}t+\epsilon_{it}
+\tag{2}
+$$
+
+. . .
+
+**Applicant impact DID** (platform-wide MW), applicant $i$, posted job $j$, wage band $k$
+
+$$
+y_{ij}=\sum_{k\in K}\beta_{k}\left(P\small{OST}_{ij}\times \normalsize{P}\small{RE}\normalsize{W}\small{AGE}\normalsize{B}\small{AND}^{k}_{i}\right)+c_{i}+\epsilon_{ij}
+\tag{3}
+$$
+
+
+----
+
+## Results
+
+:::::::: {.columns}
+::: {.column width="50%"}
+![](Fig4.jpg){height="700"}
+:::
+
+::: {.column width="50%"}
+
+::::{.fragment}
+Employment&darr;
+
+Hours&darr;&darr;
+
+Earnings $\simeq 0$
+
+Sample size is large^[But "All" jobs should not be smaller than "Admin" jobs... ]
+::::
+
+<br>
+
+::::{.fragment}
+More for 
+
+* MW4
+* Low predicted wage jobs
+::::
+:::
+::::::::
+
+----
+
+## Results
+
+:::::::: {.columns}
+::: {.column width="50%"}
+![](Fig5.jpg){height="800"}
+:::
+
+::: {.column width="50%"}
+
+::::{.fragment}
+Hired workers' past wage&uarr;, cumulative past earnings&uarr;
+
+* Not so much for Admin jobs
+
+Hired workers' profile rate&uarr;
+
+Hired workers' markup rate of bids&uarr;
+::::
+
+<br>
+
+::::{.fragment}
+More for 
+
+* US based workers
+* Low predicted wage jobs
+   * Not so much for Admin jobs
+* Effects on Non-US workers: Because of many less productive workers or country effect?
+::::
+:::
+::::::::
+
+----
+
+## Results
+
+Wage&uarr; sources <DBlue>...All three need to be accounted for</DBlue>
+
+. . .
+
+1. Selection (by firms slashing less productive, low wage jobs)
+
+. . .
+
+* This canot be the only reason
+* If so, closure of lowest 10% of all jobs &rArr; 10%&uarr; in wages &larr; control group elasticity = 1
+* MW3 Admin: $\Delta$\# of jobs = -2%, mean wage&uarr; $\simeq$ +8% (All jobs is -2%, +25%...), more than selection happens here
+
+. . .
+
+2. Substitution (Increase in worker productivity and pay higher wages)
+
+. . .
+
+* Employ higher paid applicants (Fig 5, past wage +15% for MW4, past earnings +27% for MW4)
+
+. . .
+
+3. Markup (No change in worker productivity but pay higher wages)
+
+. . .
+
+* Markup rate&uarr; (Fig 5, +10% or higher for all MWs)
+* A windfall gain for hired workers
+
+----
+
+## Confirmatory DID (Event study)
+
+Online, partial, secret RCT
+
+. . .
+
+<br>
+
+Leaves questions
+
+::: {.incremental}
+a) Is L-L substitution **useful margin of adjustments** in equilibrium? <DBlue>yes</DBlue>
+a) Does **employer knowledge** on MW matter? <DBlue>no</DBlue>
+a) Do **quantity and contents of jobs** change after MW imposition? <DBlue>yes</DBlue>
+a) Do the **worker impacts** remain the same in equilibrium? <DBlue>yes</DBlue>
+:::
+
+----
+
+## Confirmatory DID
+
+Platform wide imposition of MW $3/hour
+
+* Announcement
+* Imposition (2.5 months later)
+
+. . .
+
+1. Single diff (Before-after): Compare market outcomes
+1. Double diff (DID): Use <DBlue>the categories that show little difference in wages as the control</DBlue>
+
+. . .
+
+Reconstruct (reshape) data: Category panel data
+
+$$
+y_{it}=\sum_{t=s}^{S}\beta_{t} ADMIN+\alpha_{i}+\delta_{t}+\gamma_{i}t+\epsilon_{it}
+$$
+
+. . .
+
+Confirms most of experiment results
+
+Jobs posted&darr;, hours&darr;, past earnings &uarr;, past hours&uarr;
+
+. . .
+
+Labor-labor substitution
+
+----
+
+## Confirmatory DID
+
+:::::::: {.columns}
+::: {.column width="40%"}
+![](Fig7.jpg){height="700"}
+:::
+
+::: {.column width="60%"}
+
+::::{.fragment}
+* Jobs posted&darr; (mainly hourly jobs&darr;)
+::::
+::::{.fragment}
+* $\Delta$ Fraction filled $\simeq 0$ or &darr; (-.02 vs. -.01 in experiment)
+::::
+::::{.fragment}
+* Mean hours &darr; (-.44 vs. -.08 in experiment)...why larger is not discussed
+::::
+::::{.fragment}
+* $\Delta$ Log mean earnings $\simeq 0$; (same in experiment)
+::::
+::::{.fragment}
+* Log past mean wage of hired worker&uarr; (+.07 vs. +.09 in experiment MW3)^[Author notes "-.02 log points in the experiment" which is for Admin and notes this is of "similar magnitude"'. Perhaps confused with +.09 for all jobs. Or is Fig 7 Panel C for Admin? ]
+::::
+::::{.fragment}
+* Log past mean earnings of hired worker&uarr; (+.2 vs. +.05 in experiment)
+::::
+::::{.fragment}
+* Log past hours of hired worker&uarr;
+::::
+:::
+::::::::
+
+----
+
+## Applicant impact DID
+
+Applicant $i$, posted job $j$, wage band $k$
+$$
+y_{ij}=\sum_{k\in K}\beta_{k}\left(P\small{OST}_{ij}\times \normalsize{P}\small{RE}\normalsize{W}\small{AGE}\normalsize{B}\small{AND}^{k}_{i}\right)+c_{i}+\epsilon_{ij}
+\tag{3}
+$$
+
+
+:::::::: {.columns}
+::: {.column width="40%"}
+![](Fig8.jpg){height="600"}
+
+Wrong x-axis labels: 
+
+(0, 1], (1, 2], (2, 3], ...
+:::
+
+::: {.column width="60%"}
+* No spillover of MW to higher wages
+* Pr[hiring]&darr; for pre-period wage < MW and higher
+* \# of hires&darr; for pre-period wage < MW and higher
+* \# of bids&darr; for pre-period wage < MW ... they gave up?
+
+::::: {style="font-size: 80%;"}
+Reshape (= estimate DID to control typical new applicant wage growth: bid low &rarr; bid high) to
+
+::: {.column width="48%"}
+*long* applicant panel 
+
+[-14 days, +14 days] × 
+
+{-1 year, imposition year} × 
+
+{all jobs applied} × 
+
+{wage, results}
+:::
+
+::: {.column width="48%"}
+*short* applicant panel 
+
+[-14 days, +14 days] × 
+
+{-1 year, imposition year} × 
+
+{\# of jobs applied, \# of hires}
+:::
+:::::
+:::
+::::::::
+
+----
+
+## Conclusions
+
+Experimental findings
+
+1. Wages of hired workers increase
+1. Prob of hiring decreases at a sufficiently high MW
+1. Hours decrease
+1. Reduction in hours can be explained in part by labor-labor substitution
+
+. . .
+
+Observational findings
+
+1. Wages of hired workers increase
+1. Employers posted fewer jobs "that would have likely paid lower wages" 
+   * They showed reduction in all jobs combined, not only the low paid jobs
+1. Hours decrease
+1. Firms substitute toward more productive workers
+1. Prob of hiring for low wage workers reduced
+
+----
+
+## Conclusions
+
+Labor-labor substitution is an important margin of adjustment for firms
+
+* Less productive gets less jobs, more productive gets more jobs
+   * Heterogeneity in disemployment impacts even within a cateory/type
+   * Averaging labor-labor substitution gives muted impacts
+
+. . .
+
+> higher minimum wages should be paired with more targeted exemptions for lower-productivity
+workers likely to be displaced.
+
+. . .
+
+<br>
+<br>
+<br>
+
+Workers of different productivity being paid the marginal product in a competitive market?
+
+* Possible, firms can choose the hour-productivity pair that suits them best
+* If the labor market is thin, some jobs may not get filled, foreseeing this, firms may not post jobs
+
+
+----
+
+## 感想
+
+:::{.incremental}
+* 最低賃金&uarr; &rArr; 雇用労働の熟練&uarr;, 雇用時間量&darr; を実証的に示したのは画期的
+   * 南アの農場主が対応策として同じことを話していた
+   * Oligopsonyとの関係? オンライン労働市場M Turkは買い手寡占的[@DubeJacobsNaiduSuri2020]
+* 低技能労働が代替されて失職、全労働の純効果はゼロに近いことを示したのも画期的
+   * @Cengiz2019: \# of jobs lost below MW $\simeq$ \# of jobs gained above MW
+   * Data: Pooled cross section &rArr; Estimates are counts, not individuals moving from below to above MW, laid off workers can be out of labor force
+:::
+
+----
+
+## 感想
+
+:::{.incremental}
+* 記述統計すらないので結果がどの母集団に一般化できるのか不明
+   * Single taskのアウトソース作業 vs. フルタイム雇用: 後者では生産性の差はそこまでないかも
+      * 植樹・幡種、剪定、収穫などの単作業の仕事は労働の高熟練化に帰結しやすい?
+      * 論文での労働の高熟練化は資本装備率の差も含まれていないか
+   * 統御群=高賃金仕事はDID推計で適切か
+      * Common trend violationへの頑健性[@RambachanRoth2023]を示してほしい
+* 最低賃金規制は変な政策
+   * Single taskのアウトソース作業は他の生産工程から分離
+   * 労働需要+最低賃金規制=部品需要+最低時間単価規制
+   * 最低時間単価を規制する政策=他にはない変わった政策
+   * 低効率な部品供給者を閉め出す(=労働時間を過少申告させる)効果あり
+* 著者が雇用されていたプラットフォームのデータ、情報非開示合意書NDAでexternal validityを示す手段を失ったのでは?
+* プラットフォームが利潤のために実施した実験だからIRB不要、は斬新
+:::
+
+----
+
+#### References
+
+::: {#refs}
+:::

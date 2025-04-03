@@ -1,0 +1,456 @@
+---
+title: "Price floors and employer preferences: Evidence from a minimum wage experiment"
+subtitle: "By John J. Horton"
+author: "Seiro Ito"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    footer: <http://seiroito.github.io/QuartoFiles/Horton/Horton2025.html>
+    theme: sky
+include-in-header:
+  - text: |
+      <style>
+      #title-slide
+       .title {
+        font-size: 2.0em;
+      }
+      </style>
+#width: 1000
+bibliography: ../seiro.bib
+# If it is 2 levels up, ../../seiro.bib
+resources:
+  - Horton2025.pdf
+# quarto render Horton2025.qmd
+---
+<style>
+:root{--r-main-font-size: 36px;}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+              text-transform: none;
+      }
+.spacer {
+    margin-top: 20px;
+}
+br {
+  /* change <br> space length*/
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 10px; /* change this to whatever height you want it */
+}
+</style>
+
+## Firms' minimum wage adjustments
+
+MW&uarr;...,,,
+
+* Employment head counts&darr;
+* Employment hours&darr;
+* Nonmonetary compensation&darr;
+* Profits&darr;
+* Output prices&uarr;
+* Labour productivity &uarr; (labour-labour substitution)
+
+
+----
+
+## This paper
+
+* Online job platform: Post and bid
+* Random assignment of hourly MW: $2, $3, $4
+* Applicants: Not aware of MW, but bid < MW not accepted
+* Employers: Not aware of MW, see applicant profiles
+* Headcounts&darr; little
+* Hours&darr by 27% for low wage jobs
+* Employment substitution towards more productive workers
+
+----
+
+::: {.incremental}
+* Much affirmative evidence of health and education (in-kind) interventions.  
+* Cash intervention impacts are little known.  
+   * Food stamps are different from cash [@Hoynes2016; @Baileyetal2023].  
+   * Lottery cash distributions are given at older children, results are mixed [@Akeeetal2010; @Cesarinietal2016].  
+:::
+
+----
+
+## Research question
+
+::: {.incremental}
+* Does providing cash at infancy (< 1 year) have a long run impact on welfare?  
+* Use fiscal year cutoff for EITC. Born on:  
+   * Dec 31 receives after +1 day  
+   * Jan 1 receives after +1 year  
+* Examine with tax records + social security numident file (birth day)  
+:::
+
+
+----
+
+```{r tikz pic, engine = 'tikz'}
+\begin{tikzpicture}
+\draw[ultra thick] (-3, 0) -- (5, 0) node[right]{Birthday};
+\draw[ultra thick] (-3, 0) -- (-3, 5) node[above]{Impacts};
+\draw[blue] (2, 0) node[below]{Jan 1} -- (2, 4.0) node (a){};
+\draw[thick] (a)  -- (-2, 3.5);
+\draw[thick] (2, 1.5) node (b){}  -- (4, 1.75);
+\draw[red, thick, xshift = .1] (a) edge[<->] node[right]{difference} (b);
+\end{tikzpicture}
+```
+
+
+----
+
+## Data
+
+**IRS1040 data at U.S. Census**  
+
+::: {.incremental}
+* Main tax form used to file a U.S. individual income tax return  
+* Every filer  
+* Years: 1979, 1984, 1989, 1994-95, 1998-2018  
+* Various incomes, dependents (Social Security Numbers)  
+:::
+
+----
+
+## Data
+
+**Social Security Administration Numident File**
+
+::: {.incremental}
+* Every person born after 1969  
+<!-- * Merged with IRS1040 through Social Security Number  -->
+* Date of birth, sex, state of birth  
+   * Gives: Size of cash transfer in early childhood, family composition  
+* $\pm 1$ month of Jan 1, 1982, 1986, 1992  
+<!--    * Only these years can be merged with IRS1040 (1979, 1984, 1989)  -->
+<!--   * IRS1040 (1979, 1984, 1989) used to predict eligibility for EITC  -->
+:::
+
+----
+
+## Data
+
+**North Carolina Education Data**  
+
+::: {.incremental}
+* Students born in 1992-1999 (1993-98 recentred years)  
+* Birth dates, academic achievements, behaioral records, free and reduced-price lunch (FRL) eligibility  
+   * Income thresholds are similar between EITC and FRL  
+      * \$25,600 (FRL) vs. \$27,400 (EITC) in 2000  
+      * EITC eligible rate $\simeq$ 75% of all FRL eligible  
+* Born within $\pm$ 0928 day windows of Jan 1 (excluding closest 8 days on both sides): 44,992 students  
+:::
+
+
+----
+
+## Data
+
+::: {.incremental}
+* IRS1040: Parent-dependents linkage  
+   * Child's incomes in 23-25, 26-28, 29-31, 32-34 (individual+spouse, 3-year averages)  
+* IRS1040+NumidentFile: Date of birth of dependent &rarr; Pre-birth parental incomes &rarr; Pre-birth adjusted gross income (AGI) &rarr; EITC amount  
+* Use 1979 incomes (in 1980 tax record) to predict 1980 AGI &rarr; Pre-birth AGI for a Jan 1981 born child  
+:::
+
+----
+
+## Data
+
+::: {.incremental}
+* Predicted AGI using lagged incomes 
+   * Attenuation bias  
+   * Less concerns of endogeneity (parental ability correlates with AGI, chance of birth date selection)  
+* Create an index: Weighted normalised $z$ scores or each outcome $k=\sum\limits_{k}w_{k}\frac{x_{k, treated}-\hat{\mu}_{x_{k, control}}}{\hat{\sigma}_{x_{k, control}}}$ [@Kling2007] 
+
+:::
+
+----
+
+## Empirical strategy
+
+
+<p class="spacer">Birthday RDD [@SchulkindShapiro2014]</p>
+
+* Dec 31: Eligible in +1 day  
+* Jan 1: Eligible in +1 year  
+
+<br>
+ITT effects: Some eligible (mostly Hispanics, African Americans) do not apply  
+
+
+----
+
+## Empirical strategy
+
+::: {.incremental}
+Strength  
+
+* Pure cash transfer impacts, not "coupled with changes to work incentives"  
+
+
+<br>
+
+Concerns  
+
+1. Some may deliver earlier, confirmed by [@BucklesHungerman2013;  with a c-section, @SchulkindShapiro2014]  
+   * No jump in density for firstborns around new year (Fig II)  
+   * Balance in covariates (Tab II) 
+   * "Donut-hole" RDD: Drop observations within $\pm$ 8 days of Jan 1  
+:::
+
+----
+
+## Empirical strategy
+
+<br>
+
+Concerns  
+
+2. Discontinuity in other variables  
+   * School year begins near Jan 1 in some states, drop these states  
+   * Larger tax benefits in later years: Expect larger impacts in later years  
+
+----
+
+## Empirical strategy
+
+<br>
+<p style="font-size:30px;"> 
+\begin{equation}
+Y_{it}=\beta_{0}+\beta_{1}\mathcal 1[z_{i}<0]+\beta_{2}z_{i}+\beta_{3}\mathcal 1[z_{i}<0]z_{i}+\theta_{t}+\epsilon_{it}.
+\tag{2}
+\end{equation}
+</p>
+
+<p style="color:red;"> 
+```{r variable description}
+#| label: tbl-VariableDescription
+library(knitr)
+desc <- matrix(c(
+    "$z_{i}$",  "Days before Jan 1.", 
+    "$\\mathcal 1[z_{i}<0]$", "Treatment assignment.",
+    "$\\beta_{1}$", "Main interest."
+  ), byrow = T, ncol = 2)
+kableExtra::kbl(desc, align = c("r", "l"), label = NA, caption = NA, 
+  table.attr = list(style="font-size:26px; color:red;"), format = "markdown")
+```
+</p>
+
+
+----
+
+## Results
+
+:::: {layout="[40, 40 ]"}
+
+::: {#first-column}
+![](FigIII-1.jpg){height=80%}
+:::
+
+::: {#second-column}
+![](FigIII-2.jpg){height=80%}
+:::
+
+::::
+
+* $295 for 23-25, $433 for 26-28, or 1.2%, 1.6% of adult incomes
+
+----
+
+## Results
+
+:::: {layout="[40, 40 ]" layout-valign="bottom"}
+
+::: {#first-column}
+![](FigAVa.jpg){height=80%}
+:::
+
+::: {#second-column}
+![](FigAVb.jpg){height=80%}
+:::
+
+::::
+
+* Parents may shift delivery by 4 days (just after Christmas)...
+
+----
+
+## Results
+
+* Later cohorts have larger impacts (Tab IV)  
+* Much smaller impacts for nonfirstborn &larr; transfer is $306 vs. $1,291 (Tab A.VI)  
+* Smaller income impacts for women, because they are more likely to file jointly with spouse, and their income shares are lower (Fig IV)  
+* Larger impacts in later years (Fig V) &larr; more generous transfers  
+
+----
+
+## Results
+
+:::: {.columns}
+
+::: {.column width="70%"}
+![](FigV.jpg){height="550"}
+:::
+
+::: {.column width="30%"}
+* $+319 (23-25), $+456 (26-28), larger at 29+  
+* Earnings by 26 is predictive of future earnings [@HaiderSolon2006; @Chettyetal2011]  
+:::
+
+::::
+
+
+
+----
+
+## Mechanism: Parents and family environment
+
+:::: {.columns}
+
+::: {.column width="65%"}
+![](Fig6A.jpg){height="550"}
+:::
+
+::: {.column width="35%"}
+* Family earnings&uarr; by 4% in 3, 4 years (Fig VI)  
+:::
+
+::::
+
+
+----
+
+## Mechanism: Parents and family environment
+
+:::: {.columns}
+
+::: {.column width="65%"}
+![](FigA13.jpg){height="550"}
+:::
+
+::: {.column width="35%"}
+* Dependents&uarr;  
+* Poverty status&darr;  
+* Filing tax returns&uarr;  
+* Being married  
+:::
+
+::::
+
+----
+
+## Mechanism: Parents and family environment
+
+1. Liquidity&uarr;  by 10%-20% during < 12 months old  
+   * Hightened expenses and reduced incomes for age < 1 year  
+   * Employment continuation through mobility: Car purchases, car parts/repair spending (existing studies)  
+   * Intergenerational elasticicty of earning (IGE) $\simeq$ .3. So parental earnings impact ($903.7/58250=1.55$%) $\times$ IGE (1/3)$\simeq 5.16$% or 1/3 of impacts on child's future income is through parental earnings&uarr;  
+
+----
+
+## Mechanism: Parents and family environment
+
+2. Stress&darr; (no direct evidence shown in this paper)  
+   * Confirmed when additional incomes are provided to single mothers [@SchmidtShoreSheppardWatson2023]  
+   * Reduced stress changes the interactions with children [@MilliganStabile2011; @EvansGarthwaite2014]  
+   * Marital status stability  
+
+----
+
+## Mechanism: Child human capital
+
+:::: {.columns}
+
+::: {.column width="55%"}
+![](Fig7.jpg){height="550"}
+:::
+
+::: {.column width="45%"}
+Outcome index&uarr; by .03$\sigma$ per $1000 EITC  
+
+* Test scores grades 3-8&uarr; by .037$\sigma$  
+* HS graduation&uarr; by .02$\sigma$  
+* Suspension&darr; by .02$\sigma$  
+
+Robust to donut size and RDD bandwidth (Tab A12)   
+
+See also Tab VIII, Tab A13  
+:::
+
+::::
+----
+
+## Mechanism: Child human capital
+
+:::: {.columns}
+
+::: {.column width="55%"}
+![](FigA20.jpg){height="550"}
+:::
+
+::: {.column width="45%"}
+* Test scores impacts do not fade  
+* Suggests human capital channel at play  
+* Little gender difference  
+   * Due probably to less noise in outcomes than tax filing  
+:::
+
+::::
+----
+
+## Mechanism: Child human capital
+
+::: {.incremental}
+* Exam score $\sigma$&uarr; &rArr; $2500&uarr; at age 28 per year [@ChettyFriedmanRockoff2014b]  
+* .037$\sigma$ (per \$1000)$\times$ $2500=$92 per year per $1000 spent  
+   * 9.2% is pretty high...   
+* "(C)ould entirely account for our observed wage effects ... $353 per $1000" (?)  
+:::
+
+----
+
+## Conclusions
+
+::: {.incremental}
+* Long lasting positive impacts of liquidity increase within 12 months after the birth of firstborns  
+   * Adult incomes, test scores, behavioral problems, HS graduation  
+   * Not evidence for later transfers or non-firstborns  
+:::
+
+----
+
+## Conclusions
+
+::: {.incremental}
+* NPV of tax receipts from added incomes > initial transfer  
+* From Sec IV.B: Impact as % earnings per $1000 spent  
+   * Food stamps: .3% to 1% 
+   * Perry: Under 1%  
+   * EITC: 1% to 2%  
+* Previous studies on casino wins, lottery, adoption are on wealthier familes, so their impacts are small  
+:::
+
+----
+
+## 感想
+
+* 成人所得への効果? かねてからの疑問に答える画期的な研究  
+* さらに、NCデータを使って人的資本経由というメカニズムもある程度明らかにした  
+* 現金を親に渡すと子どもに使わない等の懸念が伝統的にあるが、現金でも結果が出てます、と示した   
+* 現金移転の方が効率的なので、保健や教育などで現物移転ばかり強調しすぎない方が良いかも  
+   * 現金移転は教育に効果、現金で自動車を買うと非難されそう  
+* 外的妥当性: EITC無知層(ヒスパニックやアフリカ系)、途上国  
+   * 親の知識水準に依存しそう  
+
+----
+
+#### References
+
+::: {#refs}
+:::

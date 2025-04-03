@@ -27,7 +27,7 @@ include-in-header:
         font-size: 2.0em;
       }
       </style>
-bibliography: ../../../../../seiro.bib
+bibliography: ../seiro.bib
 #### If it is 2 levels up, ../../seiro.bib
 resources:
   - Horton2025_slides.pdf

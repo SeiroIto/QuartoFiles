@@ -13,7 +13,7 @@ format:
     toc-location: left
     grid:
       margin-width: 350px
-  pdf: default
+####  pdf: default
   docx: default
 callout-appearance: simple
 callout-icon: false

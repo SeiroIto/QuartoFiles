@@ -57,7 +57,8 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        # updated 2025 Apr 4: upload-pages-artifact@v1 ==> @v3
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload quarto render output directory
           #path: '_site'

@@ -57,12 +57,21 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name: Upload artifact
+        # updated 2025 Apr 4: upload-pages-artifact@v1 ==> @v3
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload quarto render output directory
+          #path: '_site'
           target: gh-pages
           path: 'posts'
 
+#      # updated 2025 Apr 4: Deploy to GitHub Pages
+#      - name: Deploy to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./_site
+      # Below is pre Apr 4 setting
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

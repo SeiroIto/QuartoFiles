@@ -9,6 +9,8 @@ engine: knitr
 pdf-engine: lualatex
 format:
   html:
+    standalone: true
+    embed-resources: true
     toc: true
     toc-location: left
     grid:
@@ -106,7 +108,7 @@ h2  {
 * 検討過程での表現の穏当さも「編集」
    * [事故によって自分の名前で公開されたときにも困らない表現や論調を堅持](https://macartan.github.io/teaching/how-to-critique#pointers)
 :::
-::: {.callout-note title='正当性監視' collapse='false'}
+::: {.callout-note title='正当性監視' collapse='true'}
 * 考察対象の尊重: 検討者は「XではなくYを問うべきでは」など、新たな問いを立てることを要求してはいけない、提示された考察に応えるべき
 * 採否の論拠
    * 新奇性

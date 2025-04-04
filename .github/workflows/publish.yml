@@ -65,13 +65,13 @@ jobs:
           target: gh-pages
           path: 'posts'
 
-      # updated 2025 Apr 4: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-      # Below is pre Apr 4 setting
+#      # updated 2025 Apr 4: Deploy to GitHub Pages
 #      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v1
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./_site
+      # Below is pre Apr 4 setting
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

@@ -1,0 +1,154 @@
+---
+title: "エディタ制についてQ&A1"
+author: "成果検討分科会 伊藤成朗"
+date: last-modified
+date-format: "MMMM DD, YYYY, HH:MM ZZ"
+execute:
+  echo: false
+engine: knitr
+pdf-engine: lualatex
+format:
+  html:
+    standalone: true
+    embed-resources: true
+    toc: true
+    toc-location: left
+    grid:
+      margin-width: 350px
+####  pdf: default
+  docx: default
+  epub: default
+theme: 
+  light: sky
+  dark: darkly
+title-block-banner: "#f0f3f5"
+title-block-banner-color: "black"
+callout-appearance: simple
+callout-icon: false
+bibliography: ../seiro.bib
+link-citations: true
+reference-location: margin
+citation-location: margin
+#### # quarto render AboutEditorQA.qmd
+#### c:\seiro\languages\R\R-4.4.1\bin\x64\Rscript.exe -e "path <- 'c:/seiro/docs/personal/Miscelleneous/QuartoFiles/posts/AboutEditor/'; rmarkdown::render(paste0(path, 'AboutEditor.Rmd'), output_format = 'all')"
+---
+```{css CSS setting, echo=FALSE, results = "hide"}
+.SeiroBenign {
+  background-color: #FFEBCD;
+  padding: 0.5em; /*文字まわり（上下左右）の余白*/
+  /* border: 1px solid yellow; */
+  /* font-weight: bold; */
+}
+.SeiroLightGreen {
+  background-color: #D0F0C0; /* Tea green */
+  padding: 0.5em; /*文字まわり（上下左右）の余白*/
+  font-family: Noto S	ans;
+  /* border: 1px solid yellow; */
+  /* font-weight: bold; */
+}
+/* Define a margin before hX (header level X) element */
+h1  {
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+  /* background: #c2edff; */ /*背景色*/
+  padding: 0.5em;/*文字まわり（上下左右）の余白*/
+}
+h2  {
+  margin-top: 2ex;
+  margin-bottom: 2ex;
+  padding: 0.5em;/*文字周りの余白*/
+  color: #010101;/*文字色*/
+  /* background: #eaf3ff; */ /*背景色*/
+  /* border-bottom: solid 3px #516ab6; */ /*下線*/
+}
+```
+
+<style type="text/css">
+  body, td{
+  font-size: 16pt;
+}
+</style>
+
+## 箭内さんからの質問と暫定的回答
+
+1. 「相互に矛盾する結果の消去」の意味は？
+   * これは原稿についての記述で、検討票についての記述ではありません。主に推計結果について想定しています。推計によっては、相互に矛盾する結果が出ることがあり、安易な著者だと「都合の良い結果」だけを残すことがあります。(定性的な分析でもこうした事例はあるのかもしれないですが)
+   * 検討者間に矛盾がある場合(「終章を付けるべき」「終章は不要」)は、出てきたら考えましょう。
+1. 「検討完了日変更の相談」については、引き続き事務局で対応していただけないか^[分科会委員が研究会側の場合、実質的にブラインドできないだろうというのが前回の認識でした。検討者名は分科会委員にブラインドされています。よって、分科会委員は研究会側としか直接連絡できません。 ]
+   * 長期の延長や幾度の延長でない限り、事務局+座長による了承&rarr;エディタおよび分科会に報告、了承を得る
+1. 「指摘内容のまとめ」を審査者に求めるのは負荷が多すぎないか？
+   * 検討票の講評部分に下記を加える
+
+   > できる限り、個別指摘点の要約ともなるように記してください。
+
+1. 特定の指摘事項を「まとめ」として抽出すると、研究会の対応がそれだけにとどまったり、指摘内容の意図を正確に伝えきれなかったりする虞れが生じる。
+   * その恐れが確かにあります。よって、まとめは分科会限りにします。用途は主な指摘事項をクリアしているかどうかの確認です。
+1. 既に提出された原稿の仕上がり具合が悪い場合、どうしたらよいか？
+   * 別のエディタからも同じ懸念が表明されました。
+1. フォーム
+   * フォームのお試し版を事務局で用意します。次項参照。
+
+
+## エディタ報告フォーム
+
+第2回分科会で必要性について提起されました。記録のためにもエディタ報告には報告フォームを用意するようお願いいたします。
+
+フォームは特に準備いたしませんが、以下の項目を含めてください。
+
+1. 研究会概要
+   a) 課題ID
+   a) 最終成果の発表形態・備考(一般書、学術書)^[課題DBの成果提出表示ページに記載 ]
+1. 成果概要
+   a) 章題-執筆者名の表^[誰がどの章を執筆したかを知ることが目的です。 内部/外部、専門分野などの知識は、検討過程効率化の材料にも成りえます。 ] ^[成果検討分科会に対してブラインドすることも考えられますが、手間に見合う便益がないと思い、執筆者名は明示したいと思います。研究会主査に表提出を求めます。 ]
+   a) 単行書のトピック
+1. 指摘概要^[検討者別にしても、前検討者をまとめても、どちらでも良いと思います。 ]
+   a) 内容
+   a) 表現、構成、体裁
+1. エディタ判断
+   a) 検討票・原稿への修正要請有無
+      * 指摘内容の正当性
+      * 指摘内容の一意性(対象・疑問・意見が具体的・特定的であること)
+      * 表現の穏当さ
+   a) 検討者・研究会への参考意見有無
+      * 分科会からの参考意見付与には下記の条件を要する
+        1. 分科会委員全員の同意を得ること
+        1. 任意対応の意見とすること
+        1. 発議するエディタが論拠を示すこと
+
+
+## 原稿の仕上がり具合が悪い場合
+
+### 検討者はどう対応できるか
+
+* 今まで: 原稿ファイルに直接書き込み
+* 段落単位、もしくは、節単位で内容を明確化するように尋ねる
+
+### 検討制度を変更
+
+* 検討回数: 2回&rarr;1回^[検討者とエディタ(成果検討分科会委員)の業務負担を減らせる ] ^[ジャーナルではたいてい1回 ]
+
+## その他
+
+第2回成果分科会後に、事務局内で以下を話し合いました
+
+### 検討回数
+
+検討回数が2回になっていることの長短
+
+* 長所
+   * 複数回読んでもらうことで着実に内容が改善する
+   * 却下となる研究会成果が減るので発行点数(単行本の本数)を減らさずに済む
+* 短所
+   * 時間と労力を要する
+   * 初稿の完成度が低いなどの甘えを誘発する
+
+その他の意見
+
+* 初稿提出期限を延期すれば1回で完成度を高められるか? 2月中旬&rarr;3月中旬
+* 研究企画委員会だけで決められる問題ではない
+
+### 検討日程のリスケジューリング
+
+* リスケジューリングを断っても立ち行かない場合がほとんど&larr;了承せざるを得ない
+* 長期の延長や幾度の延長でない限り、事務局+座長による了承&rarr;エディタおよび分科会に報告、了承を得る
+

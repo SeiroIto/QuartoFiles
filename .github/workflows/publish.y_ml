@@ -48,10 +48,7 @@ jobs:
             any::kableExtra
             any::ggplot2
             any::data.table
-            any::tufte
-            any::modelsummary
-            any::treemap
-            any::ggfittext
+            any::tinytex
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
@@ -63,10 +60,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload quarto render output directory
-          #path: '_site'
           target: gh-pages
           path: 'posts'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1

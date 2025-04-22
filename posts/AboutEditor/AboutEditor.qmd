@@ -27,6 +27,15 @@ citation-location: margin
 #### c:\seiro\languages\R\R-4.4.1\bin\x64\Rscript.exe -e "path <- 'c:/seiro/docs/personal/Miscelleneous/QuartoFiles/posts/AboutEditor/'; rmarkdown::render(paste0(path, 'AboutEditor.Rmd'), output_format = 'all')"
 ---
 ```{css CSS setting, echo=FALSE, results = "hide"}
+DBlue {
+  color: dodgerblue;
+}
+Blue {
+  color: blue;
+}
+Red {
+  color: red;
+}
 .SeiroBenign {
   background-color: #FFEBCD;
   padding: 0.5em; /*文字まわり（上下左右）の余白*/
@@ -99,14 +108,14 @@ h2  {
 
 
 
-1. 検討者指摘と研究会対応の完・未了チェック
-1. 研検間対話の円滑化、意見不一致のまとめ、検討者指摘と研究会対応の正当性監視、分科会への報告
+1. 検討者指摘と研究会対応の<Red>完・未了</Red>チェック
+1. 研検間対話の<Red>円滑化</Red>、意見不一致のまとめ、検討者指摘と研究会対応の<Red>正当性監視</Red>、分科会への報告
 
 ::: {.callout-note title='対話を円滑にするためにエディタができること' collapse='true'}
 * 明確化: 検討者の指摘事項、著者の修正事項、何をどのように変更すべきか/したか、なぜか
 * 履歴の維持: 原則的に追加の指摘を認めない、(指摘対応以外も含め)論旨に関わる内容修正を明記させる
-* 検討過程での表現の穏当さも「編集」
-   * [事故によって自分の名前で公開されたときにも困らない表現や論調を堅持](https://macartan.github.io/teaching/how-to-critique#pointers)
+* 検討過程で表現の穏当さの堅持
+   * [事故によって自分の名前で公開されたときにも困らない表現や論調](https://macartan.github.io/teaching/how-to-critique#pointers)
 :::
 ::: {.callout-note title='正当性監視' collapse='true'}
 * 考察対象の尊重: 検討者は「XではなくYを問うべきでは」など、新たな問いを立てることを要求してはいけない、提示された考察に応えるべき
@@ -115,10 +124,10 @@ h2  {
    * 証拠や議論の質
    * 社会への貢献
    * 検討者の「学派」(意見・見方)との一致で決めない
-* 相互に矛盾する結果の消去
+* (主に著者による)相互に矛盾する結果の消去
 :::
 
-3. 事務局への検討完了日変更の相談
+3. \sout{事務局への}検討完了日変更\sout{の相談}への関与
 4. オプショナル: 検討者2名指摘の簡潔なまとめ(大きな項目提示のみ)
 
 ::: {.callout-note title='まとめ例' collapse="true"}

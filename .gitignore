@@ -1,7 +1,7 @@
-#### This is gitignore for miscellaneous
+#### This is gitignore for testrepo
 /**/libs
 /**/.png
+/**/JRev*.jpg
 /.quarto/
 /_freeze/
-/**/ABIDE/
 /**/REPLICATION_PACKAGE

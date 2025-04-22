@@ -1,0 +1,397 @@
+---
+title: "A/Bテストの分析"
+author: "Seiro Ito"
+execute: 
+  echo: false
+  freeze: auto
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+    embed-resources: true
+    smooth-scroll: true
+    anchor-sections: true
+bibliography: ../seiro.bib
+resources:
+  - analysis.pdf
+# setwd("C:/seiro/docs/personal/Miscelleneous/QuartoFiles/posts/ABIDE/"); quarto::quarto_render("analysis.qmd")
+# quarto render analysis.qmd
+---
+<style>
+br {
+  /* change <br> space length*/
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 10px; /* change this to whatever height you want it */
+}
+</style>
+
+# What's new `{r} Sys.Date()`
+
+* A/B: いずれの結果指標においても、どちらが優れているとは言えない  
+
+
+# A/B
+
+::: {layout-ncol=2}
+
+![A](A_08-29-2024.jpg){#fig-A}
+
+![B](B_08-29-2024.jpg){#fig-B}
+
+IDEスクエアのトップページ: A/B 
+:::
+
+# データ
+
+```{r list files}
+fn <- list.files(path="data/", pattern = "^[ab]", full.names = T)
+```
+分析対象の日付
+```{r list dates}
+library(data.table)
+dts <- unique(gsub(".tsv", "", gsub("data..", "", fn)))
+dt1 <- as.IDate(
+  as.POSIXct(paste0("2024", substring(dts, 1, 4)), format = "%Y%m%d")
+  )
+dt2 <- as.IDate(
+  as.POSIXct(paste0("2024", substring(dts, 5, 8)), format = "%Y%m%d")
+  )
+paste(dt1, weekdays(dt1), "~", dt2, weekdays(dt2))
+```
+```{r read data}
+#| echo: false
+#| results: hide
+dInList <- lapply(fn, fread, skip = 6)
+nmInList <- lapply(dInList, function(x) as.character(x[1, ]))
+nmInList <- lapply(nmInList, function(x) c("EventPath", "DateHour", x[-c(1:2, length(x))], "total"))
+dInList <- lapply(fn, fread, skip = 9)
+lapply(1:length(dInList), function(i) setnames(dInList[[i]], nmInList[[i]]))
+```{r aggregate data by date}
+dt <- rbindlist(dInList, use.names = T, fill = T)
+dt[, Date := as.POSIXct(paste0(DateHour, ":00"), format = "%Y%m%d%H:%M")]
+dt[, date := as.IDate(Date)]
+#### read randomisation file
+rnd <- fread("abLong.tsv")
+dtr <- merge(dt, rnd, by = "date", all.x = T)
+dtr[, AB := "A"]
+dtr[grepl("B", EventPath), AB := "B"]
+dtr[, AB := factor(AB)]
+dtr[, Denominator := round(value, 1)]
+dtr[grepl("B", EventPath), Denominator := round(1-value, 1)]
+DtForG <- dtr[, .(
+  UEngage = sum(user_engagement), 
+  Scroll = sum(scroll), Denominator = Denominator[1]), by = .(date, AB)][, 
+  .(date, AB, UEngage, Scroll, Denominator, 
+  UERate = UEngage/Denominator, ScrollRate = Scroll/Denominator)]
+```
+発生したデータ
+
+* user_engagement: 一定時間以上滞在閲覧数 (incl. scrollers)  
+* scroll: 最下部まで90%以上スクロールした閲覧数  
+* click: ドメイン外部へのクリック数  
+
+```{r }
+dtr[, .(AB, Date, page_view, user_engagement, scroll, click, total, Denominator)]
+summary(dtr[, .(AB, Date, page_view, user_engagement, scroll, click, total, Denominator)])
+```
+
+日ごとに平均したデータ
+```{r }
+DtForG
+```
+日ごと平均の記述統計
+
+```{r }
+summary(DtForG)
+```
+
+```{r mean and std}
+#| echo: false
+#| warning: false
+library(kableExtra)
+grepout <- function(str, x)
+  # returns element of match (not numbers)
+  x[grep(str, x, perl = T)]
+oldcolnames <- colnames(DtForG)
+setnames(DtForG, c("UEngage", "Scroll"), paste0("val.", c("UEngage", "Scroll")))
+DtForGL <- reshape(DtForG, direction = "long", idvar = c("date", "AB", "Denominator"),
+  varying = grepout("val", colnames(DtForG)))
+DtForGL[, rate := val/Denominator]
+setnames(DtForGL, "time", "variable")
+DtForGL[, c("UERate", "ScrollRate") := NULL]
+DtForGL
+msL <- DtForGL[, .(mean = mean(rate), std = var(rate)^(.5), cofvar = var(rate)^(.5)/mean(rate)), by = .(variable, AB)]
+numcols <- c("mean", "std", "cofvar")
+msL[, (numcols) := lapply(.SD, round, 3), .SDcols = numcols]
+#msL
+kt <- kbl(msL, align = "rcccc",
+  caption = "UERate、ScrollRateの平均、標準偏差、変動係数")
+#kt <- column_spec(kt, 1, width = "2cm; min-width:2cm;")
+#kt <- column_spec(kt, 2, width = ".5cm; min-width:.5cm;")
+#kt <- column_spec(kt, 3:5, width = "1.0cm; min-width:1.0cm;")
+setnames(DtForG, oldcolnames)
+ms <- DtForG[, .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms1 <- DtForG[date > as.IDate("2024-08-01", format = "%Y-%m-%d"), 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+ms2 <- DtForG[UERate < 50, 
+  .(mean = mean(UERate), std = var(UERate)^(.5)), by = AB]
+```
+
+```{r, results = "asis"}
+kable_styling(kt,
+        bootstrap_options = "striped", 
+        full_width = F, 
+        position = "left"
+        )
+```
+
+UERate=一定時間以上滞在閲覧数/表示比率=1日表示させたときの一定時間以上滞在閲覧数
+```{r plot UERate sequence for first weeks}
+#| warning: false
+#| echo: false
+library(ggplot2)
+g <- ggplot(DtForG, aes(x = date, y = UERate, colour = AB, fill = AB, group = AB)) +
+  geom_point() + geom_line(aes(colour = AB))
+g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
+  theme(
+    legend.position = "bottom"
+  )
+####   +  geom_hline(data = DtForG, yintercept = 
+####    DtForG[, .(mean = mean(UERate)), by = AB]
+####  , color = c(""))
+g
+```
+
+`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのUERateの平均値: `{r} round(ms[, mean], 2)`
+
+* 一見してAは振幅幅が大きい(ゼロが`r nrow(DtForG[UERate==0 & grepl("A", AB), ])`回)ように見えるが、実際にこの印象は正しい  
+   * 30越えも`{r} nrow(DtForG[UERate>30 & grepl("A", AB), ])`回ある(Bは`{r} nrow(DtForG[UERate>30 & grepl("B", AB), ])`回で上振れも少ない)が、計算すると標準偏差は小さいので、この印象は誤っているように見える  
+   * 変動係数=標準偏差/平均: A=`{r} round(ms[grepl("A", AB), std], 2)`/`{r} round(ms[grepl("A", AB), mean], 2)`=`{r} round(ms[grepl("A", AB), std]/ms[grepl("A", AB), mean], 2)`、B=`{r} round(ms[grepl("B", AB), std], 2)`/`{r} round(ms[grepl("B", AB), mean], 2)`=`{r} round(ms[grepl("B", AB), std]/ms[grepl("B", AB), mean], 2)`  
+   * 実は初日の影響: 初日抜きの変動係数: A=`{r} round(ms1[grepl("A", AB), std], 2)`/`{r} round(ms1[grepl("A", AB), mean], 2)`=`{r} formatC(ms1[grepl("A", AB), std]/ms1[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms1[grepl("B", AB), std], 2)`/`{r} round(ms1[grepl("B", AB), mean], 2)`=`{r} round(ms1[grepl("B", AB), std]/ms1[grepl("B", AB), mean], 2)`  
+   * 異常値除外後(UERate$<50$): 変動係数: A=`{r} round(ms2[grepl("A", AB), std], 2)`/`{r} round(ms2[grepl("A", AB), mean], 2)`=`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("A", AB), mean], digits=2, format = "f")`、B=`{r} round(ms2[grepl("B", AB), std], 2)`/`{r} round(ms2[grepl("B", AB), mean], 2)`=`{r} round(ms2[grepl("B", AB), std]/ms2[grepl("B", AB), mean], 2)`、変動係数はAがBの`{r} formatC(ms2[grepl("A", AB), std]/ms2[grepl("B", AB), std], digits=2, format = "f")`倍  
+
+ScrollRate=scrollした閲覧数/表示比率=1日表示させたときのscroll閲覧数
+```{r plot ScrollRate sequence for first weeks}
+#| warning: false
+#| echo: false
+library(ggplot2)
+g <- ggplot(DtForG, aes(x = date, y = ScrollRate, colour = AB, fill = AB, group = AB)) +
+  geom_point() + geom_line(aes(colour = AB))
+g <- g + scale_x_date(date_labels = "%B%d日(%a)") +
+  theme(
+    legend.position = "bottom"
+  )
+####  , color = c(""))
+g
+```
+`{r} DtForG[, min(date)]` ~ `{r} DtForG[, max(date)]`における	AとBのScrollRateの平均値: `{r} round(msL[grepl("S", variable), mean], 2)`  
+
+* スクロールは、平均でも標準偏差でも、A/Bの差があまりない  
+
+# 推計
+
+曜日効果
+
+```{r regress on weekdays, warning = F, message = F}
+clx <-function(fm, dfcw = 1, cluster, returnV = F, dfc2 = F, DFC = F,
+  Estfun = "sandwich", deviation = F)
+#  1 way clustering robust covariance matrix
+#  following Arai 2010
+#  fm: fitted lm model
+#  cluster: 1 column matrix
+#  dfcw: degree of freedom adjustment when using deviation data
+#   Note: When using the FE estimator with N obs and M groups, 
+#   lm uses dof as N-K, but it should be N-M-K so dfcw = (N-K-M)/(N-K).
+#   In FD estimator, there is no need of dof correction.
+#  dfc2: some suggests this dfc, but not sure if this is correct
+#  DFC: User provided dof
+#  returnV: if T, aslo returns cluster-robust covariance
+#  ESTfun: use estfun provided by "sandwich" package or "seiro"
+#  deviation: T if using deviations data, if F, dfcw is set to 1
+{
+  require(sandwich); require(lmtest)
+  M <- length(unique(cluster))
+  N <- length(cluster)
+  dfc <- (M / (M - 1)) * ((N - 1) / (N - fm$rank))
+  if (dfc2) dfc <- (N -  fm$rank) / (N - M - fm$rank)
+  if (DFC) dfc <- DFC
+  #  switch estfun according to specified by estfun = "sandwich" (default) or "seiro"
+  esfun <- function(fm, ESTfun) switch(ESTfun, sandwich = estfun(fm), seiro = estfun2(fm))
+  #u <- apply(estfun2(fm), 2, function(x) tapply(x, cluster, sum))
+  # This sums estimating function [resid*x (in FOC of OLS)] by cluster.
+  u <- apply(esfun(fm, Estfun), 2, function(x) tapply(x, cluster, sum))
+  # There is no attribute called "df": lm$df.residual, glm$residual.
+  # But leave it for backward compatibility.
+  if (any(grepl("^df$", names(fm))))  
+    dfcw <-  fm$df /(fm$df - (M-1)) else
+  if (deviation)  
+    dfcw <-  fm$df.residual /(fm$df.residual - (M-1))
+  vcovCL <- dfc * sandwich(fm, meat = crossprod(u) / N) * dfcw
+  #diag(vcovCL)^.5
+  if (returnV) list(est = lmtest::coeftest(fm, vcov. = vcovCL), 
+      ci = lmtest::coefci(fm, vcov. = vcovCL),
+      V = vcovCL, dfc = dfc, dfcw = dfcw, reg = fm, 
+      clusters.M = M, cluster = cluster, N = length(fm$fit)) else
+  coeftest(fm, vcovCL) 
+}
+
+DtForG[, wkdy := strftime(date, format = "%a")]
+DtForG[, wkdy := factor(wkdy, levels = c("日", "月", "火", "水", "木", "金", "土"))]
+DtForG[, dywk := wday(date)]
+DtForG[, dywk := factor(dywk)]
+
+tc <- textConnection(
+"20240801 ページ公開
+20240801 トップページお知らせ欄掲載
+20240805 Xにリニューアル情報投稿
+20240813 おすすめ記事差し替え
+20240813 おすすめ記事差し替え（トップ：ベネズエラ）
+20240829 おすすめ記事差し替え（トップ：バングラデシュ）"
+)
+tc <- data.table(read.table(tc))
+tc[, date := as.POSIXct(paste0(V1, "01:00"), format = "%Y%m%d%H:%M")]
+tc[, date := as.IDate(date)]
+setcolorder(tc, c("V1", "date", "V2"))
+tc[, V1 := NULL]
+setnames(tc, c("date", "event"))
+setkey(DtForG, date)
+setkey(tc, date)
+DtForG <- tc[DtForG]
+DtForG[, Sashikae := 0L]
+DtForG[grepl("差し替え", event), Sashikae := 1L]
+DtForG[, Sashikae1 := shift(Sashikae, n=1, "lead")]
+DtForG[, Sashikae2 := shift(Sashikae, n=2, "lead")]
+DtForG[, Sashikae3 := shift(Sashikae, n=3, "lead")]
+DtForG[, Sashikae3 := Sashikae1+Sashikae2+Sashikae3]
+DtForG[is.na(Sashikae3), Sashikae3 := 0L]
+DtForG[, c("Sashikae1", "Sashikae2") := NULL]
+DtForG[, event := factor(event)]
+#### UERate
+lm1 <- lm(UERate ~ AB+wkdy+Sashikae3, data = DtForG)
+lm2 <- lm(UERate ~ -1+AB:wkdy, data = DtForG)
+lm2 <- lm(UERate ~ -1+AB:wkdy+AB*Sashikae3, data = DtForG)
+cr1 <- clx(lm1, cluster = DtForG[, dywk])
+cr2 <- clx(lm2, cluster = DtForG[, dywk])
+library(fixest)
+fe1 <- feols(UERate ~AB+Sashikae3 | wkdy, DtForG)
+fe2 <- feols(UERate ~AB+AB*wkdy | wkdy, DtForG)
+fe2 <- feols(UERate ~AB+AB*wkdy+AB*Sashikae3 | wkdy, DtForG)
+####summary(fe1, cluster = "wkdy")
+####summary(fe2, cluster = "wkdy")
+library(modelsummary)
+#### UERate
+lm3 <- lm(ScrollRate ~ AB+wkdy+Sashikae3, data = DtForG)
+lm4 <- lm(ScrollRate ~ -1+AB:wkdy, data = DtForG)
+lm4 <- lm(ScrollRate ~ -1+AB:wkdy+AB*Sashikae3, data = DtForG)
+cr3 <- clx(lm3, cluster = DtForG[, dywk])
+cr4 <- clx(lm4, cluster = DtForG[, dywk])
+library(fixest)
+fe3 <- feols(ScrollRate ~AB+Sashikae3 | wkdy, DtForG)
+fe4 <- feols(ScrollRate ~AB+AB*wkdy | wkdy, DtForG)
+fe4 <- feols(ScrollRate ~AB+AB*wkdy+AB*Sashikae3 | wkdy, DtForG)
+####summary(fe3, cluster = "wkdy")
+###summary(fe4, cluster = "wkdy")
+library(modelsummary)
+crlist <- list("UE: base" = cr1, "UE: with interactions" = cr2, "SR: base" = cr3, "SR: with interactions" = cr4)
+####modelsummary(crlist, statistic = "p.value")
+modelplot(crlist[1:2], coef_omit = 'Interc')
+```
+
+曜日効果のB-A差
+```{r}
+felist <- list("UE: base" = fe1, "UE: with interactions" = fe2, "SR: base" = fe3, "SR: with interactions" = fe4)
+felist1 <- dvnames(felist[c(1, 3)])
+felist2 <- dvnames(felist[c(2, 4)])
+modelsummary(felist, statistic = "p.value")
+####modelplot(felist1, draw = F)
+library(ggplot2)
+modelplot(felist1, color = "blue") + facet_grid(~model)
+modelplot(felist2, color = "blue") + facet_grid(~model)
+```
+
+user engagement rates:  
+
+* 曜日効果(曜日によるアクセス多寡)はあるが、解釈できない  
+* A/B: どちらが優れているとは言えない  
+* トップ記事差し替え効果: 認められない  
+
+scroll rates:  
+
+* 曜日効果(曜日によるアクセス多寡)はあるが、解釈できない  
+    * UEもscrollも似たような曜日効果  
+* A/B: どちらが優れているとは言えない  
+* トップ記事差し替え効果: 認められない  
+
+# 結論
+
+```{r }
+library(kableExtra)
+tc <- textConnection(
+"variables mean variability
+UserEngagementRate 0 +A
+ScrollRate 0 0")
+tc <- data.table(read.table(tc, header = T))
+tc[, mean := as.character(mean)]
+tc[, mean := ""]
+tc[2, variability := ""]
+####setnames(tc, c("結果指標", "平均", "振幅幅"))
+kt <- kbl(tc, align = "rcc", row.names = F, caption = "Summary of A/B tests")
+kt <- kable_styling(kt, full_width = F, position = "left", fixed_thead = T, 
+    html_font = "Cambria", bootstrap_options = c("condensed"))
+kt <- row_spec(kt, 0, align = "rcc", background = "#e6f2ff")
+kt <- column_spec(kt, 1, width = "3cm; min-width:3cm;")
+kt <- column_spec(kt, 2:3, width = "2.25cm; min-width:2.25cm;")
+ktftnt <- c("A/B are randomly shown to all visitors. Probability of A/B changes by the hour. User engagement rate is expected number of browsers per day that stay longer than the threshold duration. Scroll rate is expected number of browsers per day that scroll the page to the bottom.", "OLS estimates. Regressions with interaction terms incorporate day-of-the-week fixed effects. ")
+kt <- footnote(kt, 
+           general = "Periods: August 1 - September 30, 2024. ",
+           number = ktftnt
+           )
+```
+```{r}
+#| label: tblsummary
+#| tbl-cap: "Summary of A/B tests"
+library(tinytable)
+####tt(tc, width = c(2, 1, 2), notes = list("1"=ktftnt[1], "2"=ktftnt[2]))
+ttc <- tt(tc)
+ttc <- style_tt(ttc, j = 2:3, align = "c") 
+ttc <- style_tt(ttc, j = 1, align = "r") 
+ttc <- style_tt(ttc, i = 0, background = "#e6f2ff")
+ttc
+```
+
+* A/B: いずれの結果指標においても、どちらが優れているとは言えない  
+
+
+
+# Past news
+
+### What's new 2024-09-05
+
+* user engagement rateの振幅幅: $A>B$ の傾向が続いている  
+   * 平均値はほぼ同じ  
+* scrollではA/Bの差はあまりない  
+* 前回指摘した「週後半に閲覧数が落ちる傾向」がより鮮明になってきた  
+   * なんとかすべきかも  
+
+### What's new 2024-08-29
+
+* user engagement rateの振幅幅: $A>B$ の傾向あり、AはUERate=0が2日あり  
+   * 異常値(UERate$\geqslant 50$)抜きだと、平均は両者ほぼ同じ、標準偏差はAが3割ほど高い  
+
+
+
+```{r plot density for first 100 weeks, warning = F}
+#| echo: false
+#| eval: false
+rn0 <- fread("ab.tsv")
+library(lubridate)
+abdates <- seq(ymd('2024-08-01'), length.out = 1400, by = '1 day')
+rn0[, V1 := NULL]
+ab <- data.table(date=abdates, dow = weekdays(abdates), 
+  value=formatC(c(t(as.matrix(rn0))), digits = 2, format = "f"))
+write.table(ab, "abLong.tsv", quote = F, sep = "\t")
+```
+

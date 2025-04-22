@@ -10,11 +10,9 @@ See [slides on Barr, Eggleston, and Smith QJE2022](http://seiroito.github.io/Qua
 
 See [slides on Barth, Papageorge and Thom JPE2020](http://seiroito.github.io/QuartoFiles/BarthPapageorgeThom/BPT.html)
 
-See [slides on Rustichini, Iacono, Lee, and McGue JPE2023](http://seiroito.github.io/QuartoFiles/RustichiniIaconoLeeMcGue/RILM_PGSEdu_SPE2023.html)
+See [slides on Rustichini, Iacono, Lee, and McGue JPE2023](http://seiroito.github.io/QuartoFiles/RustichiniIaconoLeeMcGue/RILM_PGSEdu_JPE2023.html)
 
 See [slides on Horton AER2025](http://seiroito.github.io/QuartoFiles/Horton/Horton2025_slides.html)
-
-See [A/B testing at IDE](http://seiroito.github.io/QuartoFiles/ABIDE/analysis.html).
 
 See [About editor of seika bunkakai](http://seiroito.github.io/QuartoFiles/AboutEditor/AboutEditor.html).
 

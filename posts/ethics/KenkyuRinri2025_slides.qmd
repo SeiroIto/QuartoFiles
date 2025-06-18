@@ -649,6 +649,17 @@ ggsave(
 
 ----
 
+## {background-color="#010638"}
+
+### 蔓延度は不明ですが、結構深刻では?
+
+<Orange>例5:</Orange> [Asad Islam](https://users.monash.edu.au/~asaduli/index.html)の複数論文で[データ不正の疑い](https://a-ortmann.medium.com/the-asad-islam-gdri-saga-f96b567c93d6)  
+
+
+![](IslamResearchMisconduct.jpg)
+
+----
+
 ## なぜFFPをするのか{background-color="#010638"}
 
 
@@ -824,6 +835,12 @@ Gino: HBS給与は1.4億円+印税+講演料、ばれなければ大金
 ::::
 ::::: 
 :::::::::: 
+
+----
+
+## 出版社もFFP, QRP通報窓口を設置{background-color="#010638"}
+
+[COPE](https://publicationethics.org/guidance/case/ethics-approval-and-consent)
 
 ----
 

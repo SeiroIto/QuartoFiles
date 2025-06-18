@@ -16,3 +16,6 @@ See [slides on Horton AER2025](http://seiroito.github.io/QuartoFiles/Horton/Hort
 
 See [About editor of seika bunkakai](http://seiroito.github.io/QuartoFiles/AboutEditor/AboutEditor.html).
 
+See [memo on Delabastita and Rubens](http://seiroito.github.io/QuartoFiles/DelabatitaRubens/DelabastitaRubens.html).
+
+See [slides on ethics](http://seiroito.github.io/QuartoFiles/ethics/KenkyuRinri2025_slides.html).

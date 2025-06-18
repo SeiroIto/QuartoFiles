@@ -3,6 +3,8 @@
 /**/.png
 /**/JRev*.jpg
 /posts/ABIDE/
+/posts/AboutEditor/
+/posts/ethics/*_cache/
 /.quarto/
 /_freeze/
 /**/REPLICATION_PACKAGE

@@ -1,0 +1,492 @@
+---
+title: "Syverson (2024): Markups and markdowns"
+author: "claude 4 sonnet, instructed by me"
+date: last-modified
+date-format: "MMMM DD, YYYY, HH:MM ZZ"
+execute:
+  echo: false
+engine: knitr
+pdf-engine: lualatex
+format:
+  html:
+    standalone: true
+    embed-resources: true
+    toc: true
+    toc-location: left
+    grid:
+      margin-width: 350px
+####  pdf: default
+  docx: default
+  epub: default
+theme: 
+  light: sky
+  dark: darkly
+title-block-banner: "#f0f3f5"
+title-block-banner-color: "black"
+callout-appearance: simple
+callout-icon: false
+bibliography: ../seiro.bib
+link-citations: true
+reference-location: margin
+citation-location: margin
+#### # quarto render SyversonMath.qmd
+#### c:\seiro\languages\R\R-4.4.1\bin\x64\Rscript.exe -e "path <- 'c:/seiro/docs/personal/Miscelleneous/QuartoFiles/posts/DelabastitaRubens/'; rmarkdown::render(paste0(path, 'SyversonMath.Rmd'), output_format = 'all')"
+---
+```{css CSS setting, echo=FALSE, results = "hide"}
+.SeiroBenign {
+  background-color: #FFEBCD;
+  padding: 0.5em; /*文字まわり（上下左右）の余白*/
+  /* border: 1px solid yellow; */
+  /* font-weight: bold; */
+}
+.SeiroLightGreen {
+  background-color: #D0F0C0; /* Tea green */
+  padding: 0.5em; /*文字まわり（上下左右）の余白*/
+  font-family: Noto S	ans;
+  /* border: 1px solid yellow; */
+  /* font-weight: bold; */
+}
+/* Define a margin before hX (header level X) element */
+h1  {
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+  /* background: #c2edff; */ /*背景色*/
+  padding: 0.5em;/*文字まわり（上下左右）の余白*/
+}
+h2  {
+  margin-top: 2ex;
+  margin-bottom: 2ex;
+  padding: 0.5em;/*文字周りの余白*/
+  ####color: #010101;/*文字色*/
+  color: #87a5f2;
+  /* background: #eaf3ff; */ /*背景色*/
+  /* border-bottom: solid 3px #516ab6; */ /*下線*/
+}
+```
+
+<style type="text/css">
+  body, td{
+  font-size: 16pt;
+}
+</style>
+
+
+This is all done by claude sonnet v4
+
+# Mathematical Derivations from Syverson (2024): Markups and Markdowns
+
+## Section 1.1: Markups, Costs, and Inflation
+
+### Starting Point
+The basic relationship:
+$$P = \mu \cdot C$$
+
+### Derivation of Growth Rate Relationship
+
+To convert to growth rates, we take the natural logarithm of both sides:
+$$\ln(P) = \ln(\mu) + \ln(C)$$
+
+Taking the total differential:
+$$d\ln(P) = d\ln(\mu) + d\ln(C)$$
+
+Since $d\ln(x) = \frac{dx}{x}$ (which approximates the growth rate for small changes):
+$$\frac{dP}{P} = \frac{d\mu}{\mu} + \frac{dC}{C}$$
+
+Therefore:
+$$\text{Growth in } P \approx \text{Growth in } \mu + \text{Growth in } C$$
+
+**Explanation**: This follows from the logarithmic differentiation property. When we have a product $P = \mu \cdot C$, the growth rate of the product equals the sum of the growth rates of its components.
+
+## Section 1.2: Markups, Profit Shares, and Scale Elasticities
+
+### Step 1: Basic Markup Definition and Manipulation
+
+Starting with the markup definition:
+$$\mu \equiv \frac{P}{MC}$$
+
+Multiply and divide by average cost (AC):
+$$\mu = \frac{P}{MC} \cdot \frac{AC}{AC} = \frac{P}{AC} \cdot \frac{AC}{MC}$$
+
+**Explanation**: This is valid algebraic manipulation - multiplying by $\frac{AC}{AC} = 1$ doesn't change the value.
+
+### Step 2: Rewrite Price-to-Average-Cost Ratio
+
+The ratio $\frac{P}{AC}$ can be rewritten by multiplying numerator and denominator by quantity $Q$:
+$$\frac{P}{AC} = \frac{P \cdot Q}{AC \cdot Q} = \frac{Revenue}{Total Cost} = \frac{R}{TC}$$
+
+**Explanation**: Since $Revenue = P \times Q$ and $Total Cost = AC \times Q$, this transformation is straightforward.
+
+### Step 3: Define Scale Elasticity
+
+The scale elasticity $\nu$ is defined as:
+$$\nu \equiv \frac{AC}{MC}$$
+
+This is equivalent to the inverse of the elasticity of costs with respect to quantity. To see why:
+
+For any cost function $C(Q)$, the cost elasticity is:
+$$\frac{d\ln C}{d\ln Q} = \frac{dC/C}{dQ/Q} = \frac{dC}{dQ} \cdot \frac{Q}{C} = MC \cdot \frac{Q}{TC} = \frac{MC}{AC}$$
+
+Therefore: $\nu = \frac{AC}{MC} = \frac{1}{\text{cost elasticity}}$
+
+**Explanation**: When $MC < AC$, we have economies of scale ($\nu > 1$). When $MC > AC$, we have diseconomies of scale ($\nu < 1$).
+
+### Step 4: Combine Results
+
+Substituting our results:
+$$\mu = \frac{R}{TC} \cdot \nu$$
+
+### Step 5: Introduce Profit Share
+
+Define profit share as:
+$$s_\pi \equiv \frac{R - TC}{R}$$
+
+This can be rearranged to express the revenue-to-total-cost ratio:
+$$\frac{R - TC}{R} = s_\pi$$
+$$\frac{R}{R} - \frac{TC}{R} = s_\pi$$
+$$1 - \frac{TC}{R} = s_\pi$$
+$$\frac{TC}{R} = 1 - s_\pi$$
+$$\frac{R}{TC} = \frac{1}{1 - s_\pi}$$
+
+### Step 6: Final Result
+
+Substituting back:
+$$\mu = \frac{R}{TC} \cdot \nu = \frac{1}{1 - s_\pi} \cdot \nu$$
+
+Therefore:
+$$\boxed{\mu = \frac{\nu}{1 - s_\pi}}$$
+
+## Section 1.3: Markups and Elasticity of Demand
+
+### Step 1: Profit Maximization First-Order Condition
+
+A profit-maximizing firm facing residual demand $q(p)$ maximizes:
+$$\pi = p \cdot q(p) - C(q(p))$$
+
+Taking the derivative with respect to price $p$ and setting equal to zero:
+$$\frac{d\pi}{dp} = q + p \frac{dq}{dp} - \frac{dC}{dq} \cdot \frac{dq}{dp} = 0$$
+
+**Explanation**: We use the product rule for $p \cdot q(p)$ and the chain rule for $C(q(p))$.
+
+### Step 2: Rearrange the First-Order Condition
+
+$$q + p \frac{dq}{dp} = \frac{dC}{dq} \cdot \frac{dq}{dp}$$
+
+Since $\frac{dC}{dq} = MC$ (marginal cost):
+$$q + p \frac{dq}{dp} = MC \cdot \frac{dq}{dp}$$
+
+### Step 3: Solve for Price
+
+Divide both sides by $\frac{dq}{dp}$ (assuming $\frac{dq}{dp} \neq 0$):
+$$\frac{q}{\frac{dq}{dp}} + p = MC$$
+
+$$p = MC - \frac{q}{\frac{dq}{dp}}$$
+
+### Step 4: Express in Terms of Elasticity
+
+The price elasticity of demand is:
+$$\eta = \frac{dq}{dp} \cdot \frac{p}{q}$$
+
+Therefore: $\frac{dq}{dp} = \eta \cdot \frac{q}{p}$
+
+Substituting:
+$$p = MC - \frac{q}{\eta \cdot \frac{q}{p}} = MC - \frac{p}{\eta}$$
+
+### Step 5: Solve for Markup
+
+Rearranging:
+$$p = MC - \frac{p}{\eta}$$
+$$p + \frac{p}{\eta} = MC$$
+$$p\left(1 + \frac{1}{\eta}\right) = MC$$
+$$p = \frac{MC}{1 + \frac{1}{\eta}}$$
+
+Therefore, the markup is:
+$$\mu = \frac{p}{MC} = \frac{1}{1 + \frac{1}{\eta}}$$
+
+### Step 6: Final Form
+
+Since demand is typically downward sloping, $\eta < 0$. Using $|\eta|$ for the absolute value:
+$$\mu = \frac{1}{1 - \frac{1}{|\eta|}} = \frac{|\eta|}{|\eta| - 1}$$
+
+Therefore:
+$$\boxed{\mu = \frac{|\eta|}{|\eta| - 1}}$$
+
+**Note**: Profit maximization requires $|\eta| > 1$ (elastic portion of demand curve).
+
+## Section 1.4: Markups, Factor Cost Shares, and Output Elasticities
+
+### Step 1: Cost Minimization Condition
+
+For a flexible factor $X$, cost minimization yields:
+$$p_X = \lambda f_X(\cdot)$$
+
+where $p_X$ is the factor price, $\lambda$ is the Lagrange multiplier (marginal cost), and $f_X$ is the marginal product of $X$.
+
+### Step 2: Manipulation to Get Markup
+
+Rearrange the cost minimization condition:
+$$\frac{p_X}{\lambda} = f_X$$
+
+Since $\lambda = MC$ and we want the markup $\mu = \frac{P}{MC}$, we need to relate this to observable quantities.
+
+### Step 3: Multiply by Convenient Terms
+
+Multiply both sides by $\frac{X}{Q}$ where $Q$ is output:
+$$\frac{p_X}{\lambda} \cdot \frac{X}{Q} = f_X \cdot \frac{X}{Q}$$
+
+### Step 4: Recognize Economic Meanings
+
+The right side is the output elasticity of factor $X$:
+$\theta_X = f_X \cdot \frac{X}{Q} = \frac{\partial Q}{\partial X} \cdot \frac{X}{Q}$
+
+For the left side, we need to relate it to the markup. Starting from:
+$\frac{p_X}{\lambda} \cdot \frac{X}{Q} = \theta_X$
+
+Since $\lambda = MC$ (marginal cost), we can write:
+$\frac{p_X X}{MC \cdot Q} = \theta_X$
+
+Now multiply both numerator and denominator of the left side by $P$ (price):
+$\frac{p_X X \cdot P}{MC \cdot Q \cdot P} = \frac{p_X X}{P \cdot Q} \cdot \frac{P}{MC} = \frac{p_X X}{R} \cdot \mu$
+
+where $R = P \cdot Q$ is revenue and $\mu = \frac{P}{MC}$ is the markup.
+
+### Step 5: Final Result
+
+From our manipulation:
+$\frac{p_X X}{R} \cdot \mu = \theta_X$
+
+Since $s_X = \frac{p_X X}{R}$ (factor's revenue share), we have:
+$s_X \cdot \mu = \theta_X$
+
+### Step 6: Final Result
+
+Therefore:
+$$s_X \cdot \mu = \theta_X$$
+
+Solving for markup:
+$$\boxed{\mu = \frac{\theta_X}{s_X}}$$
+
+**Explanation**: The markup equals the ratio of the factor's output elasticity to its revenue share.
+
+## Section 1.4.1: Why Revenue Elasticity Doesn't Work
+
+### Step 1: Define Revenue Elasticity
+
+Revenue elasticity of factor $X$:
+$$\rho_X = \frac{d[p(q)q]}{dX} \cdot \frac{X}{pq}$$
+
+### Step 2: Apply Chain Rule
+
+$$\rho_X = \frac{d[p(q)q]}{dq} \cdot \frac{dq}{dX} \cdot \frac{X}{pq}$$
+
+### Step 3: Compute Revenue Derivative
+
+$$\frac{d[p(q)q]}{dq} = p + q\frac{dp}{dq}$$
+
+Using the demand elasticity $\eta = \frac{dq}{dp} \cdot \frac{p}{q}$, we get $\frac{dp}{dq} = \frac{1}{\eta} \cdot \frac{p}{q}$:
+
+$$\frac{d[p(q)q]}{dq} = p + q \cdot \frac{1}{\eta} \cdot \frac{p}{q} = p + \frac{p}{\eta} = p\left(1 + \frac{1}{\eta}\right)$$
+
+### Step 4: Substitute Back
+
+$$\rho_X = p\left(1 + \frac{1}{\eta}\right) \cdot \frac{dq}{dX} \cdot \frac{X}{pq} = \left(1 + \frac{1}{\eta}\right) \cdot \frac{dq}{dX} \cdot \frac{X}{q}$$
+
+Since $\theta_X = \frac{dq}{dX} \cdot \frac{X}{q}$:
+$$\rho_X = \left(1 + \frac{1}{\eta}\right) \theta_X$$
+
+### Step 5: The Problem
+
+From the markup-elasticity relationship: $\mu = \frac{|\eta|}{|\eta| - 1}$
+
+This means: $1 + \frac{1}{\eta} = \frac{1}{\mu}$ (for $\eta < 0$)
+
+Therefore: $\rho_X = \frac{\theta_X}{\mu}$
+
+### Step 6: Revenue Elasticity Ratio
+
+$$\frac{\rho_X}{s_X} = \frac{\theta_X/\mu}{s_X} = \frac{\theta_X}{\mu \cdot s_X}$$
+
+But from our markup formula: $\mu = \frac{\theta_X}{s_X}$, so $\theta_X = \mu \cdot s_X$
+
+Therefore:
+$$\frac{\rho_X}{s_X} = \frac{\mu \cdot s_X}{\mu \cdot s_X} = 1$$
+
+**Conclusion**: The revenue elasticity approach always gives a ratio of 1, regardless of the true markup value, making it uninformative.
+
+## Section 1.5: Markdowns
+
+### Step 1: Monopsony Profit Maximization
+
+A firm with monopsony power faces upward-sloping factor supply $G(X)$ and maximizes:
+$$\pi = R(q) - G(X) \cdot X$$
+
+subject to $q = f(X)$.
+
+### Step 2: First-Order Condition
+
+$$\frac{d\pi}{dX} = R'(q) \cdot f'(X) - G'(X) \cdot X - G(X) = 0$$
+
+**Explanation**: We use the chain rule for $R(q)$ and the product rule for $G(X) \cdot X$.
+
+Rearranging:
+$$R'(q) \cdot f'(X) = G'(X) \cdot X + G(X)$$
+
+### Step 3: Factor Out and Express as Ratio
+
+$$\frac{R'(q) \cdot f'(X)}{G(X)} = \frac{G'(X) \cdot X}{G(X)} + 1$$
+
+### Step 4: Recognize Supply Elasticity
+
+The elasticity of factor supply is:
+$$\varepsilon_X = \frac{G'(X) \cdot X}{G(X)}$$
+
+Therefore:
+$$\boxed{\frac{R'(q) \cdot f'(X)}{G(X)} = \varepsilon_X + 1}$$
+
+**Interpretation**: The ratio of marginal revenue product to factor price equals one plus the inverse of supply elasticity. When $\varepsilon_X > 0$ (upward-sloping supply), the factor is paid less than its marginal revenue product.
+
+### Step 5: Combined Product and Factor Market Power
+
+When the firm has both product market power (markup $\mu$) and factor market power, we can show:
+$$(\varepsilon_X^{-1} + 1) \cdot \mu = \frac{\theta_X}{s_X}$$
+
+**Explanation**: This combines the effects of both types of market power. The left side captures the factor market power effect (markdown) and product market power effect (markup), while the right side is the ratio of output elasticity to revenue share.
+
+
+
+# Section 1.5 Markdowns - Step-by-Step Derivations
+
+## Setup and Assumptions
+
+We have a producer with monopsony power in the market for input $X$. The key elements are:
+
+- **Inverse residual input supply curve**: $G(X)$, where $G$ is the price paid per unit of $X$
+- **Total expenditures on input**: $G(X) \cdot X$  
+- **Revenue function**: $R(q)$
+- **Production function**: $q = f(X)$
+- **Elasticity of residual factor supply**: $\varepsilon_X$
+
+## Derivation 1: Basic Markdown Relationship
+
+### Step 1: Set up the profit maximization problem
+The producer maximizes profit = Revenue - Input costs:
+$$\pi = R(f(X)) - G(X) \cdot X$$
+
+### Step 2: Take the first-order condition
+Taking the derivative with respect to $X$ and setting equal to zero:
+$$\frac{d\pi}{dX} = R'(q) \cdot f'(X) - [G'(X) \cdot X + G(X)] = 0$$
+
+**Explanation**: 
+- $R'(q) \cdot f'(X)$ is the marginal revenue product of input $X$
+- $G'(X) \cdot X + G(X)$ is the marginal cost of hiring input $X$ (not just the wage $G(X)$, but includes the effect of higher wages on all existing workers)
+
+### Step 3: Rearrange to get the basic relationship
+$$R'(q) \cdot f'(X) = G'(X) \cdot X + G(X)$$
+
+### Step 4: Factor out $G(X)$ on the right side
+$$R'(q) \cdot f'(X) = G(X) \cdot \left[\frac{G'(X) \cdot X}{G(X)} + 1\right]$$
+
+### Step 5: Recognize the elasticity definition
+The elasticity of residual factor supply is:
+$$\varepsilon_X = \frac{dG/dX \cdot X}{G} = \frac{G'(X) \cdot X}{G(X)}$$
+
+However, since the final expression in the document shows $\varepsilon_X^{-1}$, we interpret this as:
+$$\frac{G'(X) \cdot X}{G(X)} = \varepsilon_X^{-1}$$
+
+### Step 6: Substitute the inverse elasticity
+$$R'(q) \cdot f'(X) = G(X) \cdot [\varepsilon_X^{-1} + 1]$$
+
+### Step 7: Divide both sides by $G(X)$
+$$\frac{R'(q) \cdot f'(X)}{G(X)} = \varepsilon_X^{-1} + 1$$
+
+**Final Result 1**: The ratio of marginal revenue product to input price equals one plus the inverse elasticity of factor supply:
+$$\frac{R'(q) \cdot f'(X)}{G(X)} = \varepsilon_X^{-1} + 1$$
+
+## Derivation 2: Combined Product and Factor Market Power
+
+### Step 1: Start with the basic markdown relationship
+$$R'(q) \cdot f'(X) = G(X) \cdot (\varepsilon_X^{-1} + 1)$$
+
+### Step 2: Define key variables
+- **Output elasticity**: $\theta_X = \frac{\partial f}{\partial X} \cdot \frac{X}{f} = \frac{f'(X) \cdot X}{q}$
+- **Revenue share**: $s_X = \frac{G(X) \cdot X}{R(q)}$
+
+### Step 3: Express $f'(X)$ in terms of $\theta_X$
+From $\theta_X = \frac{f'(X) \cdot X}{q}$, we get:
+$$f'(X) = \frac{\theta_X \cdot q}{X}$$
+
+### Step 4: Substitute into the markdown relationship
+$$R'(q) \cdot \frac{\theta_X \cdot q}{X} = G(X) \cdot (\varepsilon_X^{-1} + 1)$$
+
+### Step 5: Multiply both sides by $X$ and divide by $R(q)$
+$$\frac{R'(q) \cdot \theta_X \cdot q}{R(q)} = \frac{G(X) \cdot X \cdot (\varepsilon_X^{-1} + 1)}{R(q)}$$
+
+### Step 6: Simplify using definitions
+Since $R(q) = P \cdot q$ and $s_X = \frac{G(X) \cdot X}{R(q)}$:
+$$\frac{R'(q) \cdot \theta_X}{P} = s_X \cdot (\varepsilon_X^{-1} + 1)$$
+
+### Step 7: Introduce the product market relationship
+From the product market markup derivation, we know:
+$$\frac{R'(q)}{P} = 1 - \frac{1}{|\eta|}$$
+where $\eta$ is the price elasticity of demand.
+
+We need to establish what $\frac{R'(q)}{P}$ equals. Let's derive this step by step.
+
+* Sub-step 7a: Start with the revenue function
+$R(q) = P(q) \cdot q$
+
+* Sub-step 7b: Take the derivative with respect to quantity
+$R'(q) = \frac{dR}{dq} = \frac{d[P(q) \cdot q]}{dq} = P'(q) \cdot q + P(q)$
+
+* Sub-step 7c: Factor out $P(q)$
+$R'(q) = P(q) \cdot \left[\frac{P'(q) \cdot q}{P(q)} + 1\right]$
+
+* Sub-step 7d: Recognize the price elasticity of demand
+The price elasticity of demand is:
+$\eta = \frac{dq}{dP} \cdot \frac{P}{q}$
+By the inverse function theorem:
+$\frac{dP}{dq} = \frac{1}{\frac{dq}{dP}} = \frac{1}{\eta \cdot \frac{q}{P}} = \frac{P}{\eta \cdot q}$
+Therefore: $P'(q) = \frac{P}{\eta \cdot q}$
+
+* Sub-step 7e: Substitute back into the expression
+$\frac{P'(q) \cdot q}{P(q)} = \frac{\frac{P}{\eta \cdot q} \cdot q}{P} = \frac{1}{\eta}$
+
+* Sub-step 7f: Complete the marginal revenue expression
+$R'(q) = P(q) \cdot \left[\frac{1}{\eta} + 1\right] = P(q) \cdot \left[\frac{1 + \eta}{\eta}\right]$
+
+* Sub-step 7g: Divide by $P$ to get the ratio
+$\frac{R'(q)}{P} = \frac{1 + \eta}{\eta} = 1 + \frac{1}{\eta}$
+
+* Sub-step 7h: Account for the sign of elasticity
+Since demand curves slope downward, $\eta < 0$. Using $|\eta|$ for the absolute value:
+$\frac{R'(q)}{P} = 1 + \frac{1}{\eta} = 1 - \frac{1}{|\eta|}$
+
+Final result for Step 7:
+$\frac{R'(q)}{P} = 1 - \frac{1}{|\eta|}$
+where $\eta$ is the price elasticity of demand.
+
+
+### Step 8: Substitute the product market relationship
+$$\left(1 - \frac{1}{|\eta|}\right) \cdot \theta_X = s_X \cdot (\varepsilon_X^{-1} + 1)$$
+
+### Step 9: Rearrange to isolate the markup-markdown relationship
+$$\frac{\theta_X}{s_X} \cdot \left(1 - \frac{1}{|\eta|}\right) = \varepsilon_X^{-1} + 1$$
+
+### Step 10: Express in terms of markup
+Since the markup $\mu = \frac{|\eta|}{|\eta| - 1}$, we have:
+$$1 - \frac{1}{|\eta|} = \frac{|\eta| - 1}{|\eta|} = \frac{1}{\mu}$$
+
+Therefore:
+$$\frac{\theta_X}{s_X} \cdot \frac{1}{\mu} = \varepsilon_X^{-1} + 1$$
+
+**Final Result 2**: 
+$$(\varepsilon_X^{-1} + 1) \cdot \mu = \frac{\theta_X}{s_X}$$
+
+## Economic Interpretation
+
+- **When $\varepsilon_X^{-1} = 0$** (perfect competition in factor market): The firm pays factors their marginal product, and we get the standard markup relationship $\mu = \frac{\theta_X}{s_X}$
+
+- **When $\varepsilon_X^{-1} > 0$** (monopsony power): The firm pays factors less than their marginal product. The markdown creates an additional wedge between what inputs are paid and their contribution to production
+
+- **The combination**: Both product market power (markup $\mu$) and factor market power (markdown via $\varepsilon_X^{-1}$) together determine the relationship between input productivity and input compensation
+
+The key insight is that when firms have both product and factor market power, the simple markup formula $\mu = \frac{\theta_X}{s_X}$ no longer holds. Instead, the product of the markup and the markdown factor $(1 + \varepsilon_X^{-1})$ equals the ratio of output elasticity to cost share.

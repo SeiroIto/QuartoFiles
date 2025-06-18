@@ -1,6 +1,10 @@
 /*-- scss:defaults --*/
 // Base document colors
-$link-color: #006400;// dark green
+$link-color: #006400; // dark green
+$OldLace: #fdf5e6 !default; // very light yellow
+// $OldLace: #6610f2 !default;
+$primary: $OldLace !default;
+$body-bg: $OldLace !default; // page background
 
 // Code blocks
 $code-block-bg-alpha: -.8;

@@ -653,10 +653,31 @@ ggsave(
 
 ### 蔓延度は不明ですが、結構深刻では?
 
-<Orange>例5:</Orange> [Asad Islam](https://users.monash.edu.au/~asaduli/index.html)の複数論文で[データ不正の疑い](https://a-ortmann.medium.com/the-asad-islam-gdri-saga-f96b567c93d6)  
+<Orange>例5:</Orange> ミクロ開発経済学研究者[Asad Islam](https://users.monash.edu.au/~asaduli/index.html)の複数論文で[データ不正(FF)の疑い](https://a-ortmann.medium.com/the-asad-islam-gdri-saga-f96b567c93d6)  
+
+[Institute For Replicationによる再現性分析](https://i4replication.org/gdri.html)で指摘
+
+:::::::::: {.columns}
+::::: {.column width = "40%"}
+::: {style="text-align: center;"}
+![](./IslamResearchMisconduct.jpg){width="90%"}
+:::
+:::::
+
+::::: {.column width = "60%"}
+Retracted
+
+* Journal of European Economics Association
+* Economic Development and Cultural Change
+* European Economic Review
+* Economic Journal
+* Journal of Public Economics (under review)
+* (American Journal of Economics: Micro)
+* (Review of Economics and Statistics)
+:::::
+:::::::::: 
 
 
-![](IslamResearchMisconduct.jpg)
 
 ----
 
@@ -1297,9 +1318,12 @@ JAXAの研究倫理・研究公正違反 (2016-2017)
 > _最も問題なのは、科学的合理性のある研究計画が検討されておらず、かつ科学的に適切な方法で遂行されなかったことであり、またそのように努めなかったこと_ ([調査報告書](https://www.jaxa.jp/press/2022/11/20221125-2.pdf#page=7))
 ::::
 
+:::: {.fragment}
 ### 意義の低い研究の実施=研究倫理(Emanuel et al. 2, 3, 6)の逸脱
 
 ### そう指摘をする分科会を沈黙させた組織運営
+::::
+
 
 ----
 
@@ -1308,11 +1332,16 @@ JAXAの研究倫理・研究公正違反 (2016-2017)
 
 ### 組織として閉鎖環境実験成果を出すことを目指す 
 
-
 * 1985年から莫大な国費を用いてISS計画を推進  
 * ISSでの成果の創出が有人部門にとっての優先事項となっていた  
 * 2015年時点で、5年後の目指す成果の出口は「地上の閉鎖環境等における実証とISSにおける一部の検証を終え、火星に向けた研究を開始」すること  
 * 2015年1月の第45回分科会(不承認)、第46回分科会(不承認)、同年9月第47回分科会(承認)、倫理審査委員会同年12月の第75回倫理審査委員会、2016年1月第76回倫理審査委員会(承認)  
+
+:::: {.fragment}
+### その担当者に非研究職の宇宙飛行士を任命、研究の実施と成果を求める
+
+* トップダウンのプロジェクト
+::::
 
 ----
 
@@ -1327,24 +1356,27 @@ JAXAの研究倫理・研究公正違反 (2016-2017)
 
 > _倫理審査委員会に提出した研究等実施計画書（第 3 回閉鎖試験）に「分科会において、妥当な計画であるとの評価を受けた」と<Orange>虚偽の事実が記載</Orange>されていた_ [同(p.22)](https://www.jaxa.jp/press/2022/11/20221125-2.pdf#page=22)
 
-
+:::: {.fragment}
 ### 「[専門家に任せる信頼の気持ちが勝ってしまった](https://scienceportal.jst.go.jp/newsflash/20230113_n01/#:~:text=%E5%B0%82%E9%96%80%E5%AE%B6%E3%81%AB%E4%BB%BB%E3%81%9B%E3%82%8B%E4%BF%A1%E9%A0%BC%E3%81%AE%E6%B0%97%E6%8C%81%E3%81%A1%E3%81%8C%E5%8B%9D%E3%81%A3%E3%81%A6%E3%81%97%E3%81%BE%E3%81%A3%E3%81%9F%E3%80%82)」ギフト・オーサーシップではないが、共著者なのに分担を超えて確認せず  
+::::
 
-
+:::: {.fragment}
 ### 研究体制の不備: 能力不足ならシニア研究者とペアにすべき
 
 > _研究者としての<Orange>適性を見極めず医師であることを理由に研究計画の策定から実行まで</Orange>を実施させた_ [同(p.24)](https://www.jaxa.jp/press/2022/11/20221125-2.pdf#page=24)
+::::
 
 ----
 
 ## JAXA当事者はなぜFF(P)やRE違反をしたのか?{background-color="#010638"}
 
-
+:::: {.incremental}
 * 非研究者なので研究倫理について考えていなかった
 * 経営者が非研究者(研究能力の乏しい人)に多額予算の研究を実施させ、成果を出させようとした
 * 分科会審査という安全装置が外された(邪魔者扱い)
 * 人の配置、権限配分、予算、期間を経営者が考えていなかった
 * 経営者が研究の見識を(経営者に相応しいほど)持っていなかった
+::::
 
 ----
 

@@ -52,6 +52,7 @@ jobs:
             any::modelsummary
             any::treemap
             any::ggfittext
+            any::RefManageR
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2

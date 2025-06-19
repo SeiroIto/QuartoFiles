@@ -16,7 +16,7 @@ format:
     height: 900
     preview-links: auto
     logo: images/quarto.png
-    footer: <http://seiroito.github.io/QuartoFiles/Horton/Horton2025_slides.html>
+    footer: <http://seiroito.github.io/QuartoFiles/ethics/KenkyuRinri2025_slides.html>
     theme: sky
 lightbox: auto
 include-in-header:
@@ -489,7 +489,9 @@ blockquote {
 :::::
 ::::::::::
 
+:::: {.fragment}
 See a list of QRPs used in Dutch national survey (DNSRI) summarised [here](https://htmlpreview.github.io/?https://github.com/SeiroIto/PaperNotes/blob/main/QRPsInDutchNationalSurvey_Tufte.html)
+::::
 
 ----
 
@@ -627,7 +629,7 @@ ggsave(
 
 :::: {.fragment}
 ::: {style="font-size:80%"}
-* [Allegation](https://datacolada.org/109): Data tampering in several of her work on dishonesty (incl. with Dan Ariely!)  
+* [Allegation](https://datacolada.org/109): Data tampering (FF) in several of her work on dishonesty (incl. with Dan Ariely!)  
 * HBS: Put Gino on an unpaid admin leave, hired file forensic investigators, sent retraction requests to journals  
 * Gino: Sued these folks and Harvard, asking for "at least $25 million" ([para 24, main document](https://www.courtlistener.com/docket/67659904/1/gino-v-president-and-fellows-of-harvard-college/))  
 * [The problem, though, is that it will take years --- and be extraordinarily expensive --- to settle](https://www.vox.com/future-perfect/2023/8/9/23825966/francesca-gino-honesty-research-scientific-fraud-defamation-harvard-university#:~:text=The%20problem%2C%20though%2C%20is%20that%20it%20will%20take%20years%20%E2%80%94%20and%20be%20extraordinarily%20expensive%20%E2%80%94%20to%20settle)
@@ -685,20 +687,32 @@ Retracted
 
 Gino: HBS給与は1.4億円+印税+講演料、ばれなければ大金
 
+:::: {.incremental}
 * 日本の文系(<2000万円)だとFFPは割に合いません  
 * 国立医薬品食品衛生研究所所長で1900万円くらい
+::::
 
+:::: {.fragment}
 結構ばれる: Ginoは追試、食品衛生部長は内部通報、Islamは経済学界の再現可能性指向  
+::::
+
 
 <br>
 
+:::: {.fragment}
 貧乏くじ
+::::
 
 <br>
 
+
+:::: {.fragment}
 オッズをよく知らないまま、自ら進んで引くのは賢くない
 
 > The university’s top governing board, the Harvard Corporation, decided this month to revoke Francesca Gino’s tenure and end her employment at Harvard Business School. ([WGBH news](https://www.wgbh.org/news/education-news/2025-05-25/in-extremely-rare-move-harvard-revokes-tenure-and-cuts-ties-with-star-business-professor))
+
+::::
+
 
 ----
 

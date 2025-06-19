@@ -33,9 +33,7 @@ resources:
   - KenkyuRinri2025_slides.pdf
 #### quarto render KenkyuRinri2025_slides.qmd
 ---
-```{r xaringan-panelset, echo=FALSE, warning = F}
-library(xaringanExtra)
-use_panelset()
+```{r read RefManageR library, echo=FALSE, warning = F}
 library(RefManageR)
 ```
 ```{r setting, eval = T, cache = T, warning = F, message = F, echo = F}
@@ -241,16 +239,16 @@ blockquote {
 }
 ```
 
+## {background-color="#010638"}
+
 ::: {.center2}
 [https://seiroito.github.io/Miscellaneous/ethics/KenkyuRinri2025_slides.html](https://seiroito.github.io/Miscellaneous/ethics/KenkyuRinri2025_slides.html)
 :::
 
-----
 
 # 研究倫理{background-color="#010638"}
 
 
-----
 
 ## {background-color="#010638"}
 
@@ -285,7 +283,6 @@ blockquote {
 ::::
 :::
 
-----
 
 # 研究倫理 = {狭義の研究倫理,  研究公正} {background-color="#010638"}
 
@@ -413,18 +410,6 @@ blockquote {
 
 ----
 
-## 研究公正 research integrity {background-color="DarkBlue"  background-image="./JAXASumimasen.jpg" background-size="100%"}
-
-----
-
-# 研究公正 research integrity {background-color="DarkBlue"  background-image="./JAXASumimasen.jpg" background-size="100%"}
-
-----
-
-## 研究公正 research integrity {background-color="black" background-image="./JAXASumimasen.jpg" background-size="100px" background-repeat="repeat"}
-
-----
-
 ## {background-color="#010638"}
 
 :::: {.absolute top="45%" left="0%" width="1600"}
@@ -444,22 +429,29 @@ blockquote {
 ## <Red>一発退場 Research misconducts</Red> (<LightBlue>FFP</LightBlue>, [厚労省研究不正ガイドライン「特定不正行為」](https://www.mhlw.go.jp/file/06-Seisakujouhou-10600000-Daijinkanboukouseikagakuka/0000152685.pdf#page=8)){background-color="#010638"}
 
 :::::::::: {.columns}
-::::: {.column width = "65%"}
-::: {.fragment}
+::::: {.column width = "60%"}
 ::: {style="font-size:130%"}
+:::: {.fragment}
 <White> <LightBlue>F</LightBlue><Orange>abrication ねつ造</Orange>「存在しないデータや研究成果を作成すること。」  
- <LightBlue>F</LightBlue><Orange>alsification 改ざん</Orange>「操作」によって「データ」や「成果などを真正でないものに加工すること」。  
- <LightBlue>P</LightBlue><Orange>lagerism 剽窃、盗用</Orange> 他の研究者の「アイディア」「方法」「データ」「結果」を「了解または適切な表示なく流用すること」。</White>
-:::
+::::
+
+:::: {.fragment}
+<LightBlue>F</LightBlue><Orange>alsification 改ざん</Orange>「操作」によって「データ」や「成果などを真正でないものに加工すること」。  
+::::
+
+:::: {.fragment}
+<LightBlue>P</LightBlue><Orange>lagerism 剽窃、盗用</Orange> 他の研究者の「アイディア」「方法」「データ」「結果」を「了解または適切な表示なく流用すること」。</White>
+::::
 :::
 :::::
 
-::::: {.column width = "35%"}
+::::: {.column width = "40%"}
 ::: {style="font-size:90%"}
 ::: {.incremental}
-* やると研究者人生が終わります。  
+* やると研究者人生がほぼ終わります。  
 * 理由: 研究者社会は相互信頼で成立しています。ウソをつかないことを前提に評価がされて、知識が共有されます。裏切ると、研究者社会全体が資源を浪費するので、厳罰処分されます。不正が露見するまで、他の研究者は存在しない現象を追求して苦しみます。  
    * STAP論文: 追試資源や継続研究資源の浪費、周辺研究まで疑いの目
+   * 不正をする人は自分の利得だけで社会への影響をほぼ無視
 :::
 :::
 :::::
@@ -470,7 +462,7 @@ blockquote {
 ## <Yellow>信用失墜</Yellow> <Orange>Questionable research practices (QRPs)</Orange>{background-color="#010638"}
 
 :::::::::: {.columns}
-::::: {.column width = "55%"}
+::::: {.column width = "40%"}
 ::: {.incremental}
 ::: {style="font-size:130%"}
 * データの未保存や再現性の欠如  
@@ -482,11 +474,14 @@ blockquote {
 :::
 :::::
 
-::::: {.column width = "45%"}
+::::: {.column width = "2%"}
+:::::
+
+::::: {.column width = "58%"}
 ::: {.incremental}
 * 識者によって内容が異なるので幾つか列記  
 * $P$-hacking: E.g.,  望んだ結果が出るまで推計を試行し、その結果のみ提示すること  
-* GAは贈賄双方に便益あり、[なくなりにくい、でも、著者責任も付いてくる](https://www.bmj.com/content/309/6967/1456#:~:text=Perhaps%20this%20scandal%20will%20finally%20undermine%20gift%20authorship.%20At%20the%20very%20least%20it%20should%20make%20researchers%20think%20hard%20about%20the%20responsibilities%20that%20come%20with%20putting%20their%20names%20on%20papers.)   
+* GAは贈賄双方に便益あり、[なくなりにくい、でも、著者責任も付いてくる](https://www.bmj.com/content/309/6967/1456#:~:text=Perhaps%20this%20scandal%20will%20finally%20undermine%20gift%20authorship.%20At%20the%20very%20least%20it%20should%20make%20researchers%20think%20hard%20about%20the%20responsibilities%20that%20come%20with%20putting%20their%20names%20on%20papers.)&larr; Asad IsamのFF疑惑   
 * 刊行された論文を翻訳して投稿してはいけません ([International Committee of Medical Journal Editors](https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/overlapping-publications.html#:~:text=Authors%20should%20not%20submit%20the%20same%20manuscript%2C%20in%20the%20same%20or%20different%20languages%2C%20simultaneously%20to%20more%20than%20one%20journal.))、翻訳であることを明示しても危ういので、翻訳論文はワーキング・ペーパーに留めましょう  
 :::
 :::::
@@ -512,23 +507,19 @@ See a list of QRPs used in Dutch national survey (DNSRI) summarised [here](https
 
 :::::::::: {.columns}
 ::::: {.column width = "55%"}
-<White>
+:::: {.fragment}
 FF(P) 8.3% engaged in any FF(P).  
-</White>
 
-<White>
 QRP 51.3% engaged frequently in at least 1 QRP.  
-</White>
+::::
 :::::
 
 ::::: {.column width = "45%"}
-<White>
+:::: {.fragment}
 Beh&Soc.Sci 5.7%  
-</White>
 
-<White>
 Beh&Soc.Sci 50.2%
-</White>
+::::
 :::::
 ::::::::::
 
@@ -632,6 +623,7 @@ ggsave(
 
 <Orange>例3:</Orange> [Data Collada (psychologist blog)](https://datacolada.org/) vs. [Francesca Gino (HBS prof)](https://www.francesca-v-harvard.org/home), 2021-  
 
+:::: {.fragment}
 ::: {style="font-size:80%"}
 * [Allegation](https://datacolada.org/109): Data tampering in several of her work on dishonesty (incl. with Dan Ariely!)  
 * HBS: Put Gino on an unpaid admin leave, hired file forensic investigators, sent retraction requests to journals  
@@ -640,12 +632,15 @@ ggsave(
 * [150人あまりの共著者たちはどの論文は不正がないか調べる羽目に](https://www.science.org/content/article/after-honesty-researcher-s-retractions-colleagues-expand-scrutiny-her-work#:~:text=This%20week%2C%20Simonsohn%20and%20five%20other%20Gino%20co%2Dauthors%20emailed)  
 * [ハーバード: Ginoを解雇 (2025年5月25日)](https://www.wgbh.org/news/education-news/2025-05-25/in-extremely-rare-move-harvard-revokes-tenure-and-cuts-ties-with-star-business-professor)
 :::
+::::
 
+:::: {.fragment}
 <Orange>例4:</Orange> [国立医薬品食品衛生研究所職員による研究活動上の不正行為及びISO/IEC 17025認定審査対応における不適切行為に関する調査結果の公表](https://www.nihs.go.jp/oshirasejoho/Press-Release/20231226/index.html) 
 
 ::: {style="font-size:80%"}
 * 2023年12月26日、食品衛生部長によるFabrication, Falsificationを研究所が認定
 :::
+::::
 
 ----
 
@@ -657,6 +652,7 @@ ggsave(
 
 [Institute For Replicationによる再現性分析](https://i4replication.org/gdri.html)で指摘
 
+:::: {.fragment}
 :::::::::: {.columns}
 ::::: {.column width = "40%"}
 ::: {style="text-align: center;"}
@@ -672,10 +668,11 @@ Retracted
 * European Economic Review
 * Economic Journal
 * Journal of Public Economics (under review)
-* (American Journal of Economics: Micro)
+* (American Economic Journl: Micro)
 * (Review of Economics and Statistics)
 :::::
 :::::::::: 
+:::: 
 
 
 
@@ -689,7 +686,7 @@ Gino: HBS給与は1.4億円+印税+講演料、ばれなければ大金
 * 日本の文系(<2000万円)だとFFPは割に合いません  
 * 国立医薬品食品衛生研究所所長で1900万円くらい
 
-結構ばれる: Ginoは追試、食品衛生部長は内部通報  
+結構ばれる: Ginoは追試、食品衛生部長は内部通報、Islamは経済学界の再現可能性指向  
 
 <br>
 
@@ -867,7 +864,7 @@ Gino: HBS給与は1.4億円+印税+講演料、ばれなければ大金
 
 ##  大規模言語モデル(LLM)時代のリスク{background-color="#010638"}
 
-<White>Fabrication, falsification、plagerismのリスク</White>
+Fabrication, falsification、plagerism回避のルール
 
 :::::::::: {.columns}
 ::::: {.column width = "50%"}
@@ -1372,7 +1369,7 @@ JAXAの研究倫理・研究公正違反 (2016-2017)
 
 :::: {.incremental}
 * 非研究者なので研究倫理について考えていなかった
-* 経営者が非研究者(研究能力の乏しい人)に多額予算の研究を実施させ、成果を出させようとした
+* 経営者が非研究者(研究能力の乏しい人)に多額予算の研究を実施させ、成果を出させようとした(トップダウン)
 * 分科会審査という安全装置が外された(邪魔者扱い)
 * 人の配置、権限配分、予算、期間を経営者が考えていなかった
 * 経営者が研究の見識を(経営者に相応しいほど)持っていなかった
